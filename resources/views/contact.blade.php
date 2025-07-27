@@ -15,6 +15,7 @@
    <div class="hero">
         <div class="wave"></div>
         <h1>Contact us</h1>
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem cupiditate cum consequuntur quia eos dolor quae quasi! Ab, consequatur? Assumenda dolorum saepe accusantium qui? Quisquam assumenda quaerat voluptate qui dolores.</p>
         <p>Get in touch with us! Whether you have questions, feedback, or need support, the Barter Brains team is here to help.</p>
     </div>
     <div class="mt-5 mb-5">.</div>
