@@ -1,0 +1,203 @@
+*{
+    font-family: sans-serif;
+}
+
+
+
+/* bg- image section */
+    .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full screen height */
+            background: url('../images/s7.jpeg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+            .content {
+            padding-top: 50px;
+            position: absolute;
+            max-width: 50%;
+            font-size: 1.5rem;
+        }
+.items{
+    padding-top: 120px;
+}
+.items>h1{
+    font-size: 50px;
+    
+}
+
+.items>p{
+    font-size: 25px;
+    padding-left: 100px;
+}
+
+
+.ser>h1{
+    color:#1f3d85;
+    font-weight: bold;
+}
+.ser>h2{
+    font-size: 2.1rem;
+    font-weight: bold;
+    color: #4f5f76;
+}
+.ser>p{
+    
+    font-size: 1.2rem;
+    color: #4f5f76;
+}
+/*advantages */
+.advan{
+    color: #1f3d85;
+}
+.nav-tabs .nav-link.active {
+            background-color: #1f3d85;
+            color: white;
+        }
+        .nav-tabs .nav-link {
+            color: black;
+        }
+        .tab-content .card {
+            border: none;
+            padding: 20px;
+            text-align: left;
+        }
+        .tab-content .card.active-card {
+            background-color: #1f3d85;
+            color: white;
+            border-radius: 10px;
+        }
+
+/*horizontal line*/
+.custom-hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    margin: 20px 0;
+}
+
+/*scrolling line*/
+.scrolling-container{
+    width: 100%;
+    height: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #eaeffc;
+    padding:20px 0;
+    position: relative;
+}
+.scrolling-text{
+    display: inline-block;
+    white-space: nowrap;
+    animation: scrollLeft 25s linear infinite;
+    font-size: 30px;
+}
+@keyframes scrollLeft{
+    from{
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+.scrolling-text span{
+    margin: 0 50px;
+    
+    font-weight: bold;
+    color: black;
+}
+
+
+
+/*Sub-skills */
+.Sub-skills {
+    background-color: #eaeffc; 
+            
+}
+.skill-heading h1{
+    font-weight: bold;
+    font-size: 45px;
+    text-shadow: 0px 0px 2px #517de4;
+    margin-top: 50px;
+}
+.skill-heading h3{
+    text-shadow: 0px 0px 2px #517de4;
+}
+.sub-skill h2{
+    font-weight: bold;
+    font-size: 50px;
+    text-shadow: 0px 0px 2px #517de4;
+}
+.sub-skill p{
+         
+    font-size: 20px;
+    text-shadow: 0px 0px 2px #517de4;
+
+ }
+        
+.content-section {
+    padding: 50px 15px;
+}
+ /* Fade-in and slide from the left */
+ @keyframes appear {
+    from {
+        opacity: 0;
+        scale: 0.5;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+
+/* Apply animations */
+
+  .block{
+      animation: appear linear;
+      animation-timeline: view();
+      animation-range: entry 0%;
+  }
+
+.image-container img {
+    width: 65%;
+    height: 400px;
+    border-radius: 10px;
+}
+@media (max-width: 768px) {
+    .image-container {
+        text-align: center;
+        margin-bottom: 20px;
+}
+/* advantages section */
+
+.advan{
+    color: #1f3d85;
+}
+.nav-tabs .nav-link.active {
+            background-color: #1f3d85;
+            color: white;
+        }
+        .nav-tabs .nav-link {
+            color: black;
+        }
+        .tab-content .card {
+            border: none;
+            padding: 20px;
+            text-align: left;
+        }
+        .tab-content .card.active-card {
+            background-color: #1f3d85;
+            color: white;
+            border-radius: 10px;
+        }
+    }
+
+
+
+
+

@@ -1,0 +1,262 @@
+.hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full screen height */
+            background: url('../images/t3.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+           
+        }
+
+      
+        .content {
+            padding-top: 50px;
+            position: absolute;
+            max-width: 50%;
+            font-size: 1.5rem;
+        }
+        .items{
+    padding-top: 120px;
+}
+.items>h1{
+    font-size: 55px;
+    font-weight: bold;
+    
+}
+
+.items>p{
+    font-size: 25px;
+    padding-left: 100px;
+}
+/*break line*/
+.custom-hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), 
+        rgba(0, 0, 0, 0));
+}
+        /* Process Section Styling */
+       .process-section{
+        margin-top: 100px;
+    margin-bottom: 80px;
+       }
+
+        .process-title {
+            font-size: 60px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* stright_line Styling */
+        .stright_line {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        /* Horizontal Line */
+        .stright_line::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+/*            left: 0;*/
+            width: 100%;
+            height: 4px;
+            background: #eaeffc; 
+        }
+
+        /* Step Circles */
+        .step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1f3d85;
+            color: white;
+            font-size: 27px;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 100px;
+            height: 90px;
+            margin-left: 150px;
+/*            margin-right: 30px;*/
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease-in-out forwards;
+        }
+
+        /* Step Number Styling */
+      /*  .step span {
+            opacity: 0.7;
+            font-size: 40px;
+            margin-right: 1px;
+        }
+*/
+        
+        /* Process Box Styling */
+.process-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 3s ease-in-out infinite; /* Loop the animation */
+}
+
+.process-box h5 {
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+/* Keyframes for the animation */
+/*@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(80px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(80px);
+    }
+}*/
+.step span {
+    opacity: 0.7;
+    font-size: 40px;
+    margin-right: 1px;
+    animation: pulseStep 2s ease-in-out infinite; /* Looping animation */
+}
+
+/* Keyframes for the step animation */
+@keyframes pulseStep {
+    0% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+}
+
+
+/*        .process-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+/*            transform: translateY(80px);
+            animation: fadeInUp 5s ease-in-out forwards;
+        }
+        .process-box h5{
+            font-size: 27px;
+            margin-bottom: 15px;
+        }*/
+
+
+        /* Animation Delays */
+        .step:nth-child(1), .process-box:nth-child(1) { animation-delay: 0.2s; }
+        .step:nth-child(2), .process-box:nth-child(2) { animation-delay: 0.4s; }
+        .step:nth-child(3), .process-box:nth-child(3) { animation-delay: 0.6s; }
+        .step:nth-child(4), .process-box:nth-child(4) { animation-delay: 0.8s; }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .timeline {
+                flex-wrap: wrap;
+            }
+
+            .step {
+                width: 90px;
+                height: 70px;
+                margin: 10px auto;
+            }
+
+        
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+
+   /* Trainers-review Styling */
+
+
+        .testimonial-section{
+            margin-top: 100px;
+        }
+        .testimonial-title {
+            text-align: left;
+            font-size: 60px;
+            margin-bottom: 30px;
+        }
+
+        /* Testimonial Box Styling */
+        .testimonial-card {
+            background-color:#eaeffc; 
+            padding: 50px;
+            border-radius: 10px;
+            text-align: left;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-text {
+            font-size: 20px;
+            margin-bottom: 50px;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            margin-bottom: 2px;
+            color:  #1f3d85;
+        }
+
+        .testimonial-role {
+            font-size: 17px;
+            color: gray;
+        }
+
+        /* Carousel Styling */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #1f3d85; 
+            border-radius: 50%;
+        }
+
+        /* Indicators Styling */
+        .carousel-indicators [data-bs-target] {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* Responsive Spacing */
+        @media (max-width: 992px) {
+            .carousel-item .col-md-6 {
+                margin-bottom: 15px;
+            }
+        }

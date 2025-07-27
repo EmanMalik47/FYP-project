@@ -1,0 +1,396 @@
+/* body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+} */
+
+/* Header styling */
+/* .header {
+    background-color: pink;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Navigation bar */
+/* .navbar {
+    background-color: lightgreen;
+    padding: 10px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: darkgreen;
+    margin-right: 10px;
+    font-weight: bold;
+} */ */
+
+/* Content area */
+/* .content {
+    min-height: 400px;
+    padding: 20px;
+    background: linear-gradient(white, #f2f2f2);
+} */
+
+/* Footer styling */
+/* .footer {
+    background-color: #66bb6a;
+    padding: 10px;
+    text-align: left;
+    color: white;
+    font-size: 14px;
+} */
+ *{
+	font-family: sans-serif;
+}
+/* login-popup */
+.modal-content {
+    margin-top: 150px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.login-container {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+.login-box {
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+}
+.left-panel {
+    background: #1f3d85;
+    color: white;
+    padding: 40px;
+    text-align: center;
+    width: 50%;
+}
+.right-panel {
+    padding: 40px;
+    width: 50%;
+}
+
+.log-btn{
+    background-color: #1f3d85;
+    width: 80px;
+    color: #ccc;
+    border-radius: 5px;
+    margin-left:110px;
+}
+.login>button {
+    margin-top: 10px;
+    margin-left: 100px;
+    width: 33%;
+    background-color: #1f3d85;
+    color: #eaeffc;
+    padding: 10px;
+    font-weight: bold;    
+}
+.login>button:hover {
+    background-color: #eaeffc;
+    color: #0f2862;
+}
+.google>button {
+    margin-top: 10px;
+    margin-left: 30px;
+    width: 80%;
+    background-color: #eaeffc;
+    color: #0f2862;
+    padding: 10px;
+    font-weight: bold;    
+}
+.google>button:hover {
+    background-color: #1f3d85;
+    color: white;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+.close-btn:hover{
+    background-color: #1f3d85;
+    color: #ccc;
+}
+/*header*/
+.nav-item:hover a 
+{
+background-color:#1f3d85;
+color: white;
+}
+
+#input-main input:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.icons a {
+  padding-left: 10px;
+  margin: 0 10px;
+  font-size: 20px;
+  display: inline-block;
+}
+.search-dropdown {
+  position: absolute;
+  right: 80px;
+  top: 80px;
+  display: none;
+  width: 250px;
+  background: #eaeffc;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+  
+}
+
+/* about page */
+ .about-section {
+            padding: 60px 15px;
+        }
+        .about-title {
+            color:#1f3d85; 
+            font-size: 34px;
+            font-weight: bold;
+        }
+        .about-heading {
+            font-size: 2.1rem;
+            color: #4f5f76;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .about-text {
+            font-size: 1.2rem;
+            color: #4f5f76;
+            margin-bottom: 20px;
+        }
+        .about-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .contect>button {
+            width: 15%;
+            background-color: #eaeffc;
+            color: #0f2862;
+            padding: 10px;
+            font-weight: bold;    
+        }
+        .contect>button:hover {
+            background-color: #1f3d85;
+            color: white;
+        }
+/*footer*/
+.footer {
+    background-color: #1f3d85;
+    color: white;
+    padding: 40px 0;
+}
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+.social-icons a {
+    margin: 0 10px;
+    font-size: 20px;
+    display: inline-block;
+}
+
+  /* offer-middel section*/
+ .offer-section {
+            text-align: center;
+            padding: 50px 15px;
+            margin-top: 90%;
+        }
+            .circle-img {
+      height: 70px;
+      margin-left: 0px;
+    }
+    .offer-section p{
+      margin-top: 2%;
+      font-size: 18px;
+    }
+
+
+        
+        .offer-box {
+            height: 370px;
+          margin-top: 15%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 1px 6px slategrey;
+            transition: transform 0.3s ease-in-out;
+        }
+        .offer-box:hover {
+            transform: translateY(-5px);
+        }
+
+
+ .offer-box h4{
+  font-size: 30px;
+  text-align: left;
+}
+.offer-box p{
+  font-size: 20px;
+  text-align: left;
+}
+ @keyframes appear {
+          from {
+              opacity: 0;
+              scale: 0.5;
+          }
+          to {
+              opacity: 1;
+              scale: 1;
+          }
+      }
+
+
+      /* Apply animations */
+
+        .block1{
+            animation: appear linear;
+            animation-timeline: view();
+            animation-range: entry 0%;
+        }
+/* trending skills */
+   .trending-skills-section {
+            padding: 60px 0;
+            background-color: #eaeffc;
+          }
+        .card {
+            border: none;
+        }
+        .card-title {
+          font-weight: bold;
+        }
+
+       
+     
+/*major skills */
+           .major-skills {
+            background-color: #eaeffc; 
+            
+        }
+        .skill-heading h1{
+          font-weight: bold;
+          font-size: 30px;
+           text-shadow: 0px 0px 2px #517de4;
+           margin-top: 50px;
+        }
+         .skill-heading h3{
+           text-shadow: 0px 0px 2px #517de4;
+        }
+        .each-skill h2{
+          font-weight: bold;
+          font-size: 50px;
+           text-shadow: 0px 0px 2px #517de4;
+
+        }
+         .each-skill p{
+         
+          font-size: 20px;
+          text-shadow: 0px 0px 2px #517de4;
+
+        }
+        
+        .content-section {
+            padding: 50px 15px;
+        }
+        /* Fade-in and slide from the left */
+        @keyframes appear {
+          from {
+              opacity: 0;
+              scale: 0.5;
+          }
+          to {
+              opacity: 1;
+              scale: 1;
+          }
+      }
+
+
+      /* Apply animations */
+
+        .block{
+            animation: appear linear;
+            animation-timeline: view();
+            animation-range: entry 0%;
+        }
+        .image-container img {
+           width: 500px;
+            height: 500px;
+            border-radius: 10px;
+        }
+        @media (max-width: 768px) {
+            .image-container {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
+  /* model */
+  /* .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+}
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+}
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+.switch-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.switch-buttons button {
+    background:#68902b ;
+}
+.switch-buttons button.active {
+    background: black;
+} */ 
+ 

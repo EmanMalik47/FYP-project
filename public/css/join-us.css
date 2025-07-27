@@ -1,0 +1,108 @@
+ .hero {
+            background:  #0f2862; 
+            color: white;
+            text-align: center;
+            padding: 180px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: auto;
+        }
+        .wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('../images/download.jpg'); /* Replace with an actual wave image */
+            opacity: 0.2;
+        }
+
+        .ser>h1{
+    color:#1f3d85;
+    font-weight: bold;
+}
+.ser>h2{
+    font-size: 2.1rem;
+    font-weight: bold;
+    color: #4f5f76;
+}
+.ser>p{
+    
+    font-size: 1.2rem;
+    color: #4f5f76;
+}
+/* login form */
+   .login_form {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* padding: 20px; */
+        }
+        .left-panel {
+            background: #eaeffc;
+            padding: 50px;
+            display: flex;
+            color:  #1f3d85;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            border: 50px;
+        }
+        .form-container {
+           padding: 15px;
+           margin-left: 10px;
+          
+        }
+       input:focus{
+        outline:none !important;
+        /* border-color:#0f2862 !important; */
+       }
+        .changing{
+            margin-left: 0px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .changing>button {
+            width: 30%;
+            background-color: #eaeffc;
+            color: #0f2862;
+            margin-top: 10px;
+            padding: 10px;
+            font-weight: bold;    
+        }
+        .changing>button:hover {
+            background-color: #1f3d85;
+            color: white;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+          }
+        /* .custom-select-color {
+            background-color: #f8f9fa; 
+            border: 1px solid #ced4da;
+            color: #212529;
+          }
+          
+          
+          .custom-select-color:focus {
+            background-color: #fff;
+            border-color: #86b7fe;
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+          } */
+          
+          

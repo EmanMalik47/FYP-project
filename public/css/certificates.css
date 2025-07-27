@@ -1,0 +1,154 @@
+.header-section{
+	width: 100%;
+	height: 500px;
+	background-image: url('../images/c4.jpeg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin-top: 60px;
+	
+}
+.description{
+	margin-top: 140px;
+}
+.description>h1{
+    font-size: 40px;
+    font-weight: bold;
+}
+.description>p{
+	font-size: 25px;
+}
+.our-certificates>h1{
+	color:#1f3d85;
+	font-weight: bold;
+}
+.our-certificates>h2{
+	font-size: 2.1rem;
+	font-weight: bold;
+	color: #4f5f76;
+}
+.our-certificates>p{
+	
+    font-size: 1.2rem;
+    color: #4f5f76;
+}
+
+/*horizontal line*/
+.custom-hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    margin: 20px 0;
+}
+
+/*certification steps*/
+.cer-steps>p{
+	margin-top: 2%;
+    font-size: 18px;
+}
+
+.custom-accordion {
+    max-width: 600px;
+    margin: 20px auto;
+    }
+.accordion-item {
+    border: none;
+}
+.accordion-button {
+    background-color: #1f3d85;
+    color: white;
+    font-weight: bold;
+    box-shadow: none;
+}
+.accordion-button:focus {
+    box-shadow: none;
+}
+.accordion-button:not(.collapsed) {
+    color: white;
+    background-color: #1f3d85;
+}
+.accordion-button::after {
+    filter: invert(100%);
+}
+.accordion-body {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/*get certificate*/
+.get-cer {
+    text-align: center;
+    padding: 50px 15px;
+     margin-top: 90%;
+}
+.circle-img {
+    height: 70px;
+    margin-left: 0px;
+}
+.get-cer>p{
+      margin-top: 2%;
+      font-size: 18px;
+}
+.cer-box {
+    margin-top: 15%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 3px slategrey;
+    transition: transform 0.3s ease-in-out;
+}
+.cer-box:hover {
+    transform: translateY(-5px);
+}
+.view-certificate{
+	background-color: #1f3d85;
+	color: white;
+	pointer-events: none;
+}
+
+ /*.offer-box h4{
+  font-size: 30px;
+  text-align: left;
+}
+.offer-box p{
+  font-size: 20px;
+  text-align: left;
+}*/
+
+
+
+/*certificate page*/
+.certificate{
+	width: 1000px;
+	height: 800px;
+    background-image: url('paper.jpg');
+	background-repeat: no-repeat;
+	margin-left: 180px;
+	background-size: 1000px 800px;
+}
+.cer-header{
+	 font-family: "Playfair Display", serif;
+}
+.form-items{
+	font-family: "Playfair Display", serif;
+	padding-top: 40px;
+	padding-left: 130px;
+	font-size: 26px;
+}
+input.form-control {
+    max-width: 300px; 
+    height: 30px; 
+    background-color: transparent;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 2px solid black; 
+    color: black; 
+    font-size: 16px; 
+    padding: 5px; 
+}
+input.form-control:focus {
+    background-color: transparent !important; /* Keep transparent when selected */
+    border: none; /* Ensure no extra borders */
+    border-bottom: 1px solid black; /* Keep bottom border visible */
+    outline: none; /* Remove blue outline */
+    box-shadow: none; /* Remove default Bootstrap focus effects */
+}
