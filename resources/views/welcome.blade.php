@@ -25,28 +25,6 @@
         </div>
         </div>
 </section>
-<!-- page description  -->
-<section class="about-section mt-5">
-    <div class="container mt-5">
-        <div class="row ">
-            <!-- Text Content -->
-            <div class="col-lg-12">
-                <h6 class="about-title">About</h6>
-                <h2 class="about-heading"> Exchange Knowledge, Elevate Skills. Learn, teach, and grow through collaborative knowledge exchange!</h2>
-                
-                <p class="about-text">
-                   Barter Brains brings people together to grow and thrive through collaboration.This website promotes the sharing of diverse skills, cultures, and ideas across different backgrounds and interests. Also inspire users to continually acquire new abilities, enhancing both personal and professional growth
-                </p>
-                <p class="about-text">
-                   Empowering a culture of collaborative learning, Skillswap bridges the gap between knowledge seekers and experts worldwide.Unlock your full potential with Barter Brains, a community-driven platform where learners and experts connect, share knowledge, and grow together.
-                </p>
-            </div>
-        </div>
-        <div class="contect">
-         <button class="contact_us  px-5 py-2 rounded-pill" type="button" onclick="window.location.href='contact.html';">Contact Us</button> 
-        </div>
-        </div>
-</section>
 
 
 
