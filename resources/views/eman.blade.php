@@ -33,18 +33,7 @@
           <input type="password" class="form-control" id="password" placeholder="Create a password" required>
         </div>
 
-        <!-- Gender -->
-        <div class="mb-3">
-          <label class="form-label d-block">Gender</label>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
-            <label class="form-check-label" for="male">Male</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
-            <label class="form-check-label" for="female">Female</label>
-          </div>
-        </div>
+        
 {{-- 
         <!-- Terms & Conditions -->
         <div class="mb-3 form-check">

@@ -134,7 +134,7 @@
                 </a>
                 <a><i class="fa-solid fa-user" style="color: #1f3d85;" onclick="window.location.href='profile';"></i></a>
                 <a><i class="fa-solid fa-phone-volume" style="color: #1f3d85;" onclick="window.location.href='contact';"></i></a>
-                <a><i class="fa-solid fa-bell"  style="color: #1f3d85;"></i></a>
+                <a><i class="fa-solid fa-bell"  style="color: #1f3d85;" onclick="window.location.href='eman';"></i></a>
                
             </div>              
      </div>
