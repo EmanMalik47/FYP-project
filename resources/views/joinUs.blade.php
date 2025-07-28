@@ -134,7 +134,12 @@ Join us to enhance your skills and contribute to groundbreaking projects in arch
                                 <input type="file" class="form-control shadow-none" required>
                             </div>
                         </div>
-                      
+                        
+                         <div class="col-md-12>
+                   
+                            <label class="form-lable">Upload Photo</label>
+                        <input class="form-control" type="file" id="photo" name="photo" accept="image/*">
+                        </div>                   
                         &nbsp;
                         <div class="mb-3">
                             <label class="form-label">Facilities I Provide</label>

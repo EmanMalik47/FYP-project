@@ -14,23 +14,24 @@
   <div class="container d-flex justify-content-center">
     <div class="form-container">
       <h2 class="form-title">Registration Form</h2>
-      <form>
+      <form action="store_data" method="POST">
+        @csrf
         <!-- Full Name -->
         <div class="mb-3">
           <label for="fullName" class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+          <input type="text" class="form-control" name="fname" placeholder="Enter your full name" required>
         </div>
 
         <!-- Email -->
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+          <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
         </div>
 
         <!-- Password -->
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Create a password" required>
+          <input type="password" class="form-control" name="password" placeholder="Create a password" required>
         </div>
 
         

@@ -26,4 +26,6 @@ Route::get('/contact',[pgController::class,'showcontact'])->name('contact');
 Route::get('/eman',[pgController::class,'showeman'])->name('eman');
 Route::get('/open',[pgController::class,'showopen'])->name('open');
 
+route::post('/store_data',[App\Http\Controllers\FormController::class, 'store_data']);
+
 
