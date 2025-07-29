@@ -55,19 +55,22 @@
                         <div class="facility-item">
                             <h5>Workspace</h5>
                             <p>Fully equipped design studio with high-end PC and drawing tablet</p>
-                        </div>
-                        <div class="facility-item">
                             <h5>Equipment</h5>
                             <p>Professional DSLR camera and lighting setup</p>
-                        </div>
-                        <div class="facility-item">
                             <h5>Software</h5>
                             <p>Latest Adobe Creative Suite subscription</p>
-                        </div>
-                        <div class="facility-item">
                             <h5>Learning Materials</h5>
                             <p>Collection of design books and online course access</p>
                         </div>
+                        {{-- <div class="facility-item">
+                            
+                        </div>
+                        <div class="facility-item">
+                            
+                        </div>
+                        <div class="facility-item">
+                            
+                        </div> --}}
                     </div>
 
                 </div>

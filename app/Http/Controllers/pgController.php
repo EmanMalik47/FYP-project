@@ -24,6 +24,8 @@ class pgController extends Controller
         return view('joinUs');
     }
     public function showprofile(){
+        // $joins=JoinWeb::all();
+        // dd($joins);
         return view('profile');
     }
     public function showcontact(){
