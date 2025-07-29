@@ -72,6 +72,9 @@
 
                 </div>
             </div>
+            <div class="changing">
+                    <button type="submit" class="btn btn-apply fw-bolder btn-end" >logout</button>
+                </div>
         </div>
     
     </section>
