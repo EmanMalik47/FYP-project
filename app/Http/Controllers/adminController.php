@@ -18,5 +18,17 @@ class adminController extends Controller
         return view('admin\dashboard\manageSkills');
 
     }
+     public function showexchange_request(){
+        return view('admin\dashboard\exchangeRequest');
+
+    }
+     public function showcategories(){
+        return view('admin\dashboard\adminCategories');
+
+    }
+     public function showreports(){
+        return view('admin\dashboard\reports');
+
+    }
 
 }

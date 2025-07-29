@@ -26,9 +26,9 @@
         <li class="nav-item"><a href="admin\dashboard\adminDashboard" class="nav-link active">Dashboard</a></li>
         <li class="nav-item"><a href="manageuser" class="nav-link">Manage Users</a></li>
         <li class="nav-item"><a href="manageSkills" class="nav-link">Manage Skills</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Exchange Requests</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Categories</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Reports</a></li>
+        <li class="nav-item"><a href="exchangeRequest" class="nav-link">Exchange Requests</a></li>
+        <li class="nav-item"><a href="adminCategories" class="nav-link">Categories</a></li>
+        <li class="nav-item"><a href="reports" class="nav-link">Reports</a></li>
         <li class="nav-item mt-auto"><a href="#" class="nav-link text-danger fw-bold">Logout</a></li>
       </ul>
     </nav>

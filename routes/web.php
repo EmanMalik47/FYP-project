@@ -20,9 +20,9 @@ Route::get('/', function () {
 Route::get('/adminDashboard',[adminController::class,'showdashboard'])->name('adminDashboard');
 Route::get('/manageuser',[adminController::class,'showmanage_user'])->name('manageuser');
 Route::get('/manageSkills',[adminController::class,'showmanage_skills'])->name('manageSkills');
-// Route::get('/manageuser',[adminController::class,'showmanage_user'])->name('manageuser');
-// Route::get('/manageuser',[adminController::class,'showmanage_user'])->name('manageuser');
-// Route::get('/manageuser',[adminController::class,'showmanage_user'])->name('manageuser');
+Route::get('/exchangeRequest',[adminController::class,'showexchange_request'])->name('exchangeRequest');
+Route::get('/adminCategories',[adminController::class,'showCategories'])->name('adminCategories');
+Route::get('/reports',[adminController::class,'showreports'])->name('reports');
 
 Route::get('/welcome',[pgController::class,'showwelcome'])->name('welcome');
 Route::get('/services',[pgController::class,'showservices'])->name('services');
