@@ -3,6 +3,8 @@
 use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pgController;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\JoinController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -34,6 +36,11 @@ Route::get('/contact',[pgController::class,'showcontact'])->name('contact');
 Route::get('/eman',[pgController::class,'showeman'])->name('eman');
 Route::get('/open',[pgController::class,'showopen'])->name('open');
 
-route::post('/store_data',[App\Http\Controllers\FormController::class, 'store_data']);
+route::post('/store_data',[FormController::class, 'store_data']);
+
+
+// route::get('/joinUs', [\App\Http\Controllers\JoinController::class, 'index'])->name('joinUs');
+route::post('/store', [JoinController::class, 'store']);
+
 
 

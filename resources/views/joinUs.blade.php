@@ -41,23 +41,37 @@ Join us to enhance your skills and contribute to groundbreaking projects in arch
     </div>
     
 </section>
-
+<div>
+    @if(Session::has('success'))
+        <div>
+            {{Session:: get('success') }}
+        </div>
+        
+    @endif
+    </div>
 <!-- login form -->
  <section>
  <div class="container login_form mt-5 p-4" id="signup">
         <div class="row">
             <div class="col-md-12 col-lg-4 left-panel text-center">Spontaneous Application</div>
             <div class="col-md-12 col-lg-7 form-container">
-                <form id="signupForm" novalidate>
+                <form  action="store" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label ">Name</label>
-                            <input type="text" class="form-control shadow-none" id="name" placeholder="Enter first name">
+                            <input type="text" class="  @error('name') is-invalid @enderror form-control shadow-none" name="name" placeholder="Enter first name">
+                            @error('name')
+                            <p class="invalid-feedback"> {{ $message}}</p>    
+                            @enderror
                             <div id="nameError" class="error-message"></div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Last name</label>
-                            <input type="text" class="form-control shadow-none" id="lastname" placeholder="Enter last name">
+                            <input type="text" class="    @error('lastname') is-invalid @enderror form-control shadow-none" name="lastname" placeholder="Enter last name">
+                             @error('lastname')
+                            <p class="invalid-feedback"> {{ $message}}</p>    
+                            @enderror
                             <div id="lastnameError" class="error-message"></div>
                         </div>
                     </div>
@@ -65,14 +79,20 @@ Join us to enhance your skills and contribute to groundbreaking projects in arch
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label class="form-label">E-mail</label>
-                            <input type="email" class="form-control shadow-none" id="email" placeholder="Enter E-mail" required>
+                            <input type="email" class="   @error('email') is-invalid @enderror form-control shadow-none" name="email" placeholder="Enter E-mail" required>
+                              @error('email')
+                            <p class="invalid-feedback"> {{ $message}}</p>    
+                            @enderror
                             <div id="emailError" class="error-message"></div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Phone Number</label>
                             <div class="input-group">
                                 <span class="input-group-text">+92</span>
-                                <input type="tel" class="form-control shadow-none" id="phone" placeholder="Enter phone number" required>
+                                <input type="tel" class="  @error('phone') is-invalid @enderror form-control shadow-none" name="phone" placeholder="Enter phone number" required>
+                                   @error('phone')
+                            <p class="invalid-feedback"> {{ $message}}</p>    
+                            @enderror
                             </div>
                             <div id="phoneError" class="error-message"></div>
                         </div>
@@ -81,20 +101,23 @@ Join us to enhance your skills and contribute to groundbreaking projects in arch
                         <div class="col-md-6">
                             <label class="form-label">Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control shadow-none" id="password" placeholder="Enter password" required>
-                                <span class="input-group-text">
+                                <input type="password" class="  @error('password') is-invalid @enderror form-control shadow-none" name="password" placeholder="Enter password" required>
+                                   @error('password')
+                            <p class="invalid-feedback"> {{ $message}}</p>    
+                            @enderror
+                                {{-- <span class="input-group-text">
                                     <i class="fas fa-eye" id="togglePassword" style="cursor: pointer;"></i>
-                                </span>
+                                </span> --}}
                                 <div id="passwordError" class="error-message"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Confirm Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control shadow-none" id="confirmPassword" placeholder="Confirm password" required>
-                                <span class="input-group-text">
+                                <input type="password" class="form-control shadow-none" name="confirmPassword" placeholder="Confirm password" required>
+                                {{-- <span class="input-group-text">
                                     <i class="fas fa-eye" id="toggleConfirmPassword" style="cursor: pointer;"></i>
-                                </span>
+                                </span> --}}
                                 <div id="confirmPasswordError" class="error-message"></div>
                             </div>
                         </div>
@@ -115,7 +138,7 @@ Join us to enhance your skills and contribute to groundbreaking projects in arch
                         </div>
                         <div class="form-items col-md-6 ">
                             <label for="sel1" class="form-label" >Skills I Want to Learn (select one):</label>
-                                <select class="form-select shadow-none " id="sel1" class=" shadow-none" name="sellist1" required>
+                                <select class="form-select shadow-none " id="sel1" class=" shadow-none" name="sellist2" required>
                                   <option selected disabled>Select Skill</option>
                                   <option>Culinary arts</option>
                                   <option>Knife skills</option>
@@ -131,7 +154,7 @@ Join us to enhance your skills and contribute to groundbreaking projects in arch
                            <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="form-label">My Acheivments</label>
-                                <input type="file" class="form-control shadow-none" required>
+                                <input type="file" class="form-control shadow-none" name="pdf" required>
                             </div>
                         </div>
                         
@@ -143,11 +166,11 @@ Join us to enhance your skills and contribute to groundbreaking projects in arch
                         &nbsp;
                         <div class="mb-3">
                             <label class="form-label">Facilities I Provide</label>
-                            <input type="text" class="form-control shadow-none" placeholder="Enter portfolio" required>
+                            <input type="text" class="form-control shadow-none" placeholder="Enter portfolio" name="facilities" required>
                         </div>
                             <div class="mb-3">
                             <label class="form-label">About Me</label>
-                            <textarea class="form-control shadow-none"  placeholder="Enter about yourself" required></textarea>
+                            <textarea class="form-control shadow-none"  placeholder="Enter about yourself" name="about" required></textarea>
                         </div>
                     <div class="changing">
                     <button type="submit" class="btn btn-apply fw-bolder btn-end" >To apply</button>
@@ -247,12 +270,12 @@ const form = document.getElementById('signupForm');
   }
 
       // Password validation
-      const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/;
       if (!passwordPattern.test(password)) {
         document.getElementById('passwordError').innerText = 
           'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.';
         isValid = false;
-      }
+      }//
 
       // Confirm password validation
       if (password !== confirmPassword) {

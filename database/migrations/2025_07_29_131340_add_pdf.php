@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('visitors', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('fname')->nullable();
-            $table->string('email')->nullable();
+        Schema::table('join_webs', function (Blueprint $table) {
+            $table->string('pdf')->nullable()->after('sellist2');
         });
     }
 
@@ -24,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('visitors');
+        Schema::table('join_webs', function (Blueprint $table) {
+            $table->dropColumn('pdf');
+
+        });
     }
 };
