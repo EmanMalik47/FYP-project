@@ -60,3 +60,22 @@
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+.changing{
+            margin-left: 0px;
+            margin-top: 10px;
+            width: 100%;
+           
+        }
+
+        .changing>button {
+            width: 20%;
+            background-color: #eaeffc;
+            color: #0f2862;
+            margin-top: 10px;
+            padding: 10px;
+            font-weight: bold;    
+        }
+        .changing>button:hover {
+            background-color: #1f3d85;
+            color: white;
+        }

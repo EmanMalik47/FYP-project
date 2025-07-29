@@ -23,6 +23,7 @@ Route::get('/manageSkills',[adminController::class,'showmanage_skills'])->name('
 Route::get('/exchangeRequest',[adminController::class,'showexchange_request'])->name('exchangeRequest');
 Route::get('/adminCategories',[adminController::class,'showCategories'])->name('adminCategories');
 Route::get('/reports',[adminController::class,'showreports'])->name('reports');
+// Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 Route::get('/welcome',[pgController::class,'showwelcome'])->name('welcome');
 Route::get('/services',[pgController::class,'showservices'])->name('services');
