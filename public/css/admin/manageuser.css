@@ -1,0 +1,45 @@
+*{
+	font-family: sans-serif;
+}
+
+h2 {
+  text-align: center;
+  background-color:#1f3d85 ;
+  
+  margin-bottom: 30px;
+  font-size: 1.4rem;
+}
+
+.table {
+  background-color: whitesmoke;
+  font-size: 1.2rem;
+}
+
+.table th {
+  background-color: #343a40;
+  color: #ffffff;
+  text-align: center;
+}
+
+.table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.btn {
+  margin: 2px;
+  
+}
+#button{
+    background-color: #eaeffc;
+}
+#button:hover{
+    background-color: #1f3d85;
+  color: white;
+}
+.container {
+  border-radius: 8px;
+  padding: 30px;
+  /* background-color: #212529; */
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.05);
+}

@@ -1,44 +1,4 @@
-/* body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-} */
 
-/* Header styling */
-/* .header {
-    background-color: pink;
-    padding: 10px;
-    text-align: left;
-    font-weight: bold;
-}
-
-/* Navigation bar */
-/* .navbar {
-    background-color: lightgreen;
-    padding: 10px;
-}
-
-.navbar a {
-    text-decoration: none;
-    color: darkgreen;
-    margin-right: 10px;
-    font-weight: bold;
-} */ */
-
-/* Content area */
-/* .content {
-    min-height: 400px;
-    padding: 20px;
-    background: linear-gradient(white, #f2f2f2);
-} */
-
-/* Footer styling */
-/* .footer {
-    background-color: #66bb6a;
-    padding: 10px;
-    text-align: left;
-    color: white;
-    font-size: 14px;
-} */
  *{
 	font-family: sans-serif;
 }

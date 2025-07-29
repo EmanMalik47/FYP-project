@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pgController;
 // Route::get('/', function () {
@@ -15,6 +16,13 @@ Route::get('/', function () {
 // Route::get('/about', function () {
 //     return view('about');
 // });
+
+Route::get('/adminDashboard',[adminController::class,'showdashboard'])->name('adminDashboard');
+Route::get('/manageuser',[adminController::class,'showmanage_user'])->name('manageuser');
+Route::get('/manageSkills',[adminController::class,'showmanage_skills'])->name('manageSkills');
+// Route::get('/manageuser',[adminController::class,'showmanage_user'])->name('manageuser');
+// Route::get('/manageuser',[adminController::class,'showmanage_user'])->name('manageuser');
+// Route::get('/manageuser',[adminController::class,'showmanage_user'])->name('manageuser');
 
 Route::get('/welcome',[pgController::class,'showwelcome'])->name('welcome');
 Route::get('/services',[pgController::class,'showservices'])->name('services');
