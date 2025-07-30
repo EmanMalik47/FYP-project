@@ -17,6 +17,7 @@ class JoinController extends Controller
     // dd($request->all());
     
          $data = new JoinWeb();
+         $data->name = $request->input('name');
          $data->lastname = $request->input('lastname');
          $data->email = $request->input('email');
          $data->phone = $request->input('phone');
