@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JoinWeb;
-
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Validator;
 
@@ -22,8 +22,15 @@ class JoinController extends Controller
          $data->email = $request->input('email');
          $data->phone = $request->input('phone');
          $data->password = $request->input('password');
-         $data->sellist1 = $request->sellist1;
-    $data->sellist2 = $request->sellist2;
+        //  $data->sellist1 = $request->sellist1;
+        $request->validate([
+    'sellist1' => ['required', Rule::in(['Programming Languages', 'Graphic Designing', 'Cooking', 'Musical Instruments', 'Beauty Selon'])]
+]);
+
+    // $data->sellist2 = $request->sellist2;
+     $request->validate([
+    'sellist2' => ['required', Rule::in(['Programming Languages', 'Graphic Designing', 'Cooking', 'Musical Instruments', 'Beauty Selon'])]
+]);
           $data->facilities = $request->facilities;
            $data->about = $request->about;
            if ($request->hasFile('photo')) {
