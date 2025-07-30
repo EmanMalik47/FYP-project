@@ -129,22 +129,22 @@ Join us to enhance your skills and contribute to groundbreaking projects in arch
                             
                                 <select class="form-select shadow-none  custom-select-color" name="sellist1" required>
                                   <option selected disabled>Select Skill</option>
-                                  <option>Culinary arts</option>
-                                  <option>Knife skills</option>
-                                  <option>Chines cusine</option>
-                                  <option>Italian food</option>
-                                  <option>Sea food</option>
+                                  <option>Programming Languages</option>
+                                  <option>Graphic Designing</option>
+                                  <option>Cooking</option>
+                                  <option>Musical Instruments</option>
+                                  <option>Beauty Selon</option>
                                 </select>
                         </div>
                         <div class="form-items col-md-6 ">
                             <label for="sel1" class="form-label" >Skills I Want to Learn (select one):</label>
-                                <select class="form-select shadow-none " id="sel1" class=" shadow-none" name="sellist2" required>
+                                <select class="form-select shadow-none " class=" shadow-none" name="sellist2" required>
                                   <option selected disabled>Select Skill</option>
-                                  <option>Culinary arts</option>
-                                  <option>Knife skills</option>
-                                  <option>Chines cusine</option>
-                                  <option>Italian food</option>
-                                  <option>Sea food</option>
+                                  <option>Programming Languages</option>
+                                  <option>Graphic Designing</option>
+                                  <option>Cooking</option>
+                                  <option>Musical Instruments</option>
+                                  <option>Beauty Selon</option>
                                 </select>
                         </div>
                         
