@@ -13,8 +13,8 @@
     <div class="hero mt-3">
         <div class="wave"></div>
         <div class="profile-header text-center">
-            <img src="images/pp.jfif" class="rounded-circle profile-pic" alt="Profile Picture">
-            <h1 class="mt-3">Tahreem Azeem</h1>
+            <img src="{{ asset($user->photo) }}" class="rounded-circle profile-pic" alt="Profile Picture">
+            <h1 class="mt-3">{{ $user->name }}</h1>
             <p class="lead">Creative Skill Enthusiast</p>
             
         </div>
@@ -25,27 +25,26 @@
                 <div class="col-md-7 info">
                     <h3>About Me</h3>
                     <p>
-                        Passionate designer with 5+ years of experience in creating stunning visual content. 
-                        Looking to exchange skills with other creative minds and learn new techniques!
+                        {{ $user->about}}
+                        {{-- Passionate designer with 5+ years of experience in creating stunning visual content. 
+                        Looking to exchange skills with other creative minds and learn new techniques! --}}
                     </p>
 
                     <h3>Skills to Share</h3>
                     <ul class="list-group mb-4">
-                        <li class="list-group-item">Responsive Web Design</li>
-                        <li class="list-group-item">Adobe Photoshop & Illustrator</li>
-                        <li class="list-group-item">Portrait Photography</li>
+                        <li class="list-group-item">{{ $user->sellist1 ?? 'Not Selected' }}</li>
+                        
                     </ul>
 
                     <h3>Skills I Want to Learn</h3>
                     <ul class="list-group mb-4">
-                        <li class="list-group-item">Video Editing</li>
-                        <li class="list-group-item">3D Modeling</li>
-                        <li class="list-group-item">UI/UX Design</li>
+                        <li class="list-group-item">{{ $user->sellist2 ?? 'Not Selected' }}</li>
+                        
                     </ul>
 
                     <h3>Connect with me</h3>
                     <ul class="list-group mb-4">
-                        <li class="list-group-item">xxxx-xxxxxxx</li>
+                        <li class="list-group-item">{{ $user->number }}</li>
                         
                     </ul>
                 </div>
@@ -53,14 +52,15 @@
                     <div class="sidebar">
                         <h3>Facilities I Provide</h3>
                         <div class="facility-item">
-                            <h5>Workspace</h5>
+                            {{ $user->facility }}
+                            {{-- <h5>Workspace</h5>
                             <p>Fully equipped design studio with high-end PC and drawing tablet</p>
                             <h5>Equipment</h5>
                             <p>Professional DSLR camera and lighting setup</p>
                             <h5>Software</h5>
                             <p>Latest Adobe Creative Suite subscription</p>
                             <h5>Learning Materials</h5>
-                            <p>Collection of design books and online course access</p>
+                            <p>Collection of design books and online course access</p> --}}
                         </div>
                         {{-- <div class="facility-item">
                             

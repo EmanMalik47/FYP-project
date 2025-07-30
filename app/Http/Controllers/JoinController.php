@@ -56,6 +56,9 @@ if ($request->hasFile('pdf')){
     $data->pdf = 'pdfs/' . $pdfName;
 }   
        $data->save();
+       
+       // Ab redirect karein profile page pe with user ID
+    return redirect()->route('profile.view', ['id' => $data->id]);
         }
 };
 
