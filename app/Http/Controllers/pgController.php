@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\JoinWeb;
 class pgController extends Controller
 {
@@ -27,7 +28,16 @@ class pgController extends Controller
         $user = JoinWeb::find($id);
         // $joins=JoinWeb::all();
         // dd($joins);
-        return view('profile',['user' => $user]);
+        // return view('profile',['user' => $user]);
+        //  $user = Auth::user(); // Get logged-in user
+        // return view('profile', compact('user')); 
+        $user = JoinWeb::find($id); // Get user from join_webs table
+
+    if (!$user) {
+        abort(404, 'User not found');
+    }
+
+    return view('profile', ['user' => $user]);
     }
     public function showcontact(){
         return view('contact');

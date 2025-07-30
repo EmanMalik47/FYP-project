@@ -35,6 +35,7 @@ Route::get('/trainers',[pgController::class,'showtrainers'])->name('trainers');
 Route::get('/certificates',[pgController::class,'showcertificates'])->name('certificates');
 Route::get('/joinUs',[pgController::class,'showjoinUs'])->name('joinUs');
 Route::get('/profile/{id}', [pgController::class, 'showprofile'])->name('profile.view');
+Route::get('/profile', [pgController::class, 'showProfile'])->middleware('auth');
 // Route::get('/profile',[pgController::class,'showprofile'])->name('profile');
 Route::get('/contact',[pgController::class,'showcontact'])->name('contact');
 Route::get('/eman',[pgController::class,'showeman'])->name('eman');

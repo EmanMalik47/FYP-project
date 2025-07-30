@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('lastname')->nullable();
             $table->string('email')->nullable();
-            $table->double('phone', 10,2)->nullable();
+            $table->string('phone')->nullable();
             $table->string('password')->nullable();
            $table->enum('sellist1', ['Programming Languages', 'Graphic Designing', 'Cooking', 'Musical Instruments', 'Beauty Salon']);
             $table->enum('sellist2', ['Programming Languages', 'Graphic Designing', 'Cooking', 'Musical Instruments', 'Beauty Salon']);
@@ -37,6 +37,7 @@ return new class extends Migration
         Schema::dropIfExists('join_webs');
     }
 };
+
 
 class UpdateSellistFields extends Migration
 {
