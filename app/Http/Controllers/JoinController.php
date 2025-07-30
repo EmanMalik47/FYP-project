@@ -22,17 +22,16 @@ class JoinController extends Controller
          $data->email = $request->input('email');
          $data->phone = $request->input('phone');
          $data->password = $request->input('password');
-        //  $data->sellist1 = $request->sellist1;
-        $request->validate([
-    'sellist1' => ['required', Rule::in(['Programming Languages', 'Graphic Designing', 'Cooking', 'Musical Instruments', 'Beauty Selon'])]
-]);
+         $data->sellist1 = $request->sellist1;
+         $data->sellist2 = $request->sellist2;
 
-    // $data->sellist2 = $request->sellist2;
-     $request->validate([
-    'sellist2' => ['required', Rule::in(['Programming Languages', 'Graphic Designing', 'Cooking', 'Musical Instruments', 'Beauty Selon'])]
+        //  $data->sellist1 = $request->sellist1;
+      $request->validate([
+    'sellist1' => 'required|in:Programming Languages,Graphic Designing,Cooking,Musical Instruments,Beauty Salon,Culinary arts',
+    'sellist2' => 'required|in:Programming Languages,Graphic Designing,Cooking,Musical Instruments,Beauty Salon,Culinary arts',
 ]);
-          $data->facilities = $request->facilities;
-           $data->about = $request->about;
+        $data->facilities = $request->facilities;
+        $data->about = $request->about;
            if ($request->hasFile('photo')) {
     $photo = $request->file('photo');
 
