@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pgController;
 use App\Http\Controllers\FormController;
@@ -46,6 +47,12 @@ route::post('/store_data',[FormController::class, 'store_data']);
 
 // route::get('/joinUs', [\App\Http\Controllers\JoinController::class, 'index'])->name('joinUs');
 route::post('/store', [JoinController::class, 'store']);
+
+// Route::get('/contact', function () {
+//     return view('contact'); 
+// })->name('contact');
+
+route::post('/contact',[ContactController::class, 'contact']);
 
 // Route::get('/profile', [profile_controller::class, 'showUser_profile'])->name('profile')->middleware('auth');
 

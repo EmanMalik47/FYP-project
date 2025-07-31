@@ -12,6 +12,7 @@
     <div class="mt-5">.</div>
 <!-- contact-us section -->
 
+
    <div class="hero">
         <div class="wave"></div>
         <h1>Contact us</h1>
@@ -34,40 +35,49 @@
 
 <!-- form -->
 
+
  <div class="container login_form mt-5 p-4" id="contact">
         <div class="row">
             <div class="col-md-4 left-panel text-center"><h1><strong>Contact Us</strong></h1>
                 <p style="font-size: 13px; color:black;">Ready to take the next step?<br> Let’s bring your vision to life: <br>contact us and let’s get started!</p>
             </div>
             <div class="col-md-7 form-container">
-                    <form id="contactForm" novalidate>
+                @if(session('success'))
+    <script>
+        alert("{{ session('success') }}");
+    </script>
+@endif
+                    <form  novalidate action="{{route('contact')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">Your Name</label>
-                                <input type="text" class="form-control shadow-none" id="name" placeholder="Enter first name" required>
-                                 <div id="nameError" class="error-message"></div>
+                                <input type="text" class="form-control shadow-none value="{{ old('firstname') }} name="firstname" id="firstname" placeholder="Enter first name" required>
+                                 @error('firsttname') <div class="invalid-feedback">{{ $message }}</div> @enderror 
+                                <div id="nameError" class="error-message"></div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Last Name</label>
-                                <input type="text" class="form-control shadow-none" id="lastname" placeholder="Enter last name" required>
-                                 <div id="lastnameError" class="error-message"></div>
+                                <input type="text" class="form-control shadow-none value="{{ old('firstname') }}  name="lastname" id="lastname" placeholder="Enter last name" required>
+                                 @error('lastname') <div class="invalid-feedback">{{ $message }}</div> @enderror 
+                                <div id="lastnameError" class="error-message"></div>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">E-mail</label>
-                                <input type="email" class="form-control shadow-none" id="email" placeholder="Enter e-mail" required>
+                                <input type="email" class="form-control shadow-none" value="{{ old('firstname') }}"  name="email" id="email" placeholder="Enter e-mail" required>
                                  <div id="emailError" class="error-message"></div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Message or Reviwe</label>
-                            <textarea class="form-control shadow-none" id="message" placeholder="Enter your message" rows="4" required></textarea>
+                           <textarea class="form-control shadow-none  @error('message') is-invalid @enderror"  name="message" id="message" placeholder="Enter your message" rows="4" required></textarea>
                         </div>
                         
                         <div class="changing">
-                    <button type="submit" class="btn btn-apply fw-bolder btn-end">Send Request</button>
+                    <button type="submit" id="submitBtn" class="btn btn-apply fw-bolder btn-end">Send Message</button>
                 </div>
                     </form>
              </div>
@@ -81,41 +91,44 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         
     //form validation
-const form = document.getElementById('contactForm');
+const form = document.getElementById('contact');
 
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function(event) )
       event.preventDefault(); // Stop the form from submitting
 
       // Clear all previous errors
-      document.getElementById('nameError').innerText = '';
+      document.getElementById('firstnameError').innerText = '';
       document.getElementById('lastnameError').innerText = '';
       document.getElementById('emailError').innerText = '';
+       document.getElementById('messageError').innerText = '';
       
       // Get values
-      const name = document.getElementById('name').value.trim();
+      const name = document.getElementById('firstname').value.trim();
       const lastname = document.getElementById('lastname').value.trim();
       const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
      
 
       let isValid = true;
 
       // Name validation
       const namePattern = /^[A-Za-z]+$/; // Only letters, no spaces, no numbers
-  if (!namePattern.test(name)) {
-    document.getElementById('nameError').innerText = 'Name must contain only letters without spaces or numbers.';
+  if (!namePattern.test(firstname)) {
+    document.getElementById('firstnameError').innerText = 'Name must contain only letters without spaces or numbers.';
     isValid = false;
-  } else if (name.length < 3) {
-    document.getElementById('nameError').innerText = 'Name must be at least 3 characters long.';
+  } else if (firstname.length < 3) {
+    document.getElementById('firstnameError').innerText = 'Name must be at least 3 characters long.';
     isValid = false;
   }
 
   // lastName validation
   const lastnamePattern = /^[A-Za-z]+$/; // Only letters, no spaces, no numbers
-  if (!lastnamePattern.test(name)) {
+  if (!lastnamePattern.test(lastname)) {
     document.getElementById('lastnameError').innerText = 'Name must contain only letters without spaces or numbers.';
     isValid = false;
   } else if (lastname.length < 3) {
@@ -129,8 +142,14 @@ const form = document.getElementById('contactForm');
         document.getElementById('emailError').innerText = 'Please enter a valid email address.';
         isValid = false;
       }
+  if (isValid) {
+        form.submit();
+    }
+//  if (isValid) {
+//         alert('message sent sucessfully!');
+//       }
 
-    });
+//     });
 
     </script>
 @endsection

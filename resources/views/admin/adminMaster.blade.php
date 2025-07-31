@@ -23,7 +23,7 @@
     <!-- Sidebar -->
     <nav class="sidebar col-md-3 col-lg-2" id="sidebar">
       <ul class="nav flex-column mt-4">
-        <li class="nav-item"><a href="admin\dashboard\adminDashboard" class="nav-link active">Dashboard</a></li>
+        <li class="nav-item"><a href="adminDashboard" class="nav-link active">Dashboard</a></li>
         <li class="nav-item"><a href="manageuser" class="nav-link">Manage Users</a></li>
         <li class="nav-item"><a href="manageSkills" class="nav-link">Manage Skills</a></li>
         <li class="nav-item"><a href="exchangeRequest" class="nav-link">Exchange Requests</a></li>
