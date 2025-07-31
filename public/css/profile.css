@@ -1,59 +1,22 @@
-* {
-    font-family: sans-serif;
-}
-
-.nav-item:hover a {
-    background-color: #1f3d85;
-    color: white;
-    transition: all 0.3s ease;
-}
-
-#input-main input:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-.icons a {
-    margin: 0 10px;
-    font-size: 20px;
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.icons a:hover {
-    transform: scale(1.2);
-}
-
-.search-dropdown {
-    position: absolute;
-    right: 80px;
-    top: 80px;
-    display: none;
-    width: 250px;
-    background: #eaeffc;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    padding: 10px;
-}
 
 .hero {
     background: #0f2862;
     color: white;
     text-align: center;
-    padding: 60px 30px;
+    padding:  30px;
     position: relative;
     overflow: hidden;
     animation: fadeIn 1s ease-in;
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 2em;
     font-weight: bold;
     animation: slideIn 1s ease-out;
 }
 
 .hero p {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     max-width: 600px;
     margin: auto;
     animation: fadeIn 1.5s ease-in;
@@ -65,14 +28,15 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('public/images/bg-blur.png') no-repeat center center;
+    background: url('../images/download.jpg') center center;
     opacity: 0.2;
-    animation: waveMove 10s infinite linear;
+    /* animation: waveMove 10s infinite linear; */
 }
 
 .profile-pic {
-    width: 150px;
-    height: 150px;
+    margin-top: 20px;
+    width: 220px;
+    height: 220px;
     border: 5px solid white;
     object-fit: cover;
     transition: transform 0.3s ease;
@@ -83,22 +47,47 @@
     cursor: pointer;
 }
 
-.info {
-    margin-top: 70px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-}
+ .info {
+     /* margin-top: 70px; 
+    border-radius: 14px;*/
+    overflow: hidden; 
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.4s ease;
+      border-radius: 14px;
+ } 
 
 .info:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+     transform: translateY(-8px);
+      transition: transform 0.3s ease;
+      transform: translateY(-5px);
+}
+.about{
+    
+     margin-left: 20px;
+    margin-top: 110px;
+    /* background-color: #f8f9fa; */
+    padding: 40px;
+       transition: transform 0.3s ease;
 }
 
+.input {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 17px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.input:hover {
+    transform: translateY(-4px);
+}
 .sidebar {
-    margin-top: 70px;
+    margin-left: 20px;
+    margin-top: 120px;
     background-color: #f8f9fa;
-    padding: 20px;
+    padding: 40px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -135,20 +124,17 @@
     transform: translateY(-2px);
 }
 
-.btn-end {
-    background-color: #dc3545;
-    color: white;
+.button-end {
+    background-color: #1f3d85;
+    margin-left: 200px;
     padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
+      border-radius: 15px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.btn-end:hover {
-    background-color: #c82333;
+.button-end:hover {
+    transform: translateY(-5px);
 }
-
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
