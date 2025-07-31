@@ -48,9 +48,6 @@ route::post('/store_data',[FormController::class, 'store_data']);
 // route::get('/joinUs', [\App\Http\Controllers\JoinController::class, 'index'])->name('joinUs');
 route::post('/store', [JoinController::class, 'store']);
 
-// Route::get('/contact', function () {
-//     return view('contact'); 
-// })->name('contact');
 
 route::post('/contact',[ContactController::class, 'contact']);
 
