@@ -21,8 +21,9 @@ class ContactController extends Controller
           $data->email= $request->input('email');
           $data->message = $request->input('message');
           $data->save();
+        ContactUs::create($request->all());
 
-          ContactUs::create($request->only('firstname', 'lastname', 'email', 'message'));
+        //   ContactUs::create($request->only('firstname', 'lastname', 'email', 'message'));
           return redirect()->back()->with('success', 'Your message has been sent SUCCESSFULLY!');
 
     }

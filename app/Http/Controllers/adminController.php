@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\JoinWeb;
+use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,8 @@ class adminController extends Controller
 
     }
     public function showmanage_user(){
-        return view('admin\dashboard\manageuser');
+        $users = JoinWeb::latest()->get();
+        return view('admin.dashboard.manageuser',compact('users'));
 
     }
     public function showmanage_skills(){
@@ -27,8 +29,9 @@ class adminController extends Controller
         return view('admin\dashboard\adminCategories');
 
     }
-     public function showreports(){
-        return view('admin\dashboard\reports');
+     public function showquerry(){
+        // $queries = ContactUs::all();
+        return view('admin.dashboard.querry');
 
     }
     //  public function logout(Request $request)
