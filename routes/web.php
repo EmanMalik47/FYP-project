@@ -7,8 +7,16 @@ use App\Http\Controllers\pgController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\JoinController;
 use App\Http\Controllers\profile_controller;
+use App\Http\Controllers\QueryController;
 use App\Http\Controllers\AuthController;
-// use App\Http\Controllers\QueryController;
+
+Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile');
+
+Route::get('/auth-form', [AuthController::class, 'showAuthForm'])->name('auth-form');
+Route::post('/handle-auth', [AuthController::class, 'handleAuth'])->name('handle.auth');
+Route::get('/join-us', [AuthController::class, 'showJoinForm'])->name('joinUs');
+Route::post('/register-user', [AuthController::class, 'registerUser'])->name('register.user');
+Route::get('/profile-page/{id}', [AuthController::class, 'showProfile'])->name('profile');
 
 
 
@@ -50,8 +58,8 @@ Route::get('/services',[pgController::class,'showservices'])->name('services');
 Route::get('/trainers',[pgController::class,'showtrainers'])->name('trainers');
 Route::get('/certificates',[pgController::class,'showcertificates'])->name('certificates');
 Route::get('/joinUs',[pgController::class,'showjoinUs'])->name('joinUs');
-Route::get('/profile/{id}', [pgController::class, 'showprofile'])->name('profile.view');
-Route::get('/profile', [pgController::class, 'showProfile'])->middleware('auth');
+
+// Route::get('/profile', [pgController::class, 'showProfile'])->middleware('auth')->name('profile.view');
 // Route::get('/profile',[pgController::class,'showprofile'])->name('profile');
 Route::get('/contact',[pgController::class,'showcontact'])->name('contact');
 Route::get('/eman',[pgController::class,'showeman'])->name('eman');
@@ -63,5 +71,14 @@ route::post('/store', [JoinController::class, 'store']);
 
 //contactUs route
 route::post('/contact',[ContactController::class, 'contact']);
+
+Route::get('/login', [AuthController::class, 'showlogin'])->name('login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/profile-page/{id}', [AuthController::class, 'showProfile'])->name('profile.detail'); // clear
+Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile'); // general
+
+Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile.view'); // ✅ for showing profile or login form
+
 
 
