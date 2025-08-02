@@ -28,7 +28,7 @@
         <li class="nav-item"><a href="manageSkills" class="nav-link">Manage Skills</a></li>
         <li class="nav-item"><a href="exchangeRequest" class="nav-link">Exchange Requests</a></li>
         <li class="nav-item"><a href="adminCategories" class="nav-link">Categories</a></li>
-        <li class="nav-item"><a href="querry" class="nav-link">Query</a></li>
+        <li class="nav-item"><a href="{{ route('admin.dashboard.query') }}" class="nav-link">Query</a></li>
         <li class="nav-item mt-auto"><a href="#" class="nav-link text-danger fw-bold" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
       </ul>
     </nav>

@@ -31,14 +31,9 @@ Route::prefix('admin')->group(function () {
 Route::get('/manageSkills',[adminController::class,'showmanage_skills'])->name('manageSkills');
 Route::get('/exchangeRequest',[adminController::class,'showexchange_request'])->name('exchangeRequest');
 Route::get('/adminCategories',[adminController::class,'showCategories'])->name('adminCategories');
-// Route::prefix('admin')->middleware(['auth'])->group(function () {
-//     Route::get('/querry', [QueryController::class, 'index'])->name('admin.querry');
-//     Route::post('/queries/respond/{id}', [QueryController::class, 'respond'])->name('admin.respond');
-// });
-
-
-// Route::get('/admin/dashboard/querry',[adminController::class,'showquerry'])->name('querry');
-// Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+Route::prefix('admin')->group(function () {
+    Route::get('/query', [adminController::class, 'showquery'])->name('admin.dashboard.query');
+});
 
 Route::get('/welcome',[pgController::class,'showwelcome'])->name('welcome');
 Route::get('/services',[pgController::class,'showservices'])->name('services');

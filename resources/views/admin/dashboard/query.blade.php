@@ -26,11 +26,11 @@
       <tbody>
         @foreach ($queries as $query)
         <tr>
-          <td>201</td>
-          <td>{{ $query->firstname }}</td>
+          <td>{{ $query->id }}</td>
+          <td>{{ $query->name }}</td>
           <td>{{ $query->lastname }}</td>
            <td>{{ $query->email }}</td>
-          <td>Inappropriate content</td>
+          <td>{{ $query->message }}</td>
          
           <td>Pending</td>
           <td>

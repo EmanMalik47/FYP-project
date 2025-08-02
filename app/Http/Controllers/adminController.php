@@ -29,9 +29,9 @@ class adminController extends Controller
         return view('admin\dashboard\adminCategories');
 
     }
-     public function showquerry(){
-        // $queries = ContactUs::all();
-        return view('admin.dashboard.querry');
+     public function showquery(){
+        $queries = ContactUs::latest()->get();
+        return view('admin.dashboard.query',compact('queries'));
 
     }
     //  public function logout(Request $request)
