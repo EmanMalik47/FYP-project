@@ -27,7 +27,7 @@
         @foreach ($queries as $query)
         <tr>
           <td>{{ $query->id }}</td>
-          <td>{{ $query->name }}</td>
+          <td>{{ $query->firstname }}</td>
           <td>{{ $query->lastname }}</td>
            <td>{{ $query->email }}</td>
           <td>{{ $query->message }}</td>
