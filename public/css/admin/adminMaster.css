@@ -39,6 +39,9 @@ body {
     }
 
     .main-content {
+      
+      margin-top: 110px;
+      margin-left: 490px;
       padding: 2rem;
       flex-grow: 1;
       background-color: #ffffff; /* White main area */
@@ -89,10 +92,7 @@ body {
         border-radius: 5px;
       }
 
-      .main-content {
-        margin-top: 4rem;
-        padding: 1rem;
-      }
+      
     }
 
     .navbar-toggler-icon {

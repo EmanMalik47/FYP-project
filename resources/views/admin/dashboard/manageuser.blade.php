@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="{{asset('css/admin/manageuser.css')}}">
 @endsection
 @section('adminContent')
-   <div class="container mt-5">
+
+   <div class="container info col-md-7 col-lg-8">
+    
     <h2 class="mb-4" style="color: white">Manage Users</h2>
     <table class="table table-bordered table-hover">
       <thead>
@@ -41,10 +43,10 @@
             <a href="{{ asset('pdfs/' . basename($user->pdf)) }}" target="_blank">View File</a>
 
             </td>
-          <td><img src="{{ asset('uploads/' . $user->photo) }}" alt="Photo" width="50" height="50"></td>
+          <td><img src="{{ URL::asset('uploads/' . $user->photo) }}" alt="Photo" width="50" height="50"></td>
           
           <td>
-            <button class="btn btn-sm" id="button">Edit</button>
+            {{-- <button class="btn btn-sm" id="button">Edit</button> --}}
             <form action="{{ route('admin.deleteUser', $user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
             @csrf
             @method('DELETE')

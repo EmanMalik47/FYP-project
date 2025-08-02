@@ -17,11 +17,11 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="header"><img src="../images/logo.png" class="img-fluid " height="200" width="200"></div>
-
-  <div class="d-flex flex-column flex-md-row">
+  <div class="header fixed-top shadow"><img src="../images/logo.png" class="img-fluid " height="200" width="200"></div>
+<br><br><br>
+  <div class="d-flex flex-column flex-md-row ">
     <!-- Sidebar -->
-    <nav class="sidebar col-md-3 col-lg-2" id="sidebar">
+    <nav class="sidebar col-md-3 col-lg-2 position-fixed" >
       <ul class="nav flex-column mt-4">
         <li class="nav-item"><a href="{{ route('admin.dashboard.adminDashboard') }}" class="nav-link active">Dashboard</a></li>
         <li class="nav-item"><a href="{{ route('admin.dashboard.manageuser') }}" class="nav-link">Manage Users</a></li>
@@ -34,6 +34,7 @@
     </nav>
 
     <!-- Main Content -->
+    
     @yield('adminContent')
     <!-- Logout Confirmation Modal -->
 {{-- <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
