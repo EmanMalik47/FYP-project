@@ -24,11 +24,11 @@
     <nav class="sidebar col-md-3 col-lg-2" id="sidebar">
       <ul class="nav flex-column mt-4">
         <li class="nav-item"><a href="adminDashboard" class="nav-link active">Dashboard</a></li>
-        <li class="nav-item"><a href="manageuser" class="nav-link">Manage Users</a></li>
+        <li class="nav-item"><a href="{{ route('admin.dashboard.manageuser') }}" class="nav-link">Manage Users</a></li>
         <li class="nav-item"><a href="manageSkills" class="nav-link">Manage Skills</a></li>
         <li class="nav-item"><a href="exchangeRequest" class="nav-link">Exchange Requests</a></li>
         <li class="nav-item"><a href="adminCategories" class="nav-link">Categories</a></li>
-        <li class="nav-item"><a href="reports" class="nav-link">Reports</a></li>
+        <li class="nav-item"><a href="{{ route('admin.dashboard.query') }}" class="nav-link">Query</a></li>
         <li class="nav-item mt-auto"><a href="#" class="nav-link text-danger fw-bold" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
       </ul>
     </nav>

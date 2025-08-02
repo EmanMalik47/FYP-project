@@ -13,26 +13,39 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Name</th>
+          <th>First Name</th>
+          <th>Last Name</th>
           <th>Email</th>
-          <th>Role</th>
-          <th>Status</th>
+          <th>Phone</th>
+          <th>Skill to share</th>
+          <th>Wants to share</th>
+          <th>achivements</th>
+          <th>Profile</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
+        @foreach ($users as $user)
+            
+        
         <!-- Sample Row -->
         <tr>
-          <td>1</td>
-          <td>Ali Khan</td>
-          <td>ali@example.com</td>
-          <td>User</td>
-          <td>Active</td>
+          <td>{{ $user->id }}</td>
+          <td>{{ $user->name }}</td>
+          <td>{{ $user->lastname }}</td>
+          <td>{{ $user->email }}</td>
+          <td>{{ $user->phone }}</td>
+          <td>{{ $user->sellist1 ?? 'Not Selected' }}</td>
+          <td>{{ $user->sellist2 ?? 'Not Selected' }}</td>
+          <td>{{ asset('public/pdfs/' . $user->pdf) }}</td>
+          <td><img src="{{ asset('public/uploads/' . $user->photo) }}" alt="Photo" width="70"></td>
+          
           <td>
             <button class="btn btn-sm" id="button">Edit</button>
             <button class="btn btn-sm" id="button">Delete</button>
           </td>
         </tr>
+        @endforeach
       </tbody>
     </table>
   </div>
