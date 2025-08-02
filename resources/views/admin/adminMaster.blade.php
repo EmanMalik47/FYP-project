@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Brater Brains - @yield('admintitle')</title>
-  <link rel="stylesheet" href="css/admin/adminMaster.css">
+  <link rel="stylesheet" href="{{asset('css/admin/adminMaster.css')}}">
   @yield('styles')
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,23 +17,24 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="header"><img src="../images/logo.png" class="img-fluid " height="200" width="200"></div>
-
-  <div class="d-flex flex-column flex-md-row">
+  <div class="header fixed-top shadow"><img src="../images/logo.png" class="img-fluid " height="200" width="200"></div>
+<br><br><br>
+  <div class="d-flex flex-column flex-md-row ">
     <!-- Sidebar -->
-    <nav class="sidebar col-md-3 col-lg-2" id="sidebar">
+    <nav class="sidebar col-md-3 col-lg-2 position-fixed" >
       <ul class="nav flex-column mt-4">
-        <li class="nav-item"><a href="adminDashboard" class="nav-link active">Dashboard</a></li>
+        <li class="nav-item"><a href="{{ route('admin.dashboard.adminDashboard') }}" class="nav-link active">Dashboard</a></li>
         <li class="nav-item"><a href="{{ route('admin.dashboard.manageuser') }}" class="nav-link">Manage Users</a></li>
-        <li class="nav-item"><a href="manageSkills" class="nav-link">Manage Skills</a></li>
-        <li class="nav-item"><a href="exchangeRequest" class="nav-link">Exchange Requests</a></li>
-        <li class="nav-item"><a href="adminCategories" class="nav-link">Categories</a></li>
+        <li class="nav-item"><a href="{{ route('admin.dashboard.manageSkills') }}" class="nav-link">Manage Skills</a></li>
+        <li class="nav-item"><a href="{{ route('admin.dashboard.exchangeRequest') }}" class="nav-link">Exchange Requests</a></li>
+        <li class="nav-item"><a href="{{ route('admin.dashboard.adminCategories') }}" class="nav-link">Categories</a></li>
         <li class="nav-item"><a href="{{ route('admin.dashboard.query') }}" class="nav-link">Query</a></li>
         <li class="nav-item mt-auto"><a href="#" class="nav-link text-danger fw-bold" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
       </ul>
     </nav>
 
     <!-- Main Content -->
+    
     @yield('adminContent')
     <!-- Logout Confirmation Modal -->
 {{-- <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">

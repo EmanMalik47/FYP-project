@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="{{asset('css/admin/manageuser.css')}}">
 @endsection
 @section('adminContent')
-   <div class="container mt-5">
+
+   <div class="container info col-md-7 col-lg-8">
+    
     <h2 class="mb-4" style="color: white">Manage Users</h2>
     <table class="table table-bordered table-hover">
       <thead>
@@ -19,7 +21,7 @@
           <th>Phone</th>
           <th>Skill to share</th>
           <th>Wants to share</th>
-          <th>achivements</th>
+          <th>Achivements</th>
           <th>Profile</th>
           <th>Actions</th>
         </tr>
@@ -37,12 +39,19 @@
           <td>{{ $user->phone }}</td>
           <td>{{ $user->sellist1 ?? 'Not Selected' }}</td>
           <td>{{ $user->sellist2 ?? 'Not Selected' }}</td>
-          <td>{{ asset('public/pdfs/' . $user->pdf) }}</td>
-          <td><img src="{{ asset('public/uploads/' . $user->photo) }}" alt="Photo" width="70"></td>
+          <td>
+            <a href="{{ asset('pdfs/' . basename($user->pdf)) }}" target="_blank">View File</a>
+
+            </td>
+          <td><img src="{{ URL::asset('uploads/' . $user->photo) }}" alt="Photo" width="50" height="50"></td>
           
           <td>
-            <button class="btn btn-sm" id="button">Edit</button>
-            <button class="btn btn-sm" id="button">Delete</button>
+            {{-- <button class="btn btn-sm" id="button">Edit</button> --}}
+            <form action="{{ route('admin.deleteUser', $user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm" id="button">Delete</button>
+        </form>
           </td>
         </tr>
         @endforeach

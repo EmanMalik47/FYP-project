@@ -1,11 +1,15 @@
 *{
 	font-family: sans-serif;
 }
+.info{
+  margin-top: 80px;
+ 
+}
 
 h2 {
   text-align: center;
   background-color:#1f3d85 ;
-  
+  width: 109%;
   margin-bottom: 30px;
   font-size: 1.4rem;
 }
@@ -38,6 +42,7 @@ h2 {
   color: white;
 }
 .container {
+ 
   border-radius: 8px;
   padding: 30px;
   /* background-color: #212529; */

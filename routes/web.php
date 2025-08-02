@@ -39,14 +39,16 @@ Route::get('/', function () {
 //     return view('about');
 // });
 
-Route::get('/adminDashboard',[adminController::class,'showdashboard'])->name('adminDashboard');
+Route::get('/adminDashboard',[adminController::class,'showdashboard'])->name('admin.dashboard.adminDashboard');
 Route::prefix('admin')->group(function () {
     Route::get('/manageuser', [adminController::class, 'showmanage_user'])->name('admin.dashboard.manageuser');
 });
+Route::delete('/admin/users/delete/{id}', [adminController::class, 'destroy'])->name('admin.deleteUser');
+
 // Route::get('/manageuser',[adminController::class,'showmanage_user'])->name('manageuser');
-Route::get('/manageSkills',[adminController::class,'showmanage_skills'])->name('manageSkills');
-Route::get('/exchangeRequest',[adminController::class,'showexchange_request'])->name('exchangeRequest');
-Route::get('/adminCategories',[adminController::class,'showCategories'])->name('adminCategories');
+Route::get('/manageSkills',[adminController::class,'showmanage_skills'])->name('admin.dashboard.manageSkills');
+Route::get('/exchangeRequest',[adminController::class,'showexchange_request'])->name('admin.dashboard.exchangeRequest');
+Route::get('/adminCategories',[adminController::class,'showCategories'])->name('admin.dashboard.adminCategories');
 Route::prefix('admin')->group(function () {
     Route::get('/query', [adminController::class, 'showquery'])->name('admin.dashboard.query');
 });

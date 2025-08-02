@@ -34,6 +34,11 @@ class adminController extends Controller
         return view('admin.dashboard.query',compact('queries'));
 
     }
+    public function destroy($id) {
+    $user = JoinWeb::findOrFail($id);
+    $user->delete();
+    return redirect()->back()->with('success', 'User deleted successfully');
+}
     //  public function logout(Request $request)
     // {
     //     Auth::logout();
