@@ -9,6 +9,8 @@ use App\Http\Controllers\JoinController;
 use App\Http\Controllers\profile_controller;
 use App\Http\Controllers\QueryController;
 use App\Http\Controllers\AuthController;
+// use App\Http\Controllers\QueryController;
+
 
 
 
