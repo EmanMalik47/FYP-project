@@ -7,6 +7,8 @@
 
 @section('content')
 
+   {{-- <h2>Welcome to Profile Section</h2>
+    <a href="{{ route('login') }}" class="btn btn-primary">Access Your Profile</a> --}}
 
 
 
@@ -54,8 +56,14 @@
                             {{ $user->facilities ?? 'No facilities listed' }}
                         </div>
                     </div>
-                     <div class=" button-end text-center mt-4 col-md-3">
-                <button type="button" class="btn fw-bold text-white capitalize " onclick="if(confirm('Are you sure you want to logout?')) window.location.href='contact';">Logout</button>
+                     <div class=" button-end  mt-4 col-md-6 col-lg-3">
+                        @if(Auth::check())
+             <button type="button" class="btn fw-bold text-white capitalize"
+    onclick="if(confirm('Are you sure you want to logout?')) window.location.href='{{ route('logout') }}';">
+    Logout
+</button>
+                        
+                        @endif
             </div>
                 </div>
             </div>

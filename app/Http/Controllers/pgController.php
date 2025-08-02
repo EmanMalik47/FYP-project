@@ -24,21 +24,17 @@ class pgController extends Controller
      public function showjoinUs(){
         return view('joinUs');
     }
-    public function showprofile($id){
-        $user = JoinWeb::find($id);
-        // $joins=JoinWeb::all();
-        // dd($joins);
-        // return view('profile',['user' => $user]);
-        //  $user = Auth::user(); // Get logged-in user
-        // return view('profile', compact('user')); 
-        $user = JoinWeb::find($id); // Get user from join_webs table
-
+   public function showProfile()
+    {
+        $user = Auth::user();
+    return view('profile', compact('user')); 
     if (!$user) {
         abort(404, 'User not found');
     }
 
     return view('profile', ['user' => $user]);
     }
+
     public function showcontact(){
         return view('contact');
     }

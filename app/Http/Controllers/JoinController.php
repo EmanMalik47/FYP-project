@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\JoinWeb;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 // use Illuminate\Support\Facades\Validator;
 
 
@@ -21,7 +24,8 @@ class JoinController extends Controller
          $data->lastname = $request->input('lastname');
          $data->email = $request->input('email');
          $data->phone = $request->input('phone');
-         $data->password = $request->input('password');
+          // ✅ Hash the password before saving
+         $data->password = Hash::make($request->password);
          $data->sellist1 = $request->sellist1;
          $data->sellist2 = $request->sellist2;
 
@@ -57,8 +61,9 @@ if ($request->hasFile('pdf')){
 }   
        $data->save();
        
-       // Ab redirect karein profile page pe with user ID
-    return redirect()->route('profile.view', ['id' => $data->id]);
+   Auth::login($data); 
+return redirect()->route('profile.view');
+
         }
 };
 
