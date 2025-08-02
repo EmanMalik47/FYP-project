@@ -7,6 +7,10 @@
 
 @section('content')
 
+
+
+
+
  <div class="mt-3">.</div>
     <div class="hero mt-3">
         <div class="wave"></div>
@@ -59,6 +63,9 @@
         </div>
     </section>
     <br><br>
+
+
+
 
 
 @endsection

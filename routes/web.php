@@ -8,6 +8,12 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\JoinController;
 use App\Http\Controllers\profile_controller;
 use App\Http\Controllers\QueryController;
+use App\Http\Controllers\AuthController;
+// use App\Http\Controllers\QueryController;
+
+
+
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -50,15 +56,10 @@ Route::get('/eman',[pgController::class,'showeman'])->name('eman');
 Route::get('/open',[pgController::class,'showopen'])->name('open');
 
 route::post('/store_data',[FormController::class, 'store_data']);
-
-
-// route::get('/joinUs', [\App\Http\Controllers\JoinController::class, 'index'])->name('joinUs');
+//joinUs
 route::post('/store', [JoinController::class, 'store']);
 
-
+//contactUs route
 route::post('/contact',[ContactController::class, 'contact']);
-
-// Route::get('/profile', [profile_controller::class, 'showUser_profile'])->name('profile')->middleware('auth');
-
 
 
