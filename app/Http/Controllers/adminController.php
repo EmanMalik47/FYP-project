@@ -34,11 +34,23 @@ class adminController extends Controller
         return view('admin.dashboard.query',compact('queries'));
 
     }
+    // delete user in manageuser page
     public function destroy($id) {
     $user = JoinWeb::findOrFail($id);
     $user->delete();
     return redirect()->back()->with('success', 'User deleted successfully');
-}
+    }
+
+    //query dismiss in query page
+    public function dismiss($id){
+        $query = ContactUs::findOrFail($id);
+        $query->delete();
+        // $query->status = 'Dismissed';
+        // $query->save();
+
+        return redirect()->back()->with('success', 'Query dismissed successfully.');
+    }
+
     //  public function logout(Request $request)
     // {
     //     Auth::logout();

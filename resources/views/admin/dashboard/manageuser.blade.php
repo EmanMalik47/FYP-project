@@ -10,7 +10,7 @@
 
    <div class="container info col-md-7 col-lg-8">
     
-    <h2 class="mb-4" style="color: white">Manage Users</h2>
+    <h2 class="mb-4" style="color: white ">Manage Users</h2>
     <table class="table table-bordered table-hover">
       <thead>
         <tr>

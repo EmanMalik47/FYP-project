@@ -7,7 +7,6 @@ use App\Http\Controllers\pgController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\JoinController;
 use App\Http\Controllers\profile_controller;
-use App\Http\Controllers\QueryController;
 use App\Http\Controllers\AuthController;
 // use App\Http\Controllers\QueryController;
 
@@ -29,6 +28,7 @@ Route::get('/', function () {
 //     return view('about');
 // });
 
+//admin panel
 Route::get('/adminDashboard',[adminController::class,'showdashboard'])->name('admin.dashboard.adminDashboard');
 Route::prefix('admin')->group(function () {
     Route::get('/manageuser', [adminController::class, 'showmanage_user'])->name('admin.dashboard.manageuser');
@@ -42,7 +42,9 @@ Route::get('/adminCategories',[adminController::class,'showCategories'])->name('
 Route::prefix('admin')->group(function () {
     Route::get('/query', [adminController::class, 'showquery'])->name('admin.dashboard.query');
 });
+Route::post('/admin/query/dismiss/{id}', [adminController::class, 'dismiss'])->name('admin.query.dismiss');
 
+//user panel
 Route::get('/welcome',[pgController::class,'showwelcome'])->name('welcome');
 Route::get('/services',[pgController::class,'showservices'])->name('services');
 Route::get('/trainers',[pgController::class,'showtrainers'])->name('trainers');

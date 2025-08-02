@@ -1,6 +1,6 @@
 @extends('admin.adminMaster')
 @section('admintitle')
-    Reports
+    Queries
 @endsection
 
 @section('styles')
@@ -8,8 +8,8 @@
 @endsection
 @section('adminContent')
 
-     <div class="container mt-5">
-    <h2 class="mb-4" style="color: white">Reports</h2>
+     <div class="container info col-md-7 col-lg-8">
+    <h2 class="mb-4" style="color: white">Queries</h2>
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
@@ -34,8 +34,12 @@
          
           <td>Pending</td>
           <td>
-            <button class="btn btn-sm " id="button">Review</button>
-            <button class="btn btn-sm " id="button">Dismiss</button>
+            {{-- <button class="btn btn-sm " id="button">Review</button> --}}
+            <form action="{{ route('admin.query.dismiss', $query->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to dismiss this query?');" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn btn-sm" id="button">Dismiss</button>
+            </form>
+           
           </td>
         </tr>
         @endforeach
