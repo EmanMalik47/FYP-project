@@ -51,14 +51,13 @@ Route::get('/adminCategories',[adminController::class,'showCategories'])->name('
 Route::prefix('admin')->group(function () {
     Route::get('/query', [adminController::class, 'showquery'])->name('admin.dashboard.query');
 });
-<<<<<<< HEAD
+
 Route::prefix('admin')->group(function () {
     Route::get('/manageskills', [adminController::class, 'showmanage_skills'])->name('admin.dashboard.manageSkills');
 });
 
-=======
 Route::post('/admin/query/dismiss/{id}', [adminController::class, 'dismiss'])->name('admin.query.dismiss');
->>>>>>> eaaca7d64efc33dd3de3916df02de0af199de6dc
+
 
 //user panel
 Route::get('/welcome',[pgController::class,'showwelcome'])->name('welcome');
