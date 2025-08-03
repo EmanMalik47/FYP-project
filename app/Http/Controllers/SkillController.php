@@ -17,8 +17,8 @@ class SkillController extends Controller
         // ]);
 
         $skill = trim(strtolower($request->input('skills')));
-        
-        $users = JoinWeb::whereRaw('LOWER(sellist1) LIKE ?', ["%{$skill}%"])->get();
+         
+        $users = DB::table('join_webs')->whereRaw('LOWER(sellist1) LIKE ?',[$skill])->get();
 
         return view('searchSkill', compact('users', 'skill'));
     }

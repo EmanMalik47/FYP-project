@@ -56,6 +56,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/manageskills', [adminController::class, 'showmanage_skills'])->name('admin.dashboard.manageSkills');
 });
 
+
+
 Route::post('/admin/query/dismiss/{id}', [adminController::class, 'dismiss'])->name('admin.query.dismiss');
 
 

@@ -3,15 +3,32 @@
 @section('title', 'Search Results')
 
 @section('content')
-  <div class="container mt-4">
-    @if(count($users) > 0)
-    <h3>Search Results for "{{ $skill }}"</h3>
+{{-- <h2>Search Results for "{{ $skill }}"</h2>
 
-    
+@if($users->isEmpty())
+    <p>No users found with this skill.</p>
+@else
+    @foreach($users as $user)
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ $user->name }}</h5>
+                <p class="card-text">Skill Provide: {{ $user->sellist1 }}</p>
+                <!-- Add other profile details here -->
+            </div>
+        </div>
+    @endforeach
+@endif --}}
+
+  <div class="container mt-4">
+    <br><br><br><br>
+    @if(count($users) > 0)
+    <h3 style="color:#0f2862 ">Search Results for "{{ $skill }}"</h3>
+
+    <br>
       <div class="row">
         @foreach($users as $user)
           <div class="col-md-4">
-            <div class="card mb-3">
+            <div class="card mb-3 shadow">
               <div class="card-body">
                 <h5 class="card-title">{{ $user->name }}</h5>
                 <p class="card-text">Skill Provide: {{ $user->sellist1 }}</p>
