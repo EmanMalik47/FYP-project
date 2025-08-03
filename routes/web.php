@@ -82,6 +82,6 @@ Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profil
 Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile.view'); // for showing profile or login form
 
 //search route
-Route::get('/welcome', [SkillController::class, 'search'])->name('welcome');
+Route::get('/searchSkill', [SkillController::class, 'search'])->name('searchSkill');
 
 

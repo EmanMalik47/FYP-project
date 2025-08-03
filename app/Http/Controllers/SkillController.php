@@ -10,23 +10,18 @@ use App\Models\JoinWeb;
 class SkillController extends Controller
 {
 
-public function search(Request $request)
-{
-    $users = [];
+ public function search(Request $request)
+    {
+        // $request->validate([
+        //     'sellist1' => 'required|string'
+        // ]);
 
-    if ($request->has('skill')) {
-        $skill = $request->input('skill');
-        $users = DB::table('join_webs')
-            ->where('skills', 'LIKE', "%$skill%")
-            ->get();
+        $skill = trim(strtolower($request->input('skills')));
         
-        return view('welcome', [
-            'users' => $users,
-            'searchPerformed' => true
-        ]);
-    }
+        $users = JoinWeb::whereRaw('LOWER(sellist1) LIKE ?', ["%{$skill}%"])->get();
 
-    return view('welcome');
+        return view('searchSkill', compact('users', 'skill'));
+    }
     // $skill = $request->input('sellist1');
     // if (!$skill) {
     //     return redirect()->back();
@@ -39,4 +34,4 @@ public function search(Request $request)
     //     'searchPerformed' => true,
     // ]);
 }
-}
+

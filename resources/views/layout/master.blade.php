@@ -122,12 +122,12 @@
                  <div class="icons">
                     <a id="searchBtn"> 
                         <i class="fa-solid fa-magnifying-glass" style="color: #1f3d85;"></i>
-                        <form method="GET" action="{{ route('welcome') }}">
+                        <form method="GET" action="{{ route('searchSkill') }}">
                         <div id="searchDropdown" class="search-dropdown">
                             <div class="input-group" id="input-main">
                                 <span class="input-group-text bg-white border-0"><i
                                         class="fas fa-search"></i></span>
-                                <input type="text" class="form-control border-0"
+                                <input type="text" name="skill" class="form-control border-0"
                                     placeholder="Search " src="">
                             </div>
                         </div>
