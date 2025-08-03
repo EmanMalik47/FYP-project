@@ -14,24 +14,28 @@
         <tr>
           <th>Skill ID</th>
           <th>Title</th>
-          <th>Category</th>
           <th>Created By</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
+      @foreach ($skills as $skill)
         <tr>
-          <td>101</td>
-          <td>Web Development</td>
-          <td>IT</td>
-          <td>Ali Khan</td>
+          <td>{{ $skill->id }}</td>
+          <td>{{ $skill->sellist1 }}</td>
+          <td>{{ $skill->name }}</td>
+
+         
           <td>Pending</td>
           <td>
-            <button class="btn btn-sm" id="button">Approve</button>
-            <button class="btn btn-sm" id="button">Delete</button>
+            <button class="btn btn-sm " id="button">Review</button>
+            <button class="btn btn-sm " id="button">Dismiss</button>
           </td>
         </tr>
+        @endforeach
+
+
       </tbody>
     </table>
   </div>
