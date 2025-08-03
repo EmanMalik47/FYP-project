@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{asset('css/admin/manageuser.css')}}">
 @endsection
 @section('adminContent')
-
+    
      <div class="container info col-md-7 col-lg-8">
     <h2 class="mb-4" style="color: white">Queries</h2>
     <table class="table table-bordered table-hover">

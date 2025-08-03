@@ -9,6 +9,7 @@ use App\Http\Controllers\JoinController;
 use App\Http\Controllers\profile_controller;
 use App\Http\Controllers\QueryController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SkillController;
 
 Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile');
 
@@ -78,7 +79,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/profile-page/{id}', [AuthController::class, 'showProfile'])->name('profile.detail'); // clear
 Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile'); // general
 
-Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile.view'); // ✅ for showing profile or login form
+Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile.view'); // for showing profile or login form
 
+//search route
+Route::get('/welcome', [SkillController::class, 'search'])->name('welcome');
 
 

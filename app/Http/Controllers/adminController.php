@@ -47,8 +47,7 @@ class adminController extends Controller
         $query->delete();
         // $query->status = 'Dismissed';
         // $query->save();
-
-        return redirect()->back()->with('success', 'Query dismissed successfully.');
+         return redirect()->back()->with('success', 'Query dismissed successfully.');
     }
 
     //  public function logout(Request $request)
