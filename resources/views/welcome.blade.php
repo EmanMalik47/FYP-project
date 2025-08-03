@@ -4,6 +4,11 @@
     welcome
 @endsection
 @section('content')
+{{-- @if(isset($searchPerformed) && $searchPerformed && isset($users) && count($users) > 0)
+  <button type="button" id="openModalBtn" class="d-none" data-bs-toggle="modal" data-bs-target="#resultModal">
+    Open Modal
+  </button>
+@endif --}}
 <section class="about-section mt-5">
     <div class="container mt-5">
         <div class="row ">
@@ -220,6 +225,82 @@ Bringing digital ideas to life with frontend flair and backend logic.</p>
         </div>
     </div>
 
+<!-- Hidden trigger for search modal -->
+@if(isset($searchPerformed) && $searchPerformed && isset($users) && count($users) > 0)
+    <!-- Trigger hidden button -->
+    <button type="button" id="openModalBtn" class="d-none" data-bs-toggle="modal" data-bs-target="#resultModal"></button>
 
+    <!-- Modal -->
+    <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="resultModalLabel">Skill Providers Found</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            @foreach($users as $user)
+              <div class="card mb-2">
+                <div class="card-body">
+                  <h5 class="card-title">{{ $user->name }}</h5>
+                  <p class="card-text"><strong>Email:</strong> {{ $user->email }}</p>
+                  <p class="card-text"><strong>Skill:</strong> {{ $user->skills }}</p>
+                  <!-- Add more profile fields if needed -->
+                  <a href="#" class="btn btn-sm btn-outline-primary">View Profile</a>
+                </div>
+              </div>
+            @endforeach
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script to auto-open modal -->
+    <script>
+      window.onload = function () {
+        document.getElementById('openModalBtn').click();
+      };
+    </script>
+@endif
+
+
+{{-- @if(isset($users))
+  <button type="button" id="openModalBtn" class="d-none" data-bs-toggle="modal" data-bs-target="#resultModal">
+    Open Modal
+  </button>
+@endif --}}
+
+<!-- Search Modal -->
+{{-- <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Skill Providers for "{{ $skill ?? '' }}"</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        @if(isset($users) && $users->count())
+          <ul class="list-group">
+            @foreach($users as $user)
+              <li class="list-group-item">
+                <strong>{{ $user->name }}</strong> — {{ $user->sellist1 }}
+              </li>
+            @endforeach
+          </ul>
+        @elseif(isset($users))
+          <p>No users found for "{{ $skill }}".</p>
+        @endif
+      </div>
+    </div>
+  </div>
+</div> --}}
+
+{{-- @if(isset($searchPerformed) && $searchPerformed && isset($users) && count($users) > 0)
+    <script>
+      window.onload = function () {
+        document.getElementById('openModalBtn').click();
+      };
+    </script>
+  @endif --}}
     
 @endsection

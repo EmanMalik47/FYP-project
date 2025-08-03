@@ -8,10 +8,8 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\JoinController;
 use App\Http\Controllers\profile_controller;
 use App\Http\Controllers\QueryController;
-
-
-
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SkillController;
 
 Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile');
 
@@ -39,6 +37,7 @@ Route::get('/', function () {
 //     return view('about');
 // });
 
+//admin panel
 Route::get('/adminDashboard',[adminController::class,'showdashboard'])->name('admin.dashboard.adminDashboard');
 Route::prefix('admin')->group(function () {
     Route::get('/manageuser', [adminController::class, 'showmanage_user'])->name('admin.dashboard.manageuser');
@@ -52,11 +51,16 @@ Route::get('/adminCategories',[adminController::class,'showCategories'])->name('
 Route::prefix('admin')->group(function () {
     Route::get('/query', [adminController::class, 'showquery'])->name('admin.dashboard.query');
 });
+<<<<<<< HEAD
 Route::prefix('admin')->group(function () {
     Route::get('/manageskills', [adminController::class, 'showmanage_skills'])->name('admin.dashboard.manageSkills');
 });
 
+=======
+Route::post('/admin/query/dismiss/{id}', [adminController::class, 'dismiss'])->name('admin.query.dismiss');
+>>>>>>> eaaca7d64efc33dd3de3916df02de0af199de6dc
 
+//user panel
 Route::get('/welcome',[pgController::class,'showwelcome'])->name('welcome');
 Route::get('/services',[pgController::class,'showservices'])->name('services');
 Route::get('/trainers',[pgController::class,'showtrainers'])->name('trainers');
@@ -82,7 +86,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/profile-page/{id}', [AuthController::class, 'showProfile'])->name('profile.detail'); // clear
 Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile'); // general
 
-Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile.view'); // ✅ for showing profile or login form
+Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile.view'); // for showing profile or login form
 
+//search route
+Route::get('/welcome', [SkillController::class, 'search'])->name('welcome');
 
 
