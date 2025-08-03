@@ -17,10 +17,11 @@ class adminController extends Controller
         return view('admin.dashboard.manageuser',compact('users'));
 
     }
-    public function showmanage_skills(){
-        return view('admin\dashboard\manageSkills');
+   public function showmanage_skills(){
+    $skills = JoinWeb::latest()->get(); 
+    return view('admin.dashboard.manageSkills', compact('skills')); 
+}
 
-    }
      public function showexchange_request(){
         return view('admin\dashboard\exchangeRequest');
 

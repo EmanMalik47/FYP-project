@@ -52,6 +52,10 @@ Route::get('/adminCategories',[adminController::class,'showCategories'])->name('
 Route::prefix('admin')->group(function () {
     Route::get('/query', [adminController::class, 'showquery'])->name('admin.dashboard.query');
 });
+Route::prefix('admin')->group(function () {
+    Route::get('/manageskills', [adminController::class, 'showmanage_skills'])->name('admin.dashboard.manageSkills');
+});
+
 
 Route::get('/welcome',[pgController::class,'showwelcome'])->name('welcome');
 Route::get('/services',[pgController::class,'showservices'])->name('services');
