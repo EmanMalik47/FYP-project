@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class adminController extends Controller
 {
     public function showdashboard(){
-        return view('admin\dashboard\adminDashboard');
+        $totalUsers = JoinWeb::count();
+        $totalQueries = ContactUs::count();
+      return view('admin.dashboard.adminDashboard', compact('totalUsers', 'totalQueries'));
 
     }
     public function showmanage_user(){
@@ -26,8 +28,8 @@ class adminController extends Controller
         return view('admin\dashboard\exchangeRequest');
 
     }
-     public function showcategories(){
-        return view('admin\dashboard\adminCategories');
+     public function showcertificates(){
+        return view('admin\dashboard\adminCertificates');
 
     }
      public function showquery(){
@@ -50,6 +52,24 @@ class adminController extends Controller
         // $query->save();
          return redirect()->back()->with('success', 'Query dismissed successfully.');
     }
+//skil dismiss in manage skill page
+    public function dismissed($id){
+        $query = JoinWeb::findOrFail($id);
+        $query->delete();   
+         return redirect()->back()->with('success', 'skill dismissed successfully.');
+    }
+
+//     public function Dismiss($id){
+//     $query = ContactUs::findOrFail($id);
+//     $query->delete();
+//     return redirect()->back()->with('success', 'Feedback deleted successfully.');
+// }
+// public function Destroy($id) {
+//     $user = JoinWeb::findOrFail($id);
+//     $user->delete();
+//     return redirect()->back()->with('success', 'User deleted successfully');
+// }
+
 
     //  public function logout(Request $request)
     // {

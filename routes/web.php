@@ -47,7 +47,7 @@ Route::delete('/admin/users/delete/{id}', [adminController::class, 'destroy'])->
 // Route::get('/manageuser',[adminController::class,'showmanage_user'])->name('manageuser');
 Route::get('/manageSkills',[adminController::class,'showmanage_skills'])->name('admin.dashboard.manageSkills');
 Route::get('/exchangeRequest',[adminController::class,'showexchange_request'])->name('admin.dashboard.exchangeRequest');
-Route::get('/adminCategories',[adminController::class,'showCategories'])->name('admin.dashboard.adminCategories');
+Route::get('/adminCertificates',[adminController::class,'showCertificates'])->name('admin.dashboard.adminCertificates');
 Route::prefix('admin')->group(function () {
     Route::get('/query', [adminController::class, 'showquery'])->name('admin.dashboard.query');
 });
@@ -77,7 +77,7 @@ route::post('/store_data',[FormController::class, 'store_data']);
 route::post('/store', [JoinController::class, 'store']);
 
 //contactUs route
-route::post('/contact',[ContactController::class, 'contact']);
+route::post('/contact',[ContactController::class, 'contact'])->name('contact');
 
 Route::get('/login', [AuthController::class, 'showlogin'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -91,3 +91,4 @@ Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profil
 Route::get('/searchSkill', [SkillController::class, 'search'])->name('searchSkill');
 
 
+Route::post('/admin/query/dismissed/{id}', [adminController::class, 'dismissed'])->name('admin.query.dismissed');

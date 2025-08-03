@@ -1,6 +1,6 @@
 @extends('admin.adminMaster')
 @section('admintitle')
-    Categories
+    Certificates
 @endsection
 
 @section('styles')
@@ -8,7 +8,7 @@
 @endsection
 @section('adminContent')
    <div class="container mt-5">
-    <h2 class="mb-4" style="color: white">Categories</h2>
+    <h2 class="mb-4" style="color: white">Certificates</h2>
     <table class="table table-bordered table-hover">
       <thead>
         <tr>

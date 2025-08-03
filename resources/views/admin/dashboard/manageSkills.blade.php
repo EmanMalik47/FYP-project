@@ -28,10 +28,12 @@
 
          
           <td>Pending</td>
-          <td>
-            <button class="btn btn-sm " id="button">Review</button>
-            <button class="btn btn-sm " id="button">Dismiss</button>
-          </td>
+<td>
+           <form action="{{ route('admin.query.dismissed', $skill->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to dismiss this skill?');" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn btn-sm" id="button">Dismissed</button>
+            </form>
+</td>
         </tr>
         @endforeach
 

@@ -29,7 +29,8 @@
       <tbody>
         @foreach ($users as $user)
             
-        
+       
+
         <!-- Sample Row -->
         <tr>
           <td>{{ $user->id }}</td>
@@ -43,8 +44,16 @@
             <a href="{{ asset('pdfs/' . basename($user->pdf)) }}" target="_blank">View File</a>
 
             </td>
-          <td><img src="{{ URL::asset('uploads/' . $user->photo) }}" alt="Photo" width="50" height="50"></td>
-          
+             
+         <td>
+    @if (!empty($user->profile) && file_exists(public_path('uploads/' . $user->profile)))
+        <a href="{{ asset('uploads/' . $user->profile) }}" target="_blank">
+            <img src="{{ asset('uploads/' . $user->profile) }}" alt="User Photo" width="50" height="50">
+        </a>
+    @else
+        No Image
+    @endif
+</td>
           <td>
             {{-- <button class="btn btn-sm" id="button">Edit</button> --}}
             <form action="{{ route('admin.deleteUser', $user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">

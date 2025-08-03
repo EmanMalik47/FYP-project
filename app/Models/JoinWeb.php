@@ -14,10 +14,10 @@ class JoinWeb extends Authenticatable
     protected $table = 'join_webs';
 
     // Allow mass assignment on these fields
-    protected $fillable = [
-        'name', 'lastname', 'email', 'phone', 'password', 
-    ];
-
+   protected $fillable = [
+    'name', 'lastname', 'email', 'phone', 'password',
+    'sellist1', 'sellist2', 'facilities', 'about', 'profile', 'pdf'
+];
     // Hide sensitive data from arrays
     protected $hidden = [
         'password',

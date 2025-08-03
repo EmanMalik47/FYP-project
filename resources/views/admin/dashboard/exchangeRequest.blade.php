@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{asset('css/admin/manageuser.css')}}">
 @endsection
 @section('adminContent')
-   <div class="container mt-5">
+   <div class="container mt-5 ">
     <h2 class="mb-4" style="color: white">Exchange Requests</h2>
     <table class="table table-bordered table-hover">
       <thead>

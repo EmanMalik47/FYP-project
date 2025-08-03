@@ -6,25 +6,19 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function contact(request $request)
-    {
-// $request->validate([
-//     'firstname'=> 'required|min:3|alpha',
-//     'lastname'=> 'required|min:3|alpha',
-//     'email'=> 'required|email',
-//     'mssage'=> 'required|min:5',
-// ]);
+    public function contact(Request $request)
+{
+    ContactUs::create([
+        'firstname' => $request->firstname,
+        'lastname' => $request->lastname,
+        'email' => $request->email,
+        'message' => $request->message
+    ]);
 
-        $data = new ContactUs();
-        $data->firstname= $request->input('firstname');
-         $data->lastname= $request->input('lastname');
-          $data->email= $request->input('email');
-          $data->message = $request->input('message');
-          $data->save();
-        ContactUs::create($request->all());
+    return back()->with('success', 'Your message has been sent!');
+}
 
-        //   ContactUs::create($request->only('firstname', 'lastname', 'email', 'message'));
-          return redirect()->back()->with('success', 'Your message has been sent SUCCESSFULLY!');
 
-    }
+
+
 };

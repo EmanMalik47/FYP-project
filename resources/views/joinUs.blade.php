@@ -162,7 +162,7 @@ Join us to enhance your skills and contribute to groundbreaking projects in arch
                          <div class="col-md-12">
                    
                             <label class="form-lable">Upload Photo</label>
-                        <input class="form-control" type="file" id="photo" name="photo" accept="image/*">
+                        <input class="form-control" type="file" id="photo" name="profile" accept="image/*">
                         </div>                   
                         &nbsp;
                         <div class="mb-3">

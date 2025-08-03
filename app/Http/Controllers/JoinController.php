@@ -15,57 +15,58 @@ class JoinController extends Controller
 {
   
      //this method will store values in  join_us page db
-    public function store(request $request)
-    {
-    // dd($request->all());
-    
-         $data = new JoinWeb();
-         $data->name = $request->input('name');
-         $data->lastname = $request->input('lastname');
-         $data->email = $request->input('email');
-         $data->phone = $request->input('phone');
-          // ✅ Hash the password before saving
-         $data->password = Hash::make($request->password);
-         $data->sellist1 = $request->sellist1;
-         $data->sellist2 = $request->sellist2;
+    public function store(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required',
+        'lastname' => 'required',
+        'email' => 'required|email|unique:join_webs',
+        'phone' => 'required',
+        'password' => 'required',
+        'sellist1' => 'required',
+        'sellist2' => 'required',
+        'facilities' => 'required',
+        'about' => 'required',
+        'pdf' => 'nullable|mimes:pdf,doc,docx|max:2048',
+        'profile' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+    ]);
 
-        //  $data->sellist1 = $request->sellist1;
-      $request->validate([
-    'sellist1' => 'required|in:Programming Languages,Graphic Designing,Cooking,Musical Instruments,Beauty Salon,Culinary arts',
-    'sellist2' => 'required|in:Programming Languages,Graphic Designing,Cooking,Musical Instruments,Beauty Salon,Culinary arts',
-]);
-        $data->facilities = $request->facilities;
-        $data->about = $request->about;
-           if ($request->hasFile('photo')) {
-    $photo = $request->file('photo');
+    $data = new JoinWeb;
 
-    // Generate a unique file name
-    $photoName = time() . '_' . $photo->getClientOriginalName();
+    // ✅ HANDLE IMAGE UPLOAD
+    if ($request->hasFile('profile')) {
+        $file = $request->file('profile');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('uploads'), $filename);
+        $data->profile = $filename;
+    } else {
+        $data->profile = null;
+    }
 
-    // Move the file to public/uploads with the generated name
-    $photo->move(public_path('uploads'), $photoName);
+    // ✅ HANDLE PDF UPLOAD
+    if ($request->hasFile('pdf')) {
+        $pdfFile = $request->file('pdf');
+        $pdfFilename = time() . '_' . $pdfFile->getClientOriginalName();
+        $pdfFile->move(public_path('pdfs'), $pdfFilename);
+        $data->pdf = 'pdfs/' . $pdfFilename;
+    }
 
-    // Save the relative path in the database
-    $data->photo = 'uploads/' . $photoName;
+    // ✅ Store other fields
+    $data->name = $validated['name'];
+    $data->lastname = $validated['lastname'];
+    $data->email = $validated['email'];
+    $data->phone = $validated['phone'];
+    $data->password = bcrypt($validated['password']);
+    $data->sellist1 = $validated['sellist1'];
+    $data->sellist2 = $validated['sellist2'];
+    $data->facilities = $validated['facilities'];
+    $data->about = $validated['about'];
+
+    $data->save();  // ✅ Now save everything
+
+    Auth::login($data);  // Optional: if you want auto-login
+    return redirect()->route('profile.view');
 }
-//name of input-field of joinUs blade
-if ($request->hasFile('pdf')){
-    $pdf = $request->file('pdf');
-    $pdfName = time() . '_' . $pdf->getClientOriginalName();
-
-    // Move the PDF to public/pdfs folder
-    $pdf->move(public_path('pdfs'), $pdfName);
-
-    // Save the path to the database
-    $data->pdf = 'pdfs/' . $pdfName;
-}   
-       $data->save();
-       
-   Auth::login($data); 
-return redirect()->route('profile.view');
-
-        }
-};
-
+}
 
 

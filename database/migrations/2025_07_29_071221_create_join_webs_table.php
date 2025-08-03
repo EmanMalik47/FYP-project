@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('join_webs', function (Blueprint $table) {
             $table->id();
+ 
             $table->string('name')->nullable();
             $table->string('lastname')->nullable();
             $table->string('email')->nullable();

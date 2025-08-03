@@ -51,9 +51,9 @@
     </li>
 
     <li class="nav-item">
-      <a href="{{ route('admin.dashboard.adminCategories') }}"
-         class="nav-link {{ request()->routeIs('admin.dashboard.adminCategories') ? 'active' : '' }}">
-        Categories
+      <a href="{{ route('admin.dashboard.adminCertificates') }}"
+         class="nav-link {{ request()->routeIs('admin.dashboard.adminCertificates') ? 'active' : '' }}">
+        Certificates
       </a>
     </li>
 
