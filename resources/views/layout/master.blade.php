@@ -127,7 +127,7 @@
                             <div class="input-group" id="input-main">
                                 <span class="input-group-text bg-white border-0"><i
                                         class="fas fa-search"></i></span>
-                                <input type="text" name="skill" class="form-control border-0"
+                                <input type="text" name="skills" class="form-control border-0"
                                     placeholder="Search " src="">
                             </div>
                         </div>
