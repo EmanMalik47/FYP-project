@@ -94,3 +94,4 @@ Route::get('/searchSkill', [SkillController::class, 'search'])->name('searchSkil
 
 
 Route::post('/admin/query/dismissed/{id}', [adminController::class, 'dismissed'])->name('admin.query.dismissed');
+   

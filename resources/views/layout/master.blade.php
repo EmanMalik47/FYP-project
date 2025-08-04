@@ -129,6 +129,7 @@
                                         class="fas fa-search"></i></span>
                                 <input type="text" name="skills" class="form-control border-0"
                                     placeholder="Search " src="">
+                                    
                             </div>
                         </div>
                         </form>
@@ -238,13 +239,7 @@
             });
         });
         
-        //search skill
-document.addEventListener("DOMContentLoaded", function () {
-  const modalTrigger = document.getElementById("openModalBtn");
-  if (modalTrigger) {
-    modalTrigger.click();
-  }
-});
+        
 </script>
 
 </body>
