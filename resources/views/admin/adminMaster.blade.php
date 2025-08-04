@@ -21,7 +21,7 @@
 <br><br><br>
   <div class="d-flex flex-column flex-md-row ">
     <!-- Sidebar -->
-    <nav class="sidebar col-md-3 col-lg-2 position-fixed" >
+  <nav class="sidebar col-md-3 col-lg-2 position-fixed" id="sidebar">
       <ul class="nav flex-column mt-4">
         <li class="nav-item">
       <a href="{{ route('admin.dashboard.adminDashboard') }}"

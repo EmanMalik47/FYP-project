@@ -8,7 +8,7 @@
 @endsection
 @section('adminContent')
 
-   <div class="container info col-md-7 col-lg-8">
+   <div class="col-12 info col-sm-10 col-md-7 ms-md-5 col-lg-11 ms-lg-5">
     
     <h2 class="mb-4" style="color: white ">Manage Users</h2>
     <table class="table table-bordered table-hover">
