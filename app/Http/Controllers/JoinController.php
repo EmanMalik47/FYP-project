@@ -33,7 +33,7 @@ class JoinController extends Controller
 
     $data = new JoinWeb;
 
-    // ✅ HANDLE IMAGE UPLOAD
+    //  HANDLE IMAGE UPLOAD
     if ($request->hasFile('profile')) {
         $file = $request->file('profile');
         $filename = time() . '.' . $file->getClientOriginalExtension();
@@ -43,15 +43,15 @@ class JoinController extends Controller
         $data->profile = null;
     }
 
-    // ✅ HANDLE PDF UPLOAD
+    //  HANDLE PDF UPLOAD
     if ($request->hasFile('pdf')) {
         $pdfFile = $request->file('pdf');
         $pdfFilename = time() . '_' . $pdfFile->getClientOriginalName();
         $pdfFile->move(public_path('pdfs'), $pdfFilename);
-        $data->pdf = 'pdfs/' . $pdfFilename;
+        $data->pdf = $pdfFilename;
     }
 
-    // ✅ Store other fields
+    //  Store other fields
     $data->name = $validated['name'];
     $data->lastname = $validated['lastname'];
     $data->email = $validated['email'];
@@ -62,7 +62,7 @@ class JoinController extends Controller
     $data->facilities = $validated['facilities'];
     $data->about = $validated['about'];
 
-    $data->save();  // ✅ Now save everything
+    $data->save();  //  Now save everything
 
     Auth::login($data);  // Optional: if you want auto-login
     return redirect()->route('profile.view');

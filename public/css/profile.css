@@ -85,9 +85,9 @@
 }
 .sidebar {
     margin-left: 20px;
-    margin-top: 120px;
+    margin-top: 100px;
     background-color: #f8f9fa;
-    padding: 40px;
+    padding: 18px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -113,7 +113,7 @@
 .facility-item {
     background-color: white;
     padding: 10px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
@@ -126,8 +126,8 @@
 
 .button-end {
     background-color: #1f3d85;
-    margin-left: 200px;
-    padding: 5px 20px;
+    margin-left: 195px;
+        padding: 5px 20px;
       border-radius: 15px;
     cursor: pointer;
 }

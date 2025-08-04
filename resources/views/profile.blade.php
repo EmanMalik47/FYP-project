@@ -53,10 +53,19 @@
                         <h3>Facilities I Provide</h3>
                         <div class="facility-item">
                             {{ $user->facilities ?? 'No facilities listed' }}
-                            {{ $user->facilities ?? 'No facilities listed' }}
+                        </div>
+                        <h3 style="margin-top: 10px">My Achievements</h3>
+                        <div class="facility-item">
+                              @if(!empty($user->pdf) && file_exists(public_path('pdfs/' . $user->pdf)))
+        <a href="{{ asset('pdfs/' . $user->pdf) }}" target="_blank">
+            {{ $user->pdf }}
+        </a>
+    @else
+        No achievements listed
+    @endif
                         </div>
                     </div>
-                     <div class=" button-end  mt-4 col-md-6 col-lg-3">
+                     <div class=" button-end  mt-5 col-md-6 col-lg-3">
                         @if(Auth::check())
              <button type="button" class="btn fw-bold text-white capitalize"
     onclick="if(confirm('Are you sure you want to logout?')) window.location.href='{{ route('logout') }}';">
