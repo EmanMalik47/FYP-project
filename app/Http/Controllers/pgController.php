@@ -44,4 +44,5 @@ class pgController extends Controller
      public function showopen(){
         return view('open');
     }
+    
 }

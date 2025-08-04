@@ -121,17 +121,19 @@
                 
                  <div class="icons">
                 <a id="searchBtn"> 
-                    <i class="fa-solid fa-magnifying-glass" style="color: #1f3d85;"></i>
-                    <div id="searchDropdown" class="search-dropdown">
-                        <div class="input-group" id="input-main">
-                            <span class="input-group-text bg-white border-0"><i
-                                    class="fas fa-search"></i></span>
-                            <input type="text" class="form-control border-0"
-                                placeholder="Search " src="">
+                        <i class="fa-solid fa-magnifying-glass" style="color: #1f3d85;"></i>
+                        <form method="GET" action="{{ route('searchSkill') }}">
+                        <div id="searchDropdown" class="search-dropdown">
+                            <div class="input-group" id="input-main">
+                                <span class="input-group-text bg-white border-0"><i
+                                        class="fas fa-search"></i></span>
+                                <input type="text" name="skills" class="form-control border-0"
+                                    placeholder="Search " src="">
+                                    
+                            </div>
                         </div>
-                    </div>
-               
-                </a>
+                        </form>
+                    </a>
                 <a><i class="fa-solid fa-user" style="color: #1f3d85;" onclick="window.location.href='profile';"></i></a>
                 <a><i class="fa-solid fa-phone-volume" style="color: #1f3d85;" onclick="window.location.href='contact';"></i></a>
                 <a><i class="fa-solid fa-bell"  style="color: #1f3d85;" onclick="window.location.href='eman';"></i></a>

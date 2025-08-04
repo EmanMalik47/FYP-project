@@ -17,7 +17,7 @@
     <div class="hero mt-3">
         <div class="wave"></div>
         <div class="profile-header text-center">
-            <img src="{{ asset('uploads/' .$user->profile) }}" class="rounded-circle profile-pic" alt="Profile Picture" onclick="alert('Profile picture clicked!')">
+            <img src="{{ asset('uploads/' .$user->photo) }}" class="rounded-circle profile-pic" alt="Profile Picture" onclick="alert('Profile picture clicked!')">
             <h1 class="mt-3">{{ $user->name }}</h1>
             <p class="lead" style="font-style: italic">Creative Skill Enthusiast</p>
         </div>
