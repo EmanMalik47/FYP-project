@@ -119,7 +119,7 @@
                     </li> 
                 </ul>
                 
-                 <div class="icons">
+                 <div class="icons position-relative">
                 <a id="searchBtn"> 
                         <i class="fa-solid fa-magnifying-glass" style="color: #1f3d85;"></i>
                         <form method="GET" action="{{ route('searchSkill') }}">
@@ -217,6 +217,7 @@
         $(document).click(function(event) { 
             if(!$(event.target).closest('#searchBtn').length) {
                 $("#searchDropdown").hide();
+                 
             }        
         });
     });

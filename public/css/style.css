@@ -95,7 +95,12 @@ color: white;
     outline: none;
     box-shadow: none;
 }
+.icons{
+    display: flex;
+  /* align-items: center; */
+  position: relative;
 
+}
 .icons a {
   padding-left: 10px;
   margin: 0 10px;
@@ -104,8 +109,8 @@ color: white;
 }
 .search-dropdown {
   position: absolute;
-  right: 80px;
-  top: 80px;
+  left: 20px;
+  top: 40px;
   display: none;
   width: 250px;
   background: #eaeffc;

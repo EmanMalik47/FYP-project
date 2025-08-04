@@ -1,6 +1,9 @@
 @extends('layout.masterp') 
 
-@section('title', 'Search Results')
+@section('styles')
+    <link rel="stylesheet" href="{{asset('css/searchSkill.css')}}">
+
+@endsection
 
 @section('content')
 
