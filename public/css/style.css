@@ -95,6 +95,7 @@ color: white;
     outline: none;
     box-shadow: none;
 }
+
 .icons{
     display: flex;
   /* align-items: center; */
@@ -156,6 +157,7 @@ color: white;
             background-color: #1f3d85;
             color: white;
         }
+        
 /*footer*/
 .footer {
     background-color: #1f3d85;

@@ -105,13 +105,13 @@
             </button>
             <div class="collapse navbar-collapse ms-5 me-5 ps-2" id="navbarNav">
                    <ul class="navbar-nav ms-4 me-auto mb-2 mb-lg-0">
-                    <li class="nav-item fs-6  ps-5 pe-2">
+                    <li class="nav-item fs-6 ps-5 pe-2">
                         <a class="nav-link rounded-pill" href="services">Services</a>
                     </li>
                     <li class="nav-item  fs-6  ps-2 pe-2">
                         <a class="nav-link rounded-pill" href="trainers">Trainers</a>
                     </li>
-                    </li>
+                    
                     <li class="nav-item fs-6  ps-2 pe-2">
                         <a class="nav-link rounded-pill" href="certificates">Certificates</a>
                     </li>
