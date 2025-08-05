@@ -81,20 +81,14 @@ Route::post('/login', [AuthController::class, 'handleAuth'])->name('handle.auth'
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
+Route::get('/admin/dashboard', [adminController::class,'showdashboard'])->name('admin.dashboard');
+
+// Route::get('/adminDashboard',[adminController::class,'showdashboard'])->name('admin.dashboard.adminDashboard');
 
 
  Route::get('/profile-page/{id}', [AuthController::class, 'showProfile'])->name('profile.detail'); 
 //admin login form
-Route::get('/admin/dashboard', function () {
-     if (session('is_admin')) {
-        $totalUsers = \App\Models\User::count();
-        $totalQueries = \App\Models\ContactUs::count();
 
-        return view('admin.dashboard.adminDashboard', compact('totalUsers', 'totalQueries'));
-    } else {
-        abort(403);
-    }
-})->name('admin.dashboard');
 
 Route::post('/logout', function () {
     session()->forget('is_admin'); // or use Auth::logout() if you're using Laravel Auth

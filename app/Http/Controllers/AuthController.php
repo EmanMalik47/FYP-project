@@ -33,8 +33,7 @@ class AuthController extends Controller
 //admin block hadcoded entery:-
   if ($credentials['email'] === 'adminET@gmail.com' && $credentials['password'] === 'admin147169') {
             session(['is_admin' => true]);
-            return redirect()->route('admin.dashboard'); // Define this route
-        }
+            return redirect()->route('admin.dashboard.adminDashboard'); 
         
         if (Auth::attempt($credentials)) {
            $user = Auth::user();
@@ -43,7 +42,7 @@ class AuthController extends Controller
         }       
       return back()->withErrors(['email' => 'Invalid Credentials']);
     }
-
+    }
 
     // Step 4: Show Join Us form
     public function showJoinForm() {
