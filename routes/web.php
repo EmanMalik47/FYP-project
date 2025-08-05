@@ -29,13 +29,7 @@ Route::get('/profile-page/{id}', [AuthController::class, 'showProfile'])->name('
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/first',function(){
-//     return view('first');
-// });
-// Route::view('/about','about');
-// Route::get('/about', function () {
-//     return view('about');
-// });
+
 
 //admin panel
 Route::get('/adminDashboard',[adminController::class,'showdashboard'])->name('admin.dashboard.adminDashboard');
@@ -84,16 +78,41 @@ route::post('/store', [JoinController::class, 'store']);
 route::post('/contact',[ContactController::class, 'contact'])->name('contact');
 
 Route::get('/login', [AuthController::class, 'showlogin'])->name('login');
+Route::post('/login', [AuthController::class, 'handleAuth'])->name('handle.auth');
+
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/profile', [pgController::class, 'showprofile'])->name('profile.view')->middleware('auth');
+Route::get('/profile', [pgController::class, 'view'])->name('profile.view');
 
-Route::get('/profile-page/{id}', [AuthController::class, 'showProfile'])->name('profile.detail'); // clear
-Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile'); // general
 
-Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile.view'); // for showing profile or login form
+ Route::get('/profile-page/{id}', [AuthController::class, 'showProfile'])->name('profile.detail'); 
+//admin login form
+Route::get('/admin/dashboard', function () {
+     if (session('is_admin')) {
+        $totalUsers = \App\Models\User::count();
+        $totalQueries = \App\Models\ContactUs::count();
+
+        return view('admin.dashboard.adminDashboard', compact('totalUsers', 'totalQueries'));
+    } else {
+        abort(403);
+    }
+})->name('admin.dashboard');
+
+Route::post('/logout', function () {
+    session()->forget('is_admin'); // or use Auth::logout() if you're using Laravel Auth
+    return redirect()->route('profile.view'); // or any route you want after logout
+})->name('logout');
+
+
+// Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile'); // general
+
+// Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile.view'); // for showing profile or login form
+
+
 
 //search route
 Route::get('/searchSkill', [SkillController::class, 'search'])->name('searchSkill');
-Route::get('/profile/{id}', [SkillController::class, 'searchview'])->name('profile.view');
+// Route::get('/profile/{id}', [SkillController::class, 'searchview'])->name('profile.view');
 
 
 Route::post('/admin/query/dismissed/{id}', [adminController::class, 'dismissed'])->name('admin.query.dismissed');

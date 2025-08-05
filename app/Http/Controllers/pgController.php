@@ -48,5 +48,16 @@ class pgController extends Controller
      public function showopen(){
         return view('open');
     }
+    public function view()
+{
+  $user = session('user'); 
+
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'Please login first.');
+    }
+
+    return view('profile', compact('user')); 
+}
+
     
 }

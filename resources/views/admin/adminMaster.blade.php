@@ -65,13 +65,17 @@
     </li>
 
     <li class="nav-item mt-auto">
-      <a href="#" class="nav-link text-danger fw-bold" data-bs-toggle="modal" data-bs-target="#logoutModal">
-        Logout
-      </a>
+     <a href="#" class="nav-link text-danger fw-bold"
+   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+   Logout
+</a>
+
     </li>
       </ul>
     </nav>
-
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
     <!-- Main Content -->
     
     @yield('adminContent')

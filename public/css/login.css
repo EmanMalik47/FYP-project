@@ -81,3 +81,9 @@
     .new:hover {
         background-color: #2c51a7;
     }
+    .login-footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 30px;
+        transition: background-color 0.4s ease-in-out;
+    }

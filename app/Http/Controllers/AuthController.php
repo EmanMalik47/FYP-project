@@ -30,13 +30,18 @@ class AuthController extends Controller
     // Step 3: Handle Login
     public function handleAuth(Request $request) {
         $credentials = $request->only('email', 'password');
-
+//admin block hadcoded entery:-
+  if ($credentials['email'] === 'adminET@gmail.com' && $credentials['password'] === 'admin147169') {
+            session(['is_admin' => true]);
+            return redirect()->route('admin.dashboard'); // Define this route
+        }
+        //simp/e user entery:-
         if (Auth::attempt($credentials)) {
            $user = Auth::user();
         return redirect()->route('profile.view', ['id' => $user->id]);
 
         }       
-      return back()->withErrors(['email' => 'Invalid credentials']);
+      return back()->withErrors(['email' => 'Invalid Credentials']);
     }
 
 
@@ -70,10 +75,11 @@ class AuthController extends Controller
 
 }
 
-public function logout() {
-    Auth::logout();
-    return redirect()->route('profile.view');  
-return redirect()->route('profile.detail', ['id' => $user->id]); 
+public function logout(Request $request) {
+     Auth::logout(); // logout the user
+    $request->session()->invalidate(); // invalidate session
+    $request->session()->regenerateToken(); // prevent CSRF issues
 
+    return redirect()->route('login'); // or 'joinus'
 }
 }

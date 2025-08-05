@@ -28,8 +28,10 @@
         <button type="submit" class="new">Register Now</button>
     </a>
 </div>
+<div class="login-footer">
 @if($errors->any())
     <p style="color: red;">{{ $errors->first() }}</p>
 @endif
+</div>
 
 @endsection
