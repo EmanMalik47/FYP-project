@@ -11,7 +11,7 @@ use App\Http\Controllers\QueryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SkillController;
 
-Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile');
+
 
 Route::get('/auth-form', [AuthController::class, 'showAuthForm'])->name('auth-form');
 Route::post('/handle-auth', [AuthController::class, 'handleAuth'])->name('handle.auth');
@@ -64,8 +64,6 @@ Route::get('/getCertificate',[pgController::class,'getCertificate'])->name('getC
 Route::get('/joinUs',[pgController::class,'showjoinUs'])->name('joinUs');
 
 
-// Route::get('/profile', [pgController::class, 'showProfile'])->middleware('auth')->name('profile.view');
-// Route::get('/profile',[pgController::class,'showprofile'])->name('profile');
 Route::get('/contact',[pgController::class,'showcontact'])->name('contact');
 Route::get('/eman',[pgController::class,'showeman'])->name('eman');
 Route::get('/open',[pgController::class,'showopen'])->name('open');
@@ -81,8 +79,8 @@ Route::get('/login', [AuthController::class, 'showlogin'])->name('login');
 Route::post('/login', [AuthController::class, 'handleAuth'])->name('handle.auth');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/profile', [pgController::class, 'showprofile'])->name('profile.view')->middleware('auth');
-Route::get('/profile', [pgController::class, 'view'])->name('profile.view');
+
+
 
 
  Route::get('/profile-page/{id}', [AuthController::class, 'showProfile'])->name('profile.detail'); 
@@ -104,10 +102,6 @@ Route::post('/logout', function () {
 })->name('logout');
 
 
-// Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile'); // general
-
-// Route::get('/profile', [AuthController::class, 'showProfileLink'])->name('profile.view'); // for showing profile or login form
-
 
 
 //search route
@@ -117,3 +111,5 @@ Route::get('/searchSkill', [SkillController::class, 'search'])->name('searchSkil
 
 Route::post('/admin/query/dismissed/{id}', [adminController::class, 'dismissed'])->name('admin.query.dismissed');
    
+
+Route::get('/profile', [pgController::class, 'showProfile'])->name('profile.view')->middleware('auth');

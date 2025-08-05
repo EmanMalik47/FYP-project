@@ -28,16 +28,16 @@ class pgController extends Controller
      public function showjoinUs(){
         return view('joinUs');
     }
-   public function showProfile()
-    {
-        $user = Auth::user();
-    return view('profile', compact('user')); 
+ public function showProfile()
+{
+    $user = Auth::user();
+
     if (!$user) {
-        abort(404, 'User not found');
+        return redirect()->route('login')->with('error', 'Please login first.');
     }
 
-    return view('profile', ['user' => $user]);
-    }
+    return view('profile', compact('user'));
+}
 
     public function showcontact(){
         return view('contact');

@@ -35,10 +35,10 @@ class AuthController extends Controller
             session(['is_admin' => true]);
             return redirect()->route('admin.dashboard'); // Define this route
         }
-        //simp/e user entery:-
+        
         if (Auth::attempt($credentials)) {
            $user = Auth::user();
-        return redirect()->route('profile.view', ['id' => $user->id]);
+        return redirect()->route('profile.view'); 
 
         }       
       return back()->withErrors(['email' => 'Invalid Credentials']);
@@ -70,7 +70,7 @@ class AuthController extends Controller
 
     Auth::login($user); 
 
-    // Redirect to profile page
+  
     return redirect()->route('profile.view');
 
 }
