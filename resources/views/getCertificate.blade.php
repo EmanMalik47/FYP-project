@@ -9,13 +9,14 @@ GetCertificate
 @section('content')
 <br><br><br><br><br>
 
-    <div class="certificate mt-5 p-4 border border-secondary m-auto">
+    <div class="certificate mt-5 p-4 border border-secondary m-auto shadow">
  	<div class="overlay"></div>
  	<div class="cer-body">
- 		<form class="form">
+ 		<form class="form" id="certificateForm" method="POST" action="{{ route('certificate.generate') }}">
+            @csrf
             <div class="form-items d-flex">
-                <label for="date" class="form-label">Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="date" class="form-control" id="date" required>
+                <label for="date" class="form-label">Date:{{ isset($data['date']) ? $data['date'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="date" class="form-control" id="date" name="date" required>
             </div>
             <!-- <h5>This is certified that</h5> -->
             
@@ -23,19 +24,19 @@ GetCertificate
             	<h5 style="font-size: 25px;">This is certified that</h5>
             	<!-- <label for="name" class="form-label">This is certified that</label> -->
             	<div class="d-flex">
-	            <label for="name" class="form-label">Name:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-	            <input type="text" class="form-control" id="name" required>
+	            <label for="name" class="form-label">Name:{{ isset($data['name']) ? $data['name'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	            <input type="text" class="form-control" id="name" name="name" required>
 	            </div>
             </div>
            
             
             <div class="form-items d-flex">
-                <label for="so" class="form-label">S/O,D/O:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="text" class="form-control" id="so" required>
+                <label for="so" class="form-label">S/O,D/O:{{ isset($data['so']) ? $data['so'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text" class="form-control" id="so" name="so" required>
             </div>
             <div class="form-items d-flex">
-                <label for="sel1" class="form-label" >Learned Skill (select one):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-				    <select class="form-select " id="sel1" name="sellist1">
+                <label for="sel1" class="form-label" >Learned Skill (select one):{{ isset($data['skill']) ? $data['skill'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				    <select class="form-select " id="sel1" name="skill">
 				      <option selected disabled>Select Skill</option>
 				      <option>Programming Languages</option>
 				      <option>Graphic Designing</option>
@@ -48,17 +49,21 @@ GetCertificate
                 <h5 style="font-size: 25px;">Attained proficiency in the mentioned course held in Barter Brains</h5>
                 <!-- <label for="name" class="form-label">This is certified that</label> -->
                 <div class="d-flex">
-                <label for="date" class="form-label">From:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="date" class="form-control" id="date" required>
-                <label for="date" class="form-label">&nbsp;&nbsp;&nbsp;to:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="date" class="form-control" id="date" required>
+                <label for="date" class="form-label">From:{{ isset($data['from']) ? $data['from'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="date" class="form-control" id="from" name="from" required>
+                <label for="date" class="form-label">&nbsp;&nbsp;&nbsp;to:{{ isset($data['to']) ? $data['to'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="date" class="form-control" id="to" name="to" required>
                 </div>
             </div>
             <!-- <button type="button" class="btn btn-primary" onclick="generateCertificate()">Generate Certificate</button> -->
- 		</form>
+ 		
  	</div>
  </div>
- 
+ <br><br>
+ </form>
+        <div class="custom" style="margin-top: 20px;">
+    <button onclick="submitCertificateForm()" type="button" class="custom-btn px-5 py-2 rounded-pill">Download Certificate</button>
+</div>
  <br><br><br>
 
  <!-- javascript -->
@@ -75,8 +80,14 @@ GetCertificate
             document.getElementById("certName").textContent = document.getElementById("name").value;
             document.getElementById("certSo").textContent = document.getElementById("so").value;
             document.getElementById("certSkill").textContent = document.getElementById("skill").value;
+            document.getElementById("certDate").textContent = document.getElementById("from").value;
+            document.getElementById("certDate").textContent = document.getElementById("to").value;
             // document.getElementById("certFrom").textContent = document.getElementById("from").value;
         }
+        
+    function submitCertificateForm() {
+        document.getElementById('certificateForm').submit();
+    }
+
     </script>
 @endsection
- 

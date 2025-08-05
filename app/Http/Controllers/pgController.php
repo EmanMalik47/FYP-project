@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\JoinWeb;
+use Barryvdh\DomPDF\Facade\Pdf;
 class pgController extends Controller
 {
     public function showwelcome(){
@@ -24,6 +25,13 @@ class pgController extends Controller
      public function getCertificate(){
         
         return view('getCertificate');
+    }
+    public function generate(Request $request)
+    {
+        $data = $request->only(['name', 'date', 'so', 'skill', 'from', 'to']);
+
+        $pdf = Pdf::loadView('certificate_pdf', ['data' => $data]);
+        return $pdf->download('certificate.pdf');
     }
      public function showjoinUs(){
         return view('joinUs');

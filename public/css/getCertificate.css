@@ -59,3 +59,18 @@ select.form-select:focus {
 .form-select>option:hover{
     background-color: #1f3d85;
 }
+.custom{
+    font-family: "Playfair Display", serif;
+   font-size: 16px;
+   display: flex;
+    justify-content: center;
+}
+.custom-btn{
+    
+    background-color: #0f2862;
+    color: white;
+}
+.custom-btn:hover{
+    background-color: #1f3d85;
+    color: white;
+}
