@@ -1,0 +1,62 @@
+
+.certificate{
+	font-family: "Playfair Display", serif;
+	width: 1000px;
+	height: 800px;
+
+    background-image: url('../images/paper.png');
+	background-repeat: no-repeat;
+	margin-left: 180px;
+	background-size: 1000px 800px;
+}
+.form{
+    margin-top: 150px;
+    
+}
+.form-items{
+
+	font-family: "Playfair Display", serif;
+	padding-top: 25px;
+	padding-left: 130px;
+	font-size: 26px;
+}
+input.form-control {
+    max-width: 300px; 
+    height: 30px; 
+    background-color: transparent;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 2px solid black; 
+    color: black; 
+    font-size: 16px; 
+    padding: 5px; 
+}
+input.form-control:focus {
+    background-color: transparent !important; 
+    border: none; 
+    border-bottom: 1px solid black; 
+    outline: none; 
+    box-shadow: none; 
+}
+select.form-select {
+    max-width: 300px; 
+    height: 30px; 
+    background-color: transparent;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 2px solid black; 
+    color: black; 
+    font-size: 16px; 
+    padding: 5px; 
+}
+select.form-select:focus {
+    background-color: transparent !important; 
+    border: none; 
+    border-bottom: 1px solid black; 
+    outline: none; 
+    box-shadow: none;
+
+}
+.form-select>option:hover{
+    background-color: #1f3d85;
+}

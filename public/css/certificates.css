@@ -104,7 +104,24 @@
 	color: white;
 	pointer-events: none;
 }
+        /* Apply animations */
 
+        .block{
+            animation: appear linear;
+            animation-timeline: view();
+            animation-range: entry 0%;
+        }
+        .image-container img {
+           width: 500px;
+            height: 500px;
+            border-radius: 10px;
+        }
+        @media (max-width: 768px) {
+            .image-container {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
  /*.offer-box h4{
   font-size: 30px;
   text-align: left;

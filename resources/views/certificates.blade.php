@@ -114,7 +114,7 @@ certificates
 
 <!-- getting certificate -->
 
-<div class="container get-cer mt-5 mb-5">
+<div class="container get-cer mt-5 mb-5 block">
 
         <h1 style="font-size: 55px; ">  
             <img src="images/circle.png" class="circle-img ">Get Digital Certificate</h1>
@@ -126,10 +126,10 @@ certificates
                     <div class="certificate-preview">
                     	<img src="images/cooking-card.jpeg" class="rounded img-fluid" width="200px" >
                     </div>
-                    <div class="card-body">
+                    <div class="card-body"> 
                         <h5 class="card-title pt-2"><strong>COOKING</strong></h5>
                         <p class="card-text">Completed a course of hands-on cooking training, mastering essential techniques, recipes, and kitchen skills.</p>
-                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate.html';">Get Certificate</button>
+                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button>
                     </div>
                 </div>
             </div>
@@ -142,7 +142,7 @@ certificates
                     <div class="card-body">
                         <h5 class="card-title pt-2"><strong>MUSIC</strong></h5>
                         <p class="card-text">Completed a comprehensive music training, covering theory, composition, and performance techniques.</p>
-                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate.html';">Get Certificate</button>
+                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button>
                     </div>
                 </div>
             </div>
@@ -154,7 +154,7 @@ certificates
                     <div class="card-body">
                         <h5 class="card-title pt-2" style="font-size: 22px;"><strong>Beauty Salon Management</strong></h5>
                         <p class="card-text">Successfully completed training in Beauty Salon Management, developing skills in salon operations and all its related fields.</p>
-                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate.html';">Get Certificate</button>
+                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button>
                     </div>
             </div>
         </div>
@@ -168,7 +168,7 @@ certificates
                     <div class="card-body">
                         <h5 class="card-title pt-2"><strong>LANGUAGES</strong></h5>
                         <p class="card-text">Completed a course of hands-on cooking training, mastering essential techniques, recipes, and kitchen skills.</p>
-                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate.html';">Get Certificate</button>
+                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button>
                     </div>
                 </div>
             </div>
@@ -181,7 +181,7 @@ certificates
                     <div class="card-body">
                         <h5 class="card-title pt-2"><strong>GRAPHIC DESIGNING</strong></h5>
                         <p class="card-text">Completed immersive language training, enhancing proficiency, linguistic skills, and cross-cultural communication.</p>
-                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate.html';">Get Certificate</button>
+                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button>
                     </div>
                 </div>
             </div>
