@@ -69,6 +69,7 @@ Route::get('/certificates',[pgController::class,'showcertificates'])->name('cert
 Route::get('/getCertificate',[pgController::class,'getCertificate'])->name('getCertificate');
 Route::get('/joinUs',[pgController::class,'showjoinUs'])->name('joinUs');
 
+
 // Route::get('/profile', [pgController::class, 'showProfile'])->middleware('auth')->name('profile.view');
 // Route::get('/profile',[pgController::class,'showprofile'])->name('profile');
 Route::get('/contact',[pgController::class,'showcontact'])->name('contact');

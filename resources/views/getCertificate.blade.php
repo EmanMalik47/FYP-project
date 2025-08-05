@@ -8,6 +8,7 @@ GetCertificate
 @endsection
 @section('content')
 <br><br><br><br><br>
+
     <div class="certificate mt-5 p-4 border border-secondary m-auto">
  	<div class="overlay"></div>
  	<div class="cer-body">

@@ -161,7 +161,8 @@ certificates
         <div class="row  d-flex justify-content-center align-items-center min-vh-80">
             <div class="col-md-4">
                 <div class="cer-box">
-                   
+                        
+                    
                     <div class="certificate-preview">
                     	<img src="images/language-card.jpeg" class="rounded img-fluid" width="200px" height="195px">
                     </div>

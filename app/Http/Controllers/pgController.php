@@ -22,6 +22,7 @@ class pgController extends Controller
         return view('certificates');
     }
      public function getCertificate(){
+        
         return view('getCertificate');
     }
      public function showjoinUs(){
