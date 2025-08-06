@@ -53,7 +53,7 @@ class pgController extends Controller
 }
 
 public function showAllUsers() {
-    $users = JoinWeb::all(); 
+    $users = JoinWeb::all(); // or filter out logged-in user if needed
     return view('users', compact('users'));
 }
 
@@ -76,6 +76,10 @@ public function showAllUsers() {
 
     return view('profile', compact('user')); 
 }
-
+public function showUserProfile($id)
+{
+    $user = \App\Models\User::findOrFail($id);
+    return view('profile', compact('user'));
+}
     
 }

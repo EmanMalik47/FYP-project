@@ -1,66 +1,109 @@
-.container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
 
-.page-title {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 30px;
-    color: #1f3d85;
-}
 
 .user-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.user-card {
+
+.user-vertical-card {
+    display: flex;
+    align-items: center;
     background-color: #ffffff;
     border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    transition: transform 0.3s ease;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    transition: background-color 0.4s ease;
+   
 }
 
-.user-card:hover {
-    transform: scale(1.03);
+.user-vertical-card:hover {
+    background-color: #f8f8f8;
+      transform: translateY(-5px);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 
-.profile-img {
+.vertical-profile-img {
     width: 100px;
     height: 100px;
     object-fit: cover;
     border-radius: 50%;
-    margin-bottom: 15px;
+    margin-right: 20px;
+    /* border: 2px solid #1f3d85; */
 }
 
-.user-card h3 {
-    margin: 10px 0 5px;
-    font-size: 1.2rem;
-    color: #333;
+.user-info {
+    flex: 1;
 }
 
-.user-card p {
-    margin: 5px 0;
-    font-size: 0.95rem;
+.user-name {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #1f3d85;
+    font-weight: 600;
 }
 
-.friend-btn {
+.user-sub {
+    margin: 2px 0;
+    font-size: 1rem;
+    color: #555;}
+
+/* Button group styles */
+.btn-group {
+    margin-top: 8px;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.friend-confirm {
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+
+
+/* Blue button */
+
     background-color: #1f3d85;
     color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    margin-top: 12px;
-    cursor: pointer;
-    font-weight: 500;
 }
 
-.friend-btn:hover {
+.friend-confirm:hover {
     background-color: #163172;
 }
+
+.friend-view {
+margin-left: 450px;
+
+border-radius: 13px;
+padding-top: 5px;
+padding-bottom: 5px;
+font-size: 17px;}
+
+/* }
+.friend-view:hover{
+    background-color: #1f3d85;
+    color: white;
+} */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes waveMove {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(50px); }
+    100% { transform: translateX(0); }
+}
+
+

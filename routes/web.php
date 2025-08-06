@@ -10,6 +10,7 @@ use App\Http\Controllers\profile_controller;
 use App\Http\Controllers\QueryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\FriendRequestController;
 
 
 
@@ -111,3 +112,12 @@ Route::post('/admin/query/dismissed/{id}', [adminController::class, 'dismissed']
    
 
 Route::get('/profile', [pgController::class, 'showProfile'])->name('profile.view')->middleware('auth');
+
+//sending frien request:-
+Route::middleware('auth')->group(function () {
+    Route::post('/send-request/{receiver_id}', [FriendRequestController::class, 'sendRequest'])->name('friend.send');
+    Route::get('/friend-requests', [FriendRequestController::class, 'viewRequests'])->name('friend.requests');
+    Route::post('/respond-request/{id}/{action}', [FriendRequestController::class, 'respondRequest'])->name('friend.respond');
+});
+
+Route::get('/user-profile/{id}', [pgController::class, 'showUserProfile'])->name('user.profile.view');

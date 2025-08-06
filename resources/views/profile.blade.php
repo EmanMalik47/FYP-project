@@ -7,12 +7,6 @@
 
 @section('content')
 
-   {{-- <h2>Welcome to Profile Section</h2>
-    <a href="{{ route('login') }}" class="btn btn-primary">Access Your Profile</a> --}}
-
-
-
-
  <div class="mt-3">.</div>
     <div class="hero mt-3">
         <div class="wave"></div>

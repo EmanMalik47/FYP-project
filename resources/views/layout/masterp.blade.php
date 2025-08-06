@@ -1,31 +1,4 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>YahooBaba - @yield('title')</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <div class="header">
-        <h1>YahooBaba</h1>
-    </div>
 
-    <div class="navbar">
-        <a href="/home">Home</a> |
-        <a href="/about">About</a> |
-        <a href="#">Post</a> |
-        <a href="eman">eman</a>
-    </div>
-
-    <div class="content">
-       @yield('content')
-    </div>
-
-    <div class="footer">
-        <p>yahoobaba@copyright 2023.</p>
-    </div>
-</body>
-</html> --}}
 
 
  <!DOCTYPE html>
