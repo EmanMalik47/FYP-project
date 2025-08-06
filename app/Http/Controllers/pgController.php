@@ -31,6 +31,11 @@ class pgController extends Controller
         $data = $request->only(['name', 'date', 'so', 'skill', 'from', 'to']);
 
         $pdf = Pdf::loadView('certificate_pdf', ['data' => $data]);
+       // BG img of pdf
+    //    $pdf->setOptions([
+    //     'isHtml5ParserEnabled' => true,
+    //     'isRemoteEnabled' => true
+    // ]);
         return $pdf->download('certificate.pdf');
     }
      public function showjoinUs(){

@@ -4,19 +4,24 @@
     <title>Certificate</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            /* font-family: Arial, sans-serif; */
+            font-family: "Playfair Display", serif;
             text-align: center;
             padding: 50px;
         }
         .certificate {
-            border: 10px solid #ddd;
+           /* background-image: url('{{ public_path('images/paper.png') }}'); */
+           /* background-size: cover;  */
+            
+           border: 15px solid #0f2862;;
             padding: 40px;
         }
         h2 {
             margin-bottom: 30px;
+            font-size: 35px
         }
         p {
-            font-size: 18px;
+            font-size: 24px;
         }
     </style>
 </head>
@@ -25,10 +30,10 @@
         <h2>Certificate of Completion</h2>
         <p><strong>Date:</strong> {{ $data['date'] }}</p>
         <p>This is to certify that</p>
-        <h3>{{ $data['name'] }}</h3>
+        <h3><strong>Name:</strong>{{ $data['name'] }}</h3>
         <p><strong>S/O, D/O:</strong> {{ $data['so'] }}</p>
         <p>has successfully completed the <strong>{{ $data['skill'] }}</strong> course.</p>
-        <p><strong>From:</strong> {{ $data['from'] }} <strong>To:</strong> {{ $data['to'] }}</p>
+        <p><strong>From:</strong> {{ $data['from'] }}&nbsp;&nbsp;&nbsp; <strong>To:</strong> {{ $data['to'] }}</p>
         <br><br>
         <p>Barter Brains</p>
     </div>
