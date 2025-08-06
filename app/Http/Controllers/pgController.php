@@ -52,6 +52,11 @@ class pgController extends Controller
     return view('profile', compact('user'));
 }
 
+public function showAllUsers() {
+    $users = JoinWeb::all(); 
+    return view('users', compact('users'));
+}
+
     public function showcontact(){
         return view('contact');
     }

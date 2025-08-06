@@ -64,6 +64,8 @@ Route::get('/getCertificate',[pgController::class,'getCertificate'])->name('getC
 
 Route::post('/generate-certificate', [pgController::class, 'generate'])->name('certificate.generate');
 Route::get('/joinUs',[pgController::class,'showjoinUs'])->name('joinUs');
+Route::get('/users', [pgController::class, 'showAllUsers'])->name('users.list');
+
 
 
 Route::get('/contact',[pgController::class,'showcontact'])->name('contact');

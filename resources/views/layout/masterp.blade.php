@@ -115,7 +115,7 @@
                         <a class="nav-link rounded-pill" href="certificates">Certificates</a>
                     </li>
                     <li class="nav-item fs-6  ps-2 pe-2">
-                        <a class="nav-link rounded-pill" href="joinUs">Join Us</a>
+                        <a class="nav-link rounded-pill" href="users">Users</a>
                     </li> 
                 </ul>
                 
