@@ -102,7 +102,7 @@ Route::post('/logout', function () {
 
 //search route
 Route::get('/searchSkill', [SkillController::class, 'search'])->name('searchSkill');
-// Route::get('/profile/{id}', [SkillController::class, 'searchview'])->name('profile.view');
+Route::get('/profile/{id}', [SkillController::class, 'searchview'])->name('profile.view');
 
 
 Route::post('/admin/query/dismissed/{id}', [adminController::class, 'dismissed'])->name('admin.query.dismissed');
