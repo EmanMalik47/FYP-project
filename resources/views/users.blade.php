@@ -35,8 +35,9 @@
                             @csrf
                             <button type="submit" class="friend-confirm">Send Friend Request</button>
                         </form>
-                        <a href="{{ route('user.profile.view', $user->id) }}" class="friend-view">View Profile</a>
-                
+                        {{-- <a href="{{ route('user.profile.view', $user->id) }}" class="friend-view">View Profile</a> --}}
+                        <a href="/user-profile/{{ $user->id }}" class="friend-view">View Profile</a>
+
                     @endif
                 </div>
             </div>

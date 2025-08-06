@@ -105,7 +105,7 @@ Route::post('/logout', function () {
 
 //search route
 Route::get('/searchSkill', [SkillController::class, 'search'])->name('searchSkill');
-Route::get('/profile/{id}', [SkillController::class, 'searchview'])->name('profile.view');
+Route::get('/search-profile/{id}', [SkillController::class, 'searchview'])->name('search.profile');
 
 
 Route::post('/admin/query/dismissed/{id}', [adminController::class, 'dismissed'])->name('admin.query.dismissed');
@@ -120,4 +120,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/respond-request/{id}/{action}', [FriendRequestController::class, 'respondRequest'])->name('friend.respond');
 });
 
+
 Route::get('/user-profile/{id}', [pgController::class, 'showUserProfile'])->name('user.profile.view');
+
+

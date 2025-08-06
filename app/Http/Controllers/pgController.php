@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\JoinWeb;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 class pgController extends Controller
 {
@@ -78,8 +79,9 @@ public function showAllUsers() {
 }
 public function showUserProfile($id)
 {
-    $user = \App\Models\User::findOrFail($id);
+    $user = \App\Models\JoinWeb::findOrFail($id);
     return view('profile', compact('user'));
+
 }
     
 }
