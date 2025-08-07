@@ -69,6 +69,9 @@ public function respondFriendRequest($id, $action)
     if (!in_array($action, ['accepted', 'rejected'])) {
         return redirect()->back()->with('error', 'Invalid action.');
     }
+        if ($action === 'rejected') {
+            $action = 'declined';
+        }
 
     $request->status = $action;
     $request->save();
