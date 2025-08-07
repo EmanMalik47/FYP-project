@@ -60,10 +60,10 @@ Route::post('/admin/query/dismiss/{id}', [adminController::class, 'dismiss'])->n
 Route::get('/welcome',[pgController::class,'showwelcome'])->name('welcome');
 Route::get('/services',[pgController::class,'showservices'])->name('services');
 Route::get('/trainers',[pgController::class,'showtrainers'])->name('trainers');
-Route::get('/certificates',[pgController::class,'showcertificates'])->name('certificates');
-Route::get('/getCertificate',[pgController::class,'getCertificate'])->name('getCertificate');
+Route::get('/certificates',[pgController::class,'showcertificates'])->name('certificates')->name('certificates')->middleware('auth');
+Route::get('/getCertificate',[pgController::class,'getCertificate'])->name('getCertificate')->name('certificates')->middleware('auth');
 
-Route::post('/generate-certificate', [pgController::class, 'generate'])->name('certificate.generate');
+Route::post('/generate-certificate', [pgController::class, 'generate'])->name('certificate.generate')->name('certificates')->middleware('auth');
 Route::get('/joinUs',[pgController::class,'showjoinUs'])->name('joinUs');
 Route::get('/users', [pgController::class, 'showAllUsers'])->name('users.list');
 
