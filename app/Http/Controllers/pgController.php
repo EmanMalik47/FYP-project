@@ -32,12 +32,18 @@ class pgController extends Controller
 
     return view('certificates', compact('user', 'userSkills'));
 
-    
+
         // return view('certificates');
     }
-     public function getCertificate(){
-        
-        return view('getCertificate');
+     public function getCertificate(Request $request){
+        $user = Auth::user();
+    $skill = $request->query('skill'); // from URL
+    $date = now()->format('d-m-Y');
+
+    return view('getCertificate', compact('user', 'skill', 'date'));
+
+
+        // return view('getCertificate');
     }
     public function generate(Request $request)
     {
