@@ -21,20 +21,33 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>501</td>
-          <td>Ayesha</td>
-          <td>Hassan</td>
-          <td>Cooking</td>
-          <td>Guitar</td>
-          <td>Pending</td>
-          <td>
-            <button class="btn btn-sm" id="button">Approve</button>
-            <button class="btn btn-sm" id="button">Reject</button>
-          </td>
-        </tr>
-      </tbody>
+    <tbody>
+    @foreach ($requests as $request)
+    <tr>
+        <td>{{ $request->id }}</td>
+        <td>{{ $request->sender->name ?? 'N/A' }}</td>
+        <td>{{ $request->receiver->name ?? 'N/A' }}</td>
+        <td>{{ $request->sender->sellist1 ?? 'N/A' }}</td>
+        <td>{{ $request->receiver->sellist2 ?? 'N/A' }}</td>
+        <td>{{ ucfirst($request->status) }}</td>
+        <td>
+            @if ($request->status === 'pending')
+                <form method="POST" action="{{ route('admin.friend.respond', [$request->id, 'accepted']) }}" style="display:inline;">
+                    @csrf
+                    <button class="btn btn-success btn-sm">Approve</button>
+                </form>
+
+                <form method="POST" action="{{ route('admin.friend.respond', [$request->id, 'rejected']) }}" style="display:inline;">
+                    @csrf
+                    <button class="btn btn-danger btn-sm">Reject</button>
+                </form>
+            @else
+                <span class="text-muted">Handled</span>
+            @endif
+        </td>
+    </tr>
+    @endforeach
+</tbody>
     </table>
   </div>
 @endsection

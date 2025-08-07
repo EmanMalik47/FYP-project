@@ -1,41 +1,40 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\FriendRequest; 
-use Illuminate\Support\Facades\Auth; 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User; 
 
 
 class FriendRequestController extends Controller
 {
-    public function sendRequest(Request $request, $receiver_id)
+   public function sendRequest($receiverId)
 {
     $senderId = Auth::id();
-    // $receiverId = $request->input('receiver_id');
 
-    // Prevent sending request to self
-    if ($senderId == $receiver_id) {
-        return back()->with('error', 'You cannot send a friend request to yourself.');
+    // Prevent sending to self
+    if ($senderId == $receiverId) {
+        return response()->json(['message' => 'You cannot send a request to yourself.'], 400);
     }
 
     // Check if request already exists
-    $exists = FriendRequest::where('sender_id', $senderId)
-        ->where('receiver_id', $receiver_id)
+    $existing = FriendRequest::where('sender_id', $senderId)
+        ->where('receiver_id', $receiverId)
         ->first();
 
-    if ($exists) {
-        return back()->with('error', 'Friend request already sent.');
+    if ($existing) {
+        return response()->json(['message' => 'Friend request already sent.'], 200);
     }
 
-    // Create the friend request
+    // Create the request
     FriendRequest::create([
         'sender_id' => $senderId,
-        'receiver_id' => $receiver_id,
+        'receiver_id' => $receiverId,
         'status' => 'pending',
     ]);
 
-    return back()->with('success', 'Friend request sent successfully!');
+    return response()->json(['message' => 'Friend request sent!'], 200);
 }
-
 }

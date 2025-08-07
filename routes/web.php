@@ -41,7 +41,7 @@ Route::delete('/admin/users/delete/{id}', [adminController::class, 'destroy'])->
 
 // Route::get('/manageuser',[adminController::class,'showmanage_user'])->name('manageuser');
 Route::get('/manageSkills',[adminController::class,'showmanage_skills'])->name('admin.dashboard.manageSkills');
-Route::get('/exchangeRequest',[adminController::class,'showexchange_request'])->name('admin.dashboard.exchangeRequest');
+Route::get('/admin/exchangeRequest',[adminController::class,'showExchangeRequests'])->name('admin.dashboard.exchangeRequest');
 Route::get('/adminCertificates',[adminController::class,'showCertificates'])->name('admin.dashboard.adminCertificates');
 Route::prefix('admin')->group(function () {
     Route::get('/query', [adminController::class, 'showquery'])->name('admin.dashboard.query');
@@ -109,6 +109,7 @@ Route::get('/search-profile/{id}', [SkillController::class, 'searchview'])->name
 
 
 Route::post('/admin/query/dismissed/{id}', [adminController::class, 'dismissed'])->name('admin.query.dismissed');
+Route::post('/admin/respond-request/{id}/{action}', [AdminController::class, 'respondFriendRequest'])->name('admin.friend.respond');
    
 
 Route::get('/profile', [pgController::class, 'showProfile'])->name('profile.view')->middleware('auth');

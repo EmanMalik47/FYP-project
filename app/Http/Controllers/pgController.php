@@ -72,7 +72,11 @@ class pgController extends Controller
 }
 
 public function showAllUsers() {
-    $users = JoinWeb::all(); // or filter out logged-in user if needed
+
+//     if (!auth()->check()) {
+//     return redirect()->route('login')->with('error', 'Please log in first.');
+// }
+    $users = JoinWeb::where('id', '!=', auth()->id())->get();
     return view('users', compact('users'));
 }
 

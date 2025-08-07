@@ -18,8 +18,8 @@ return new class extends Migration
             $table->enum('status', ['pending', 'accepted', 'declined'])->default('pending');
             
             $table->timestamps();
-            $table->foreign('sender_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('receiver_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('sender_id')->references('id')->on('join_webs')->onDelete('cascade');
+            $table->foreign('receiver_id')->references('id')->on('join_webs')->onDelete('cascade');
         });
     }
 
