@@ -7,6 +7,9 @@ certificates
     <link rel="stylesheet" href="{{asset('css/certificates.css')}}">
 @endsection
 @section('content')
+@php
+    $skills = is_array($userSkills) ? $userSkills : [];
+@endphp
 <div class=" header-section pt-4">
 		<div class="overlay"></div>
 		<div class="description text-center text-white pt-4">
@@ -129,7 +132,20 @@ certificates
                     <div class="card-body"> 
                         <h5 class="card-title pt-2"><strong>COOKING</strong></h5>
                         <p class="card-text">Completed a course of hands-on cooking training, mastering essential techniques, recipes, and kitchen skills.</p>
-                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button>
+                        @if(in_array('Cooking', $skills))
+                            <button class="view-cer px-4 py-2 rounded-pill"
+                                style="background-color: #1f3d85; color: aliceblue;"
+                                onclick="window.location.href='{{ url('/getCertificate?skill=Cooking') }}';">
+                                Get Certificate
+                            </button>
+                        @else
+                            <button class="view-cer px-4 py-2 rounded-pill" style="background-color: grey; color:white;" disabled>
+                                Not Available
+                            </button>
+                        @endif
+                        
+                        
+                        {{-- <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button> --}}
                     </div>
                 </div>
             </div>
@@ -142,7 +158,20 @@ certificates
                     <div class="card-body">
                         <h5 class="card-title pt-2"><strong>MUSIC</strong></h5>
                         <p class="card-text">Completed a comprehensive music training, covering theory, composition, and performance techniques.</p>
-                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button>
+                        @if(in_array('Musical Instruments', $skills))
+                            <button class="view-cer px-4 py-2 rounded-pill"
+                                style="background-color: #1f3d85; color: aliceblue;"
+                                onclick="window.location.href='{{ url('/getCertificate?skill=Musical Instruments') }}';">
+                                Get Certificate
+                            </button>
+                        @else
+                            <button class="view-cer px-4 py-2 rounded-pill" style="background-color: grey; color:white;" disabled>
+                                Not Available
+                            </button>
+                        @endif
+                        
+                        
+                        {{-- <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button> --}}
                     </div>
                 </div>
             </div>
@@ -154,7 +183,21 @@ certificates
                     <div class="card-body">
                         <h5 class="card-title pt-2" style="font-size: 22px;"><strong>Beauty Salon Management</strong></h5>
                         <p class="card-text">Successfully completed training in Beauty Salon Management, developing skills in salon operations and all its related fields.</p>
-                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button>
+                        @if(in_array('Beauty salon', $skills))
+                            <button class="view-cer px-4 py-2 rounded-pill"
+                                style="background-color: #1f3d85; color: aliceblue;"
+                                onclick="window.location.href='{{ url('/getCertificate?skill=Beauty Salon') }}';">
+                                Get Certificate
+                            </button>
+                        @else
+                            <button class="view-cer px-4 py-2 rounded-pill" style="background-color: grey; color:white;" disabled>
+                                Not Available
+                            </button>
+                        @endif
+                        
+                        
+                        
+                        {{-- <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button> --}}
                     </div>
             </div>
         </div>
@@ -169,7 +212,20 @@ certificates
                     <div class="card-body">
                         <h5 class="card-title pt-2"><strong>LANGUAGES</strong></h5>
                         <p class="card-text">Completed a course of hands-on cooking training, mastering essential techniques, recipes, and kitchen skills.</p>
-                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button>
+                        @if(in_array('Prgramming Languages', $skills))
+                            <button class="view-cer px-4 py-2 rounded-pill"
+                                style="background-color: #1f3d85; color: aliceblue;"
+                                onclick="window.location.href='{{ url('/getCertificate?skill=Programming Languages') }}';">
+                                Get Certificate
+                            </button>
+                        @else
+                            <button class="view-cer px-4 py-2 rounded-pill" style="background-color: grey; color:white;" disabled>
+                                Not Available
+                            </button>
+                        @endif
+                        
+                        
+                        {{-- <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button> --}}
                     </div>
                 </div>
             </div>
@@ -182,7 +238,20 @@ certificates
                     <div class="card-body">
                         <h5 class="card-title pt-2"><strong>GRAPHIC DESIGNING</strong></h5>
                         <p class="card-text">Completed immersive language training, enhancing proficiency, linguistic skills, and cross-cultural communication.</p>
-                        <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button>
+                        @if(in_array('Graphic Designing', $skills))
+                            <button class="view-cer px-4 py-2 rounded-pill"
+                                style="background-color: #1f3d85; color: aliceblue;"
+                                onclick="window.location.href='{{ url('/getCertificate?skill=Graphic Designing') }}';">
+                                Get Certificate
+                            </button>
+                        @else
+                            <button class="view-cer px-4 py-2 rounded-pill" style="background-color: grey; color:white;" disabled>
+                                Not Available
+                            </button>
+                        @endif
+                        
+                        
+                        {{-- <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button> --}}
                     </div>
                 </div>
             </div>

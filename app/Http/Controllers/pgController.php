@@ -21,7 +21,19 @@ class pgController extends Controller
         return view('trainers');
     }
     public function showcertificates(){
-        return view('certificates');
+        $user = Auth::user();
+
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'Please login first.');
+    }
+
+    // Fetch user's learned skills from join_webs table
+    $userSkills = JoinWeb::where('email', $user->email)->pluck('sellist2')->toArray();
+
+    return view('certificates', compact('user', 'userSkills'));
+
+    
+        // return view('certificates');
     }
      public function getCertificate(){
         
