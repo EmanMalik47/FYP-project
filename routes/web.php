@@ -14,6 +14,7 @@ use App\Http\Controllers\FriendRequestController;
 
 
 
+
 Route::get('/auth-form', [AuthController::class, 'showAuthForm'])->name('auth-form');
 Route::post('/handle-auth', [AuthController::class, 'handleAuth'])->name('handle.auth');
 Route::get('/join-us', [AuthController::class, 'showJoinForm'])->name('joinUs');
@@ -123,5 +124,6 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/user-profile/{id}', [pgController::class, 'showUserProfile'])->name('user.profile.view');
+
 
 

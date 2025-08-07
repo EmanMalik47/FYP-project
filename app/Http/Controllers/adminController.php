@@ -82,4 +82,7 @@ public function respondFriendRequest($id, $action)
 
     return redirect()->back()->with('success', "Friend request has been {$action}.");
 }
+
+
+
 }

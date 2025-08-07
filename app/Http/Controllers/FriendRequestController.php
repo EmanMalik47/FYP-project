@@ -6,6 +6,7 @@ use App\Models\FriendRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User; 
+use App\Notifications\FriendRequestNotification;
 
 
 class FriendRequestController extends Controller
@@ -35,6 +36,27 @@ class FriendRequestController extends Controller
         'status' => 'pending',
     ]);
 
+     // Send notification to the receiver
+    $receiver = User::find($receiverId);
+    $sender = Auth::user();
+    $receiver->notify(new FriendRequestNotification(
+        "{$sender->name} sent you a friend request.",
+        route('friend.requests') // update to your correct route if needed
+    ));
+
+      // 3. Notify Admin
+    $admin = User::where('is_admin', true)->first(); // adjust if multiple admins
+    if ($admin) {
+        $admin->notify(new FriendRequestNotification(
+            "New friend request sent by {$sender->name}",
+            route('admin.dashboard.exchangeRequest') // Admin-side route to review
+        ));
+    }
+
+
     return response()->json(['message' => 'Friend request sent!'], 200);
 }
+
+
+
 }
