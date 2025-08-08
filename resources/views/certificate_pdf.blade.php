@@ -3,16 +3,24 @@
 <head>
     <title>Certificate</title>
     <style>
+         @page {
+            margin: 0cm;
+        }
         body {
-            /* font-family: Arial, sans-serif; */
+             /* background-image: url("file://{{ public_path('images/paper2.png') }}"); */
+             /* background-image: url("{{ asset('images/paper2.png') }}"); */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+          
             font-family: "Playfair Display", serif;
             text-align: center;
             padding: 50px;
         }
         .certificate {
-           /* background-image: url('{{ public_path('images/paper.png') }}'); */
-           /* background-size: cover;  */
-            
+           
+            /* width: 500px;
+            height: 500px; */
            border: 15px solid #0f2862;;
             padding: 40px;
         }
