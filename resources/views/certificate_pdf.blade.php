@@ -31,7 +31,7 @@
         <p><strong>Date:</strong> {{ $data['date'] }}</p>
         <p>This is to certify that</p>
         <h3><strong>Name:</strong>{{ $data['name'] }}</h3>
-        <p><strong>S/O, D/O:</strong> {{ $data['so'] }}</p>
+        <p><strong>S/O, D/O:</strong> {{ $data['lastname'] }}</p>
         <p>has successfully completed the <strong>{{ $data['skill'] }}</strong> course.</p>
         <p><strong>From:</strong> {{ $data['from'] }}&nbsp;&nbsp;&nbsp; <strong>To:</strong> {{ $data['to'] }}</p>
         <br><br>

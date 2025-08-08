@@ -14,44 +14,39 @@ GetCertificate
  	<div class="cer-body">
  		<form class="form" id="certificateForm" method="POST" action="{{ route('certificate.generate') }}">
             @csrf
+           
             <div class="form-items d-flex">
-                <label for="date" class="form-label">Date:{{ isset($data['date']) ? $data['date'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="date" class="form-control" id="date" name="date" required>
+                <label for="date" class="form-label"><strong>Date:</strong>{{ isset($data['date']) ? $data['date'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="hidden" class="form-control" id="date" name="date" required  value="{{ $data['date'] ?? '' }}">
             </div>
-            <!-- <h5>This is certified that</h5> -->
+          
             
             <div class="form-items ">
             	<h5 style="font-size: 25px;">This is certified that</h5>
-            	<!-- <label for="name" class="form-label">This is certified that</label> -->
+            	
             	<div class="d-flex">
-	            <label for="name" class="form-label">Name:{{ isset($data['name']) ? $data['name'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-	            <input type="text" class="form-control" id="name" name="name" required>
+	            <label for="name" class="form-label"><strong>Name:</strong>{{ isset($data['name']) ? $data['name'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	            <input type="hidden" class="form-control" id="name" name="name" required value="{{ $data['name'] ?? '' }}">
 	            </div>
             </div>
            
             
             <div class="form-items d-flex">
-                <label for="so" class="form-label">S/O,D/O:{{ isset($data['so']) ? $data['so'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="text" class="form-control" id="so" name="so" required>
-            </div>
+                <label for="lastname" class="form-label"><strong>S/O,D/O:</strong>{{ isset($data['lastname']) ? $data['lastname'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="hidden" name="lastname" value="{{ $data['lastname'] ?? '' }}">
+                </div>
             <div class="form-items d-flex">
-                <label for="sel1" class="form-label" >Learned Skill (select one):{{ isset($data['skill']) ? $data['skill'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-				    <select class="form-select " id="sel1" name="skill">
-				      <option selected disabled>Select Skill</option>
-				      <option>Programming Languages</option>
-				      <option>Graphic Designing</option>
-				      <option>Cooking</option>
-				      <option>Beauty Salon</option>
-				      <option>Musical Instruments</option>
-				    </select>
+                <label for="sel1" class="form-label" >Attained proficiency in the <strong>{{ isset($data['skill']) ? $data['skill'] : '' }}</strong> course held <br>in Barter Brains.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+				 <input type="hidden" name="skill" value="{{ $data['skill'] ?? '' }}">    
+               
             </div>
             <div class="form-items ">
-                <h5 style="font-size: 25px;">Attained proficiency in the mentioned course held in Barter Brains</h5>
-                <!-- <label for="name" class="form-label">This is certified that</label> -->
+                {{-- <h5 style="font-size: 25px;">Attained proficiency in the mentioned course held in Barter Brains</h5> --}}
+              
                 <div class="d-flex">
-                <label for="date" class="form-label">From:{{ isset($data['from']) ? $data['from'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label for="date" class="form-label"><strong>From:</strong>{{ isset($data['from']) ? $data['from'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 <input type="date" class="form-control" id="from" name="from" required>
-                <label for="date" class="form-label">&nbsp;&nbsp;&nbsp;to:{{ isset($data['to']) ? $data['to'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label for="date" class="form-label">&nbsp;&nbsp;&nbsp;<strong>to:</strong>{{ isset($data['to']) ? $data['to'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 <input type="date" class="form-control" id="to" name="to" required>
                 </div>
             </div>
@@ -76,13 +71,13 @@ GetCertificate
 
  <script>
         function generateCertificate() {
-            document.getElementById("certDate").textContent = document.getElementById("date").value;
-            document.getElementById("certName").textContent = document.getElementById("name").value;
-            document.getElementById("certSo").textContent = document.getElementById("so").value;
-            document.getElementById("certSkill").textContent = document.getElementById("skill").value;
+            // document.getElementById("certDate").textContent = document.getElementById("date").value;
+            // document.getElementById("certName").textContent = document.getElementById("name").value;
+            // document.getElementById("certSo").textContent = document.getElementById("so").value;
+            // document.getElementById("certSkill").textContent = document.getElementById("skill").value;
             document.getElementById("certDate").textContent = document.getElementById("from").value;
             document.getElementById("certDate").textContent = document.getElementById("to").value;
-            // document.getElementById("certFrom").textContent = document.getElementById("from").value;
+            
         }
         
     function submitCertificateForm() {

@@ -35,26 +35,36 @@ class pgController extends Controller
 
         // return view('certificates');
     }
-     public function getCertificate(Request $request){
+     public function getCertificate($skill){
+       
         $user = Auth::user();
-    $skill = $request->query('skill'); // from URL
-    $date = now()->format('d-m-Y');
+        if (!$user) {
+        return redirect()->route('login')->with('error', 'Please login first.');
+    }
+    $data = [
+        'name' => $user->name,
+        'lastname' => $user->lastname,
+        
+        'date' => now()->format('Y-m-d'),
+        'skill' => $skill
+    ];
 
-    return view('getCertificate', compact('user', 'skill', 'date'));
+
+    return view('getCertificate', compact('data'));
 
 
         // return view('getCertificate');
     }
     public function generate(Request $request)
     {
-        $data = $request->only(['name', 'date', 'so', 'skill', 'from', 'to']);
+         $request->validate([
+        'from' => 'required|date',
+        'to' => 'required|date|after_or_equal:from',
+    ]);
+        $data = $request->only(['name', 'date', 'lastname', 'skill', 'from', 'to']);
 
         $pdf = Pdf::loadView('certificate_pdf', ['data' => $data]);
-       // BG img of pdf
-    //    $pdf->setOptions([
-    //     'isHtml5ParserEnabled' => true,
-    //     'isRemoteEnabled' => true
-    // ]);
+       
         return $pdf->download('certificate.pdf');
     }
      public function showjoinUs(){

@@ -135,7 +135,7 @@ certificates
                         @if(in_array('Cooking', $skills))
                             <button class="view-cer px-4 py-2 rounded-pill"
                                 style="background-color: #1f3d85; color: aliceblue;"
-                                onclick="window.location.href='{{ url('/getCertificate?skill=Cooking') }}';">
+                                onclick="window.location.href='{{ route('getCertificate', ['skill' => 'Cooking']) }}';">
                                 Get Certificate
                             </button>
                         @else
@@ -161,7 +161,7 @@ certificates
                         @if(in_array('Musical Instruments', $skills))
                             <button class="view-cer px-4 py-2 rounded-pill"
                                 style="background-color: #1f3d85; color: aliceblue;"
-                                onclick="window.location.href='{{ url('/getCertificate?skill=Musical Instruments') }}';">
+                                onclick="window.location.href='{{ route('getCertificate', ['skill' => 'Musical Instruments']) }}';">
                                 Get Certificate
                             </button>
                         @else
@@ -186,7 +186,7 @@ certificates
                         @if(in_array('Beauty salon', $skills))
                             <button class="view-cer px-4 py-2 rounded-pill"
                                 style="background-color: #1f3d85; color: aliceblue;"
-                                onclick="window.location.href='{{ url('/getCertificate?skill=Beauty Salon') }}';">
+                                onclick="window.location.href='{{ route('getCertificate', ['skill' => 'Beauty Salon']) }}';">
                                 Get Certificate
                             </button>
                         @else
@@ -215,7 +215,7 @@ certificates
                         @if(in_array('Prgramming Languages', $skills))
                             <button class="view-cer px-4 py-2 rounded-pill"
                                 style="background-color: #1f3d85; color: aliceblue;"
-                                onclick="window.location.href='{{ url('/getCertificate?skill=Programming Languages') }}';">
+                                onclick="window.location.href='{{ route('getCertificate', ['skill' => 'Programming Languages']) }}';">
                                 Get Certificate
                             </button>
                         @else
@@ -241,7 +241,7 @@ certificates
                         @if(in_array('Graphic Designing', $skills))
                             <button class="view-cer px-4 py-2 rounded-pill"
                                 style="background-color: #1f3d85; color: aliceblue;"
-                                onclick="window.location.href='{{ url('/getCertificate?skill=Graphic Designing') }}';">
+                                onclick="window.location.href='{{ route('getCertificate', ['skill' => 'Graphic Designing']) }}';">
                                 Get Certificate
                             </button>
                         @else
