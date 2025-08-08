@@ -22,7 +22,7 @@
                 <h5 class="card-title">{{ $user->name }}</h5>
                 <p class="card-text">Skill Provide: {{ $user->sellist1 }}</p>
                 <p class="card-text">Wanted Skill: {{ $user->sellist2 }}</p>
-                <a href="{{ route('profile.view', ['id' => $user->id]) }}" class="btn" style="background-color:#0f2862; color:white">View Profile</a>
+                <a href="{{ route('search.profile', ['id' => $user->id]) }}" class="btn" style="background-color:#0f2862; color:white">View Profile</a>
               </div>
             </div>
           </div>
