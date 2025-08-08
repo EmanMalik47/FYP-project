@@ -46,7 +46,8 @@ class pgController extends Controller
         'lastname' => $user->lastname,
         
         'date' => now()->format('Y-m-d'),
-        'skill' => $skill
+        'skill' => $skill,
+        'bg_image' => public_path('images/paper.png') 
     ];
 
 
