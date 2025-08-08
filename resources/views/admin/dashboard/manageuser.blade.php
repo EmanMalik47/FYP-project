@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{asset('css/admin/manageuser.css')}}">
 @endsection
 @section('adminContent')
-
+<div class="main-content">
    <div class="col-12 info col-sm-10 col-md-7 ms-md-5 col-lg-11 ms-lg-5">
     
     <h2 class="mb-4" style="color: white ">Manage Users</h2>
@@ -67,4 +67,5 @@
       </tbody>
     </table>
   </div>
+</div>
 @endsection

@@ -48,3 +48,19 @@ h2 {
   /* background-color: #212529; */
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.05);
 }
+.main-content {
+  margin-top: 3px;
+  margin-left: 300px; /* Sidebar width */
+  padding: 2rem;
+  flex-grow: 1;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+}
+
+/* Mobile View */
+@media (max-width: 767.98px) {
+  .main-content {
+    margin-left: 0; /* Full width when sidebar hidden */
+  }
+}
+

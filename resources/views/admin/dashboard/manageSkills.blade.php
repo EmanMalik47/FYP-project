@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{asset('css/admin/manageuser.css')}}">
 @endsection
 @section('adminContent')
+<div class="main-content">
    <div class="container mt-5">
     <h2 class="mb-4" style="color: white">Manage Skills</h2>
     <table class="table table-bordered table-hover">
@@ -41,4 +42,6 @@
       </tbody>
     </table>
   </div>
+</div>
+
 @endsection
