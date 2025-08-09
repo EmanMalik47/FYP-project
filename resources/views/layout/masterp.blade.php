@@ -109,7 +109,44 @@
                     </a>
                 <a><i class="fa-solid fa-user" style="color: #1f3d85;" onclick="window.location.href='profile';"></i></a>
                 <a><i class="fa-solid fa-phone-volume" style="color: #1f3d85;" onclick="window.location.href='contact';"></i></a>
-                <a><i class="fa-solid fa-bell"  style="color: #1f3d85;" onclick="window.location.href='eman';"></i></a>
+    @if(Auth::check())
+<li class="nav-item dropdown">
+    <a class="nav-link position-relative" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa fa-bell"></i>
+        @php $count = Auth::user()->unreadNotifications->count(); @endphp
+        @if($count > 0)
+            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                {{ $count }}
+            </span>
+        @endif
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown" style="min-width: 280px;">
+        @forelse(Auth::user()->unreadNotifications as $notification)
+            @php
+                $message = data_get($notification->data, 'message', 'New Notification');
+                $url = data_get($notification->data, 'url', null);
+            @endphp
+            <li>
+                @if($url)
+                    <!-- Click will mark as read and redirect to the url -->
+                    <a class="dropdown-item" href="{{ route('notifications.read', $notification->id) }}">
+                        {{ $message }}
+                    </a>
+                @else
+                    <!-- No url available — show message without trying to use missing key -->
+                    <a class="dropdown-item" href="#">
+                        {{ $message }}
+                    </a>
+                @endif
+            </li>
+        @empty
+            <li class="dropdown-item">No new notifications</li>
+        @endforelse
+    </ul>
+</li>
+@endif
+
                
             </div>              
      </div>

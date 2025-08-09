@@ -21,8 +21,12 @@
                     <h4 class="user-name">{{ $user->name }} {{ $user->lastname }}</h4>
                     <p class="user-sub"><strong>Teach:</strong> {{ $user->sellist1 ?? 'Not Selected' }}</p>
                     <p class="user-sub"><strong>Learn:</strong> {{ $user->sellist2 ?? 'Not Selected' }}</p>
-
-                    @php
+                     <p class="user-sub"><strong>Achievements:</strong> @if(!empty($user->pdf) && file_exists(public_path('pdfs/' . $user->pdf)))
+    <a href="{{ asset('pdfs/' . $user->pdf) }}" target="_blank">
+        {{ $user->pdf }}
+    </a>
+@endif
+        </p>
                         $requested = \App\Models\FriendRequest::where('sender_id', auth()->id())
                                       ->where('receiver_id', $user->id)
                                       ->where('status', 'pending')
