@@ -137,3 +137,6 @@ Route::get('/friend-request/{id}', [FriendRequestController::class, 'viewRequest
 Route::get('/notifications/{id}/read', [NotificationController::class, 'read'])->name('notifications.read');
 
 Route::get('/pdf-view/{filename}', [UserController::class, 'showPdf']);
+
+// Inbox Profile
+Route::get('/inboxProfile',[pgController::class,'inboxProfile'])->name('inboxProfile')->middleware('auth');

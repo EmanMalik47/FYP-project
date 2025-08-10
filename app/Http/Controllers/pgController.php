@@ -116,5 +116,10 @@ public function showUserProfile($id)
     return view('profile', compact('user'));
 
 }
+// Inbox Profile
+public function inboxProfile(){
+    $user = Auth::user(); 
+        return view('inboxProfile', compact('user'));
+    }
     
 }
