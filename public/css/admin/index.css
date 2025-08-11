@@ -1,0 +1,38 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.sidebar-fixed {
+    background-color: #fff;
+    min-height: 100vh;
+    border-right: 1px solid #ddd;
+}
+
+/* Adjust for full height sidebar */
+@media (max-width: 767px) {
+    .sidebar-fixed {
+        min-height: auto;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+}
+
+/* Notification list styling */
+.card {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.notification-item {
+    padding: 15px;
+    transition: background-color 0.2s ease;
+}
+
+.notification-item:hover {
+    background-color: #f1f1f1;
+}
+
+.notification-item div {
+    word-wrap: break-word;
+    max-width: 100%;
+}

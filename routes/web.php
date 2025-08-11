@@ -13,6 +13,8 @@ use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminNotificationController;
+
 
 
 use App\Http\Controllers\FriendRequestController;
@@ -102,8 +104,8 @@ Route::get('/admin/dashboard', [adminController::class,'showdashboard'])->name('
 
 
 Route::post('/logout', function () {
-    session()->forget('is_admin'); // or use Auth::logout() if you're using Laravel Auth
-    return redirect()->route('profile.view'); // or any route you want after logout
+    session()->forget('is_admin'); 
+    return redirect()->route('profile.view'); 
 })->name('logout');
 
 
@@ -148,3 +150,31 @@ Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin
 
 // Dashboard (protected by admin guard)
 Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.post');
+
+
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/admin/notifications', [AdminNotificationController::class, 'index'])
+        ->name('admin.notifications.index');
+});
+
+    // Notification detail
+    Route::get('/admin/notifications/{id}', [AdminNotificationController::class, 'show'])
+        ->name('admin.notifications.show');
+
+
+// Route::middleware('auth:admin')->group(function() {
+//     Route::get('/admin/notifications', [AdminNotificationController::class, 'index'])
+//         ->name('admin.notifications');
+// });
+
+// // Admin Notifications list
+// Route::middleware('auth:admin')->group(function () {
+//     Route::get('/admin/notifications', [AdminNotificationController::class, 'index'])
+//         ->name('admin.notifications');
+
+//     // Notification detail
+//     Route::get('/admin/notifications/{id}', [AdminNotificationController::class, 'show'])
+//         ->name('admin.notifications.show');
+// });
+
+ 

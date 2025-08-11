@@ -27,8 +27,18 @@
       <a href="{{ route('admin.dashboard.adminDashboard') }}"
          class="nav-link {{ request()->routeIs('admin.dashboard.adminDashboard') ? 'active' : '' }}">
         Dashboard
+        
       </a>
     </li>
+   <li class="nav-item">
+    {{-- <a class="nav-link" href="{{ route('admin.notifications.index') }}"> --}}
+   <a class="nav-link {{ request()->routeIs('admin.notifications.*') ? 'active' : '' }}" href="{{ route('admin.notifications.index') }}">
+    <i class="fa fa-bell"></i> Notifications
+    @if(isset($unreadCount) && $unreadCount > 0)
+        <span class="notification-count">{{ $unreadCount }}</span>
+    @endif
+</a>
+</li>
 
     <li class="nav-item">
       <a href="{{ route('admin.dashboard.manageuser') }}"

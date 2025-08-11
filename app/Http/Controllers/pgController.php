@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FriendRequest;
+use App\Models\JoinWeb;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\JoinWeb;
-use App\Models\User;
+use App\Notifications\FriendRequestNotification;
+use App\Notifications\AdminNotification;
 use Barryvdh\DomPDF\Facade\Pdf;
 class pgController extends Controller
+
 {
     public function showwelcome(){
         return view('welcome');
@@ -52,10 +56,14 @@ class pgController extends Controller
 
 
     return view('getCertificate', compact('data'));
-
-
-        // return view('getCertificate');
+     $sender = JoinWeb::find($sender_id);
+        $admin = Admin::first();
+        if ($admin) {
+            $admin->notify(new AdminNotification("User {$sender->id} request for a Certificate "));
+        }
     }
+    
+
     public function generate(Request $request)
     {
          $request->validate([
@@ -121,5 +129,5 @@ public function inboxProfile(){
     $user = Auth::user(); 
         return view('inboxProfile', compact('user'));
     }
-    
+     
 }

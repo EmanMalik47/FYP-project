@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\FriendRequest;
 use App\Models\JoinWeb;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\FriendRequestNotification;
+use App\Notifications\AdminNotification;
 
 class FriendRequestController extends Controller
 {
@@ -33,13 +35,16 @@ class FriendRequestController extends Controller
             'status' => 'pending',
         ]);
 
+        // Notify Receiver
         $receiver = JoinWeb::find($receiver_id);
         $receiver->notify(new FriendRequestNotification("You have a new friend request.", 'request', $sender_id));
 
-        // $admin = JoinWeb::where('is_admin', true)->first();
-        // if ($admin) {
-        //     $admin->notify(new FriendRequestNotification("User {$sender_id} sent a friend request to {$receiver_id}.", 'admin_alert', $sender_id));
-        // }
+        // Notify Admin
+        $sender = JoinWeb::find($sender_id);
+        $admin = Admin::first();
+        if ($admin) {
+            $admin->notify(new AdminNotification("User {$sender->id} Name: {$sender->fname} sent a friend request to User {$receiver->id} Name: {$receiver->fname}"));
+        }
 
         return response()->json(['message' => 'Friend request sent successfully!'], 200);
     }
@@ -83,14 +88,15 @@ class FriendRequestController extends Controller
 
         return response()->json(['message' => "Request rejected by admin."], 200);
     }
-    public function viewRequest($sender_id)
-{
-    $receiver_id = Auth::id();
-    $friendRequest = FriendRequest::where('sender_id', $sender_id)
-                                  ->where('receiver_id', $receiver_id)
-                                  ->where('status', 'pending')
-                                  ->firstOrFail();
 
-    return view('request',compact('friendRequest'));
-}
+    public function viewRequest($sender_id)
+    {
+        $receiver_id = Auth::id();
+        $friendRequest = FriendRequest::where('sender_id', $sender_id)
+            ->where('receiver_id', $receiver_id)
+            ->where('status', 'pending')
+            ->firstOrFail();
+
+        return view('request', compact('friendRequest'));
+    }
 }

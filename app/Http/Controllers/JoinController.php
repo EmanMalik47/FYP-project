@@ -7,6 +7,8 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Admin;
+use App\Notifications\AdminNotification;
 
 // use Illuminate\Support\Facades\Validator;
 
@@ -64,9 +66,15 @@ class JoinController extends Controller
 
     $data->save();  //  Now save everything
 
-    Auth::login($data);  // Optional: if you want auto-login
+  
+
+    $admin = Admin::first();
+    if ($admin) {
+    $admin->notify(new AdminNotification("New User with id: {$data->id} and name {$data->name} registered!"));
+}
+
+  Auth::login($data);  // Optional: if you want auto-login
     return redirect()->route('profile.view');
+
 }
 }
-
-
