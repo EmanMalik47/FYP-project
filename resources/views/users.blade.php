@@ -27,6 +27,7 @@
     </a>
 @endif
         </p>
+        @php
                         $requested = \App\Models\FriendRequest::where('sender_id', auth()->id())
                                       ->where('receiver_id', $user->id)
                                       ->where('status', 'pending')
