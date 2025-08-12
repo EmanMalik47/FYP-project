@@ -14,7 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminNotificationController;
-
+use App\Http\Controllers\ChatController;
 
 
 use App\Http\Controllers\FriendRequestController;
@@ -143,6 +143,12 @@ Route::get('/pdf-view/{filename}', [UserController::class, 'showPdf']);
 
 // Inbox Profile
 Route::get('/inboxProfile',[pgController::class,'inboxProfile'])->name('inboxProfile')->middleware('auth');
+// chat
+Route::middleware(['auth'])->group(function () {
+    Route::get('/chat/{id}', [ChatController::class, 'index'])->name('chat');
+    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send.message');
+});
+
 // Admin login routes
 Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login.post');

@@ -62,7 +62,7 @@
                      <div class=" button-end  mt-5 col-md-6 col-lg-3">
                         @if(Auth::check())
              <button type="button" class="btn fw-bold text-white capitalize"
-                onclick="window.location.href='{{ route('Inbox') }}';">
+                onclick="window.location.href='{{ route('inboxProfile') }}';">
                 Inbox
             </button>
                         
