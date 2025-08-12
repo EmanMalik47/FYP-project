@@ -5,49 +5,63 @@ namespace App\Http\Controllers;
 use App\Models\FriendRequest;
 use App\Models\JoinWeb;
 use App\Models\Admin;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Notifications\FriendRequestNotification;
+
 use App\Notifications\AdminNotification;
+use App\Notifications\FriendRequestNotification;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\NotificationController;
 
 class FriendRequestController extends Controller
 {
-    public function sendRequest($receiver_id)
-    {
-        $sender_id = Auth::id();
+  // inside FriendRequestController.php
+public function sendRequest($receiver_id)
+{
+    $sender_id = Auth::id();
 
-        if ($sender_id == $receiver_id) {
-            return response()->json(['message' => 'You cannot send a request to yourself.'], 400);
-        }
-
-        $existing = FriendRequest::where('sender_id', $sender_id)
-            ->where('receiver_id', $receiver_id)
-            ->where('status', 'pending')
-            ->first();
-
-        if ($existing) {
-            return response()->json(['message' => 'Friend request already sent.'], 200);
-        }
-
-        FriendRequest::create([
-            'sender_id' => $sender_id,
-            'receiver_id' => $receiver_id,
-            'status' => 'pending',
-        ]);
-
-        // Notify Receiver
-        $receiver = JoinWeb::find($receiver_id);
-        $receiver->notify(new FriendRequestNotification("You have a new friend request.", 'request', $sender_id));
-
-        // Notify Admin
-        $sender = JoinWeb::find($sender_id);
-        $admin = Admin::first();
-        if ($admin) {
-            $admin->notify(new AdminNotification("User {$sender->id} Name: {$sender->fname} sent a friend request to User {$receiver->id} Name: {$receiver->fname}"));
-        }
-
-        return response()->json(['message' => 'Friend request sent successfully!'], 200);
+    if ($sender_id == $receiver_id) {
+        return response()->json(['message' => 'You cannot send a request to yourself.'], 400);
     }
+
+    $existing = FriendRequest::where('sender_id', $sender_id)
+        ->where('receiver_id', $receiver_id)
+        ->where('status', 'pending')
+        ->first();
+
+    if ($existing) {
+        return response()->json(['message' => 'Friend request already sent.'], 200);
+    }
+
+    // CREATE and get the model instance
+    $friendRequest = FriendRequest::create([
+        'sender_id' => $sender_id,
+        'receiver_id' => $receiver_id,
+        'status' => 'pending',
+    ]);
+
+    // Notify Receiver (pass friend request id)
+    $receiver = JoinWeb::find($receiver_id);
+    if ($receiver) {
+        $receiver->notify(new FriendRequestNotification(
+            "You have a new friend request.",
+            'request',
+            $sender_id,
+            $friendRequest->id
+        ));
+    }
+
+    // Notify Admin (optional)
+    $sender = JoinWeb::find($sender_id);
+    $admin = Admin::first();
+    if ($admin && $sender && $receiver) {
+        $admin->notify(new AdminNotification(
+            "User {$sender->id} ({$sender->fname}) sent a friend request to User {$receiver->id} ({$receiver->fname})",
+            $friendRequest->id
+        ));
+    }
+
+    return response()->json(['message' => 'Friend request sent successfully!'], 200);
+}
+
 
     public function respondRequest($request_id, $action)
     {
@@ -89,14 +103,17 @@ class FriendRequestController extends Controller
         return response()->json(['message' => "Request rejected by admin."], 200);
     }
 
-    public function viewRequest($sender_id)
-    {
-        $receiver_id = Auth::id();
-        $friendRequest = FriendRequest::where('sender_id', $sender_id)
-            ->where('receiver_id', $receiver_id)
-            ->where('status', 'pending')
-            ->firstOrFail();
+   public function viewRequest()
+{
+    $receiver_id = Auth::id();
 
-        return view('request', compact('friendRequest'));
-    }
+    $friendRequests = FriendRequest::where('receiver_id', $receiver_id)
+        ->where('status', 'pending')
+        ->with('sender') // eager load sender details
+        ->get();
+
+    return view('request', compact('friendRequests'));
+}
+
+
 }

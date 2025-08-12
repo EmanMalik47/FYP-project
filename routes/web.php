@@ -133,11 +133,11 @@ Route::middleware('auth')->group(function () {
 Route::get('/user-profile/{id}', [pgController::class, 'showUserProfile'])->name('user.profile.view');
 
 
-Route::get('/friend-request/{id}', [FriendRequestController::class, 'viewRequest'])
-     ->name('friend.requests.show');
+// Route::get('/friend-request/{id}', [FriendRequestController::class, 'viewRequest'])
+//      ->name('friend.requests.show');
 
 
-Route::get('/notifications/{id}/read', [NotificationController::class, 'read'])->name('notifications.read');
+// Route::get('/notifications/{id}/read', [NotificationController::class, 'read'])->name('notifications.read');
 
 Route::get('/pdf-view/{filename}', [UserController::class, 'showPdf']);
 
@@ -176,5 +176,21 @@ Route::middleware(['auth:admin'])->group(function () {
 //     Route::get('/admin/notifications/{id}', [AdminNotificationController::class, 'show'])
 //         ->name('admin.notifications.show');
 // });
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/friend-request/send/{receiver}', [FriendRequestController::class, 'sendRequest'])->name('friend.send');
+    Route::post('/friend-request/respond/{id}/{action}', [FriendRequestController::class, 'respondRequest'])->name('friend.respond');
+    Route::post('/friend-request/admin-reject/{id}', [FriendRequestController::class, 'adminReject'])->name('friend.admin.reject');
+
+    // View single friend request page (the URL stored in notification)
+   Route::get('/friend-requests', [FriendRequestController::class, 'viewRequest'])
+    ->name('friend.requests.show');
+
+
+    // Mark a notification as read and redirect (used by navbar link)
+    Route::get('/notifications/read/{id}', [NotificationController::class, 'read'])->name('notifications.read');
+});
+
 
  

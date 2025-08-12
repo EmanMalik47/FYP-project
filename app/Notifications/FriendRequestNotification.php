@@ -2,8 +2,10 @@
 
 namespace App\Notifications;
 
-use Illuminate\Notifications\Notification;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class FriendRequestNotification extends Notification
 {
@@ -24,20 +26,17 @@ class FriendRequestNotification extends Notification
 
     public function via($notifiable)
     {
-        return ['database']; // database channel
+        return ['database']; 
     }
 
     public function toDatabase($notifiable)
     {
-        // Build a URL for the receiver to view the request (change route name if needed)
-        $url = route('friend.requests.show', $this->sender_id);
-
         return [
             'message' => $this->message,
             'type' => $this->type,
             'sender_id' => $this->sender_id,
-            'url' => $url,
             'friend_request_id' => $this->friendRequestId,
+            'url' => route('friend.requests.show'),
         ];
     }
 }

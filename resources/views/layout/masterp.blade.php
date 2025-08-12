@@ -1,73 +1,25 @@
-
-
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
-    <title>Brater Brains - @yield('title')</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-@yield('styles')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Barter Brains - @yield('title')</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
-<body >
-<!-- login-popup -->
-<div class="modal fade " id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-body p-0">
-                <div class="login-box">
-                    <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-                    <div class="left-panel d-flex flex-column justify-content-center">
-                        <h2>Unlock New Skills</h2>
-                        <p> Login to start learning and sharing today!</p>
-                    </div>
-                    <div class="right-panel">
-                        <h3>Hello, Again</h3>
-                        <p>We are happy to have you back.</p>
-                        <form>
-                            <div class="mb-3">
-                                <input type="email" class="form-control shadow-none border-dark"  placeholder="Enter email">
-                            </div>
-                            <div class="mb-3">
-                                <input type="password" class="form-control shadow-none border-dark" placeholder="Enter password">
-                            </div>
-                            <div class="d-flex justify-content-between mb-3">
-                                <div>
-                                    <input class="form-check-input shadow-none" type="checkbox" style="background-color: #1f3d85 ;border-color: #1f3d85;" id="rememberMe">
-                                    <label for="rememberMe">Remember Me</label>
-                                </div>
-                                <a href="#" style="color: #1f3d85;">Forgot Password?</a>
-                            </div>
-                            <div class="login">
-                                <button class="login-btn  rounded-pill" type="button" >Login</button> 
-                            </div>
-                            <div class="google">
-                                <button class="google-btn  px-5 py-2 rounded-pill" type="button" >Sign in with Google</button> 
-                            </div>
-                            <p class="mt-3 text-center">Don't have an account?  <a href="#join_us.html" style="color: #1f3d85;">Sign Up</a></p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    <!-- header -->
-    <header>
-    <nav class="navbar navbar-expand-lg fixed-top shadow p-3 mb-5 bg-white rounded" id="Nav">
+<body>
+
+<header>
+    @php
+    $count = Auth::check() ? auth()->user()->unreadNotifications()->count() : 0;
+@endphp
+       <nav class="navbar navbar-expand-lg fixed-top shadow p-3 mb-5 bg-white rounded" id="Nav">
         <div class="container">
             <a class="navbar-brand" href="welcome">
                 <img src="../images/logo.png" class="img-fluid me-5 max-auto d-block" height="200" width="200">
@@ -77,13 +29,13 @@
             </button>
             <div class="collapse navbar-collapse ms-5 me-5 ps-2" id="navbarNav">
                    <ul class="navbar-nav ms-4 me-auto mb-2 mb-lg-0">
-                    <li class="nav-item fs-6  ps-5 pe-2">
+                    <li class="nav-item fs-6 ps-5 pe-2">
                         <a class="nav-link rounded-pill" href="services">Services</a>
                     </li>
                     <li class="nav-item  fs-6  ps-2 pe-2">
                         <a class="nav-link rounded-pill" href="trainers">Trainers</a>
                     </li>
-                    </li>
+                    
                     <li class="nav-item fs-6  ps-2 pe-2">
                         <a class="nav-link rounded-pill" href="certificates">Certificates</a>
                     </li>
@@ -93,7 +45,7 @@
                 </ul>
                 
                  <div class="icons position-relative">
-                <a id="searchBtn"> 
+                    <a id="searchBtn"> 
                         <i class="fa-solid fa-magnifying-glass" style="color: #1f3d85;"></i>
                         <form method="GET" action="{{ route('searchSkill') }}">
                         <div id="searchDropdown" class="search-dropdown">
@@ -107,151 +59,56 @@
                         </div>
                         </form>
                     </a>
-                <a><i class="fa-solid fa-user" style="color: #1f3d85;" onclick="window.location.href='profile';"></i></a>
-                <a><i class="fa-solid fa-phone-volume" style="color: #1f3d85;" onclick="window.location.href='contact';"></i></a>
-    @if(Auth::check())
-<li class="nav-item dropdown">
-    <a class="nav-link position-relative" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa fa-bell"></i>
-        @php $count = Auth::user()->unreadNotifications->count(); @endphp
-        @if($count > 0)
+                    <a><i class="fa-solid fa-user" style="color: #1f3d85;" onclick="window.location.href='profile';"></i></a>
+                    <a><i class="fa-solid fa-phone-volume" style="color: #1f3d85;" onclick="window.location.href='contact';"></i></a>
+                @if(Auth::check())
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link position-relative" href="#" id="notificationDropdown" data-bs-toggle="dropdown">
+                            <i class="fa-solid fa-bell"  style="color: #1f3d85;"></i>
+                          @if($count > 0)
             <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
                 {{ $count }}
             </span>
-        @endif
-    </a>
-
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown" style="min-width: 280px;">
-        @forelse(Auth::user()->unreadNotifications as $notification)
-            @php
-                $message = data_get($notification->data, 'message', 'New Notification');
-                $url = data_get($notification->data, 'url', null);
-            @endphp
-            <li>
-                @if($url)
-                    <!-- Click will mark as read and redirect to the url -->
-                    <a class="dropdown-item" href="{{ route('notifications.read', $notification->id) }}">
-                        {{ $message }}
-                    </a>
-                @else
-                    <!-- No url available — show message without trying to use missing key -->
-                    <a class="dropdown-item" href="#">
-                        {{ $message }}
-                    </a>
+        @endif</a>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            @foreach(auth()->user()->unreadNotifications as $n)
+                                <li>
+                                    <a href="javascript:void(0)" 
+                                       class="dropdown-item"
+                                       onclick="markNotificationRead('{{ $n->id }}')">
+                                        {{ $n->data['message'] ?? 'No message' }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                </ul>
                 @endif
-            </li>
-        @empty
-            <li class="dropdown-item">No new notifications</li>
-        @endforelse
-    </ul>
-</li>
-@endif
-
-               
-            </div>              
-     </div>
+            </div>
+        </div>
     </nav>
 </header>
-<br><br>
-<!-- page description  -->
 
-
-
-       @yield('content')
- 
-
-
-
-<!-- footer -->
-{{-- <footer class="footer mt-auto">
-    <div class="container">
-        <div class="row">
-            <!-- Branding & Description -->
-            <div class="col-md-4">
-                <h5><strong>Barter Brains</strong></h5>
-                <p>Connect, learn, and grow with our skill-exchange platform! Trade your expertise for new skills and collaborate with a community of learners and experts. Start sharing today!</p>
-            </div>
-            
-            <!-- Navigation Links -->
-            <div class="col-md-4 text-md-center">
-                <ul class="list-unstyled">
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Trainers</a></li>
-                    <li><a href="#">Certificates</a></li>
-                    <li><a href="#">Join us</a></li>
-                </ul>
-            </div>
-            
-            <!-- Social Media Links -->
-            <div class="col-md-4 text-md-start">
-                <h6 style="margin-left: 10px;">Follow Us</h6>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        
-        <hr class="bg-white">
-        
-        <div class="row">
-            <div class="col-md-6">
-                <a href="#">Data Privacy</a> | <a href="#">Terms and Conditions</a>
-            </div>
-            <div class="col-md-6 text-md-end">
-                <p>©2025 Barter Brains. All rights reserved</p>
-            </div>
-        </div>
-    </div>
-</footer> --}}
-@stack('scripts')
- <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<main class="mt-5 pt-5">
+    @yield('content')
+</main>
 
 <script>
-    // search button 
-    $(document).ready(function(){
-        $("#searchBtn").click(function(){
-            $("#searchDropdown").toggle();
+    function markNotificationRead(id) {
+        fetch(`/notifications/${id}/read`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Accept': 'application/json'
+            }
+        }).then(() => {
+            window.location.href = '/friend-requests';
         });
-        // Prevent closing when clicking inside the dropdown
-        $("#searchDropdown").click(function(event){
-        event.stopPropagation();
-    });
-        // Close when clicking outside
-        $(document).click(function(event) { 
-            if(!$(event.target).closest('#searchBtn').length) {
-                $("#searchDropdown").hide();
-                 
-            }        
-        });
-    });
-
-    // login-popup
-   
-    document.addEventListener("DOMContentLoaded", function () {
-        //    var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-        //     loginModal.show();            
-        });
-        
-    // onclick form
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
+    }
 </script>
 
-</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
