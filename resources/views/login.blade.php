@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="{{asset('css/login.css')}}">
 @endsection
 
+@section('content')
 <br><br>
-
 
 <h3 class="form-heading">Login to Your Account</h3>
 
@@ -33,5 +33,4 @@
     <p style="color: red;">{{ $errors->first() }}</p>
 @endif
 </div>
-
 @endsection

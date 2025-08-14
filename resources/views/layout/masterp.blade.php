@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Barter Brains - @yield('title')</title>
+@yield('styles')
 
-    <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
@@ -61,10 +61,8 @@
                     </a>
                     <a><i class="fa-solid fa-user" style="color: #1f3d85;" onclick="window.location.href='profile';"></i></a>
                     <a><i class="fa-solid fa-phone-volume" style="color: #1f3d85;" onclick="window.location.href='contact';"></i></a>
-                    {{-- <a><i class="fa-solid fa-user-group" style="color: #1f3d85;" onclick="window.location.href='#';"></i></a> --}}
-                    
-                    <!-- Friends Dropdown -->
-                        <li class="nav-item dropdown">
+<!-- Friends Dropdown -->
+                        <li class="nav-items dropdown">
                             <a href="#" id="friendsDropdown" role="button">
                                 <i class="fa-solid fa-user-group" style="color: #1f3d85;"></i>
                             </a>
@@ -90,12 +88,10 @@
                             </ul>
                         </li>
 
-
-                    
-                     {{-- Notification icon --}}
-                    @if(Auth::check())
+                    {{-- notifications --}}
+                @if(Auth::check())
                 <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
+                    <li class="nav-items dropdown">
                         <a class="nav-link position-relative" href="#" id="notificationDropdown" data-bs-toggle="dropdown">
                             <i class="fa-solid fa-bell"  style="color: #1f3d85;"></i>
                           @if($count > 0)
@@ -104,17 +100,18 @@
             </span>
         @endif</a>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            @foreach(auth()->user()->unreadNotifications as $n)
-                                <li>
-                                    <a href="javascript:void(0)" 
-                                       class="dropdown-item"
-                                       onclick="markNotificationRead('{{ $n->id }}')">
-                                        {{ $n->data['message'] ?? 'No message' }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
+                        <ul class="dropdown-menu">
+    @foreach(auth()->user()->unreadNotifications as $notification)
+        <li>
+           <a href="{{ route('friend.requests') }}" onclick="event.preventDefault(); markNotificationRead('{{ $notification->id }}', '{{ route('friend.requests') }}')">
+    {{ $notification->data['message'] }}
+</a>
+
+        </li>
+    @endforeach
+</ul>
+
+
                     </li>
                 </ul>
                 @endif
@@ -126,26 +123,8 @@
 <main class="mt-5 pt-5">
     @yield('content')
 </main>
-
 <script>
-    // search button 
-    $(document).ready(function(){
-        $("#searchBtn").click(function(){
-            $("#searchDropdown").toggle();
-        });
-        // Prevent closing when clicking inside the dropdown
-        $("#searchDropdown").click(function(event){
-        event.stopPropagation();
-    });
-        // Close when clicking outside
-        $(document).click(function(event) { 
-            if(!$(event.target).closest('#searchBtn').length) {
-                $("#searchDropdown").hide();
-            }        
-        });
-    });
-    
-    // friends
+// friends
     document.getElementById('friendsDropdown').addEventListener('click', function (e) {
         e.preventDefault();
         let menu = document.getElementById('friendsMenu');
@@ -161,21 +140,20 @@
         }
     });
 
+// Notifications
+function markNotificationRead(id, redirectUrl) {
+    fetch(`/notifications/${id}/read`, { 
+        method: 'POST', 
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    }).then(() => {
+        window.location.href = redirectUrl;
+    });
+}
 
-
-    // Notifications
-    function markNotificationRead(id) {
-        fetch(`/notifications/${id}/read`, {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                'Accept': 'application/json'
-            }
-        }).then(() => {
-            window.location.href = '/friend-requests';
-        });
-    }
 </script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

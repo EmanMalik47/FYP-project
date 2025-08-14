@@ -168,20 +168,7 @@ Route::middleware(['auth:admin'])->group(function () {
         ->name('admin.notifications.show');
 
 
-// Route::middleware('auth:admin')->group(function() {
-//     Route::get('/admin/notifications', [AdminNotificationController::class, 'index'])
-//         ->name('admin.notifications');
-// });
 
-// // Admin Notifications list
-// Route::middleware('auth:admin')->group(function () {
-//     Route::get('/admin/notifications', [AdminNotificationController::class, 'index'])
-//         ->name('admin.notifications');
-
-//     // Notification detail
-//     Route::get('/admin/notifications/{id}', [AdminNotificationController::class, 'show'])
-//         ->name('admin.notifications.show');
-// });
 
 
 Route::middleware(['auth'])->group(function () {
@@ -191,12 +178,20 @@ Route::middleware(['auth'])->group(function () {
 
     // View single friend request page (the URL stored in notification)
    Route::get('/friend-requests', [FriendRequestController::class, 'viewRequest'])
-    ->name('friend.requests.show');
+    ->name('friend.requests');
 
 
     // Mark a notification as read and redirect (used by navbar link)
-    Route::get('/notifications/read/{id}', [NotificationController::class, 'read'])->name('notifications.read');
+   Route::get('/notifications/read/{id}', [NotificationController::class, 'markAsRead'])
+    ->name('notifications.read')
+    ->middleware('auth');
 });
+
+
+
+Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])
+    ->name('notifications.markAsRead');
+
 
 
  

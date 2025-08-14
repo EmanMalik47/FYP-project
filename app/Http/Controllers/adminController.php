@@ -6,6 +6,7 @@ use App\Models\ContactUs;
 use Illuminate\Support\Facades\Session;
 use App\Models\FriendRequest;
 use Illuminate\Http\Request;
+use App\Notifications\FriendRequestNotification;    
 use Illuminate\Support\Facades\Auth;
 
 class adminController extends Controller
@@ -83,6 +84,39 @@ public function respondFriendRequest($id, $action)
     return redirect()->back()->with('success', "Friend request has been {$action}.");
 }
 
+
+
+// Admin reject request function
+public function rejectByAdmin($id)
+{
+    $friendRequest = FriendRequest::with(['sender', 'receiver'])->findOrFail($id);
+
+    // Request status update
+    $friendRequest->status = 'declined';
+    $friendRequest->save();
+
+    $adminName = Auth::guard('admin')->user()->name ?? 'Admin';
+
+    // Sender ko notification
+    $friendRequest->sender->notify(
+        new FriendRequestNotification(
+            "Your request sent to {$friendRequest->receiver->name} has been rejected by {$adminName}.",
+            'rejected',
+            $friendRequest->receiver_id
+        )
+    );
+
+    // Receiver ko notification
+    $friendRequest->receiver->notify(
+        new FriendRequestNotification(
+            "The request you received from {$friendRequest->sender->name} has been rejected by {$adminName}.",
+            'rejected',
+            $friendRequest->sender_id
+        )
+    );
+
+    return redirect()->back()->with('success', 'Friend request rejected and notifications sent.');
+}
 
 
 }

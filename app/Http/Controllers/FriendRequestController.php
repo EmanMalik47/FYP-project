@@ -71,7 +71,10 @@ public function sendRequest($receiver_id)
             return response()->json(['message' => 'Request already handled.'], 400);
         }
 
-        if ($action == 'accept') {
+if ($action == 'accept') {
+    $friendRequest->status = 'accepted';
+    $friendRequest->save();
+    if ($action == 'accept') {
             $friendRequest->status = 'accepted';
             $friendRequest->save();
             // Create friendship both ways
@@ -84,17 +87,46 @@ public function sendRequest($receiver_id)
             'user_id' => $friendRequest->receiver_id,
             'friend_id' => $friendRequest->sender_id
         ]);
-            $friendRequest->sender->notify(new FriendRequestNotification("Your request has been accepted.", 'accepted', $friendRequest->receiver_id));
-        } elseif ($action == 'reject') {
-            $friendRequest->status = 'declined';
-            $friendRequest->save();
 
-            $friendRequest->sender->notify(new FriendRequestNotification("Your request has been rejected.", 'rejected', $friendRequest->receiver_id));
-        }
+    $receiverName = Auth::user()->name; // jisne accept kiya
+    $friendRequest->sender->notify(
+        new FriendRequestNotification(
+            "Your request has been accepted by {$receiverName}.",
+            'accepted',
+            $friendRequest->receiver_id
+        )
+    );
+
+} elseif ($action == 'reject') {
+    $friendRequest->status = 'declined';
+    $friendRequest->save();
+if ($action == 'accept') {
+            $friendRequest->status = 'accepted';
+            $friendRequest->save();
+            // Create friendship both ways
+        \App\Models\Friend::create([
+            'user_id' => $friendRequest->sender_id,
+            'friend_id' => $friendRequest->receiver_id
+        ]);
+
+        \App\Models\Friend::create([
+            'user_id' => $friendRequest->receiver_id,
+            'friend_id' => $friendRequest->sender_id
+        ]);
+    $receiverName = Auth::user()->name; // jisne reject kiya
+    $friendRequest->sender->notify(
+        new FriendRequestNotification(
+            "Your request has been rejected by {$receiverName}.",
+            'rejected',
+            $friendRequest->receiver_id
+        )
+    );
+}
 
         return response()->json(['message' => "Request {$action}ed successfully."], 200);
     }
-
+}
+    }
     public function adminReject($request_id)
     {
         $friendRequest = FriendRequest::findOrFail($request_id);
@@ -112,13 +144,14 @@ public function sendRequest($receiver_id)
         return response()->json(['message' => "Request rejected by admin."], 200);
     }
 
-   public function viewRequest()
+public function viewRequest()
 {
-    $receiver_id = Auth::id();
+    Auth::user()->unreadNotifications->markAsRead();
 
+    $receiver_id = auth()->id();
     $friendRequests = FriendRequest::where('receiver_id', $receiver_id)
         ->where('status', 'pending')
-        ->with('sender') // eager load sender details
+        ->with('sender')
         ->get();
 
     return view('request', compact('friendRequests'));

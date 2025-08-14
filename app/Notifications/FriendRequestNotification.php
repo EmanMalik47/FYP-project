@@ -36,7 +36,7 @@ class FriendRequestNotification extends Notification
             'type' => $this->type,
             'sender_id' => $this->sender_id,
             'friend_request_id' => $this->friendRequestId,
-            'url' => route('friend.requests.show'),
+            'url' => route('friend.requests'),
         ];
     }
 }
