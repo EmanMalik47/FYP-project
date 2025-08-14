@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\FriendRequestNotification;
 use App\Notifications\AdminNotification;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+
 class pgController extends Controller
 
 {
@@ -45,28 +47,48 @@ class pgController extends Controller
         if (!$user) {
         return redirect()->route('login')->with('error', 'Please login first.');
     }
+        // $friebdship fetch date from friend_request
+     $friendship = FriendRequest::where(function($q) use ($user) {
+        $q->where('sender_id', $user->id)
+          ->orWhere('receiver_id', $user->id);
+    })->where('status', 'accepted')->first();
+
+    if (!$friendship) {
+        return redirect()->back()->with('error', 'Friendship record not found.');
+    }
+    $from = Carbon::parse($friendship->updated_at)->toDateString();
+    $to   = Carbon::parse($from)->addMonth()->toDateString();
+
     $data = [
         'name' => $user->name,
         'lastname' => $user->lastname,
         
         'date' => now()->format('Y-m-d'),
         'skill' => $skill,
+        'from' => $from,
+        'to' => $to,
         'bg_image' => public_path('images/paper.png') 
     ];
 
 
     return view('getCertificate', compact('data'));
-     $sender = JoinWeb::find($sender_id);
-        $admin = Admin::first();
-        if ($admin) {
-            $admin->notify(new AdminNotification("User {$sender->id} request for a Certificate "));
-        }
+    //  $sender = JoinWeb::find($sender_id);
+    //     $admin = Admin::first();
+    //     if ($admin) {
+    //         $admin->notify(new AdminNotification("User {$sender->id} request for a Certificate "));
+    //     }
     }
     
 
     public function generate(Request $request)
     {
-         $request->validate([
+        $today = now()->toDateString();
+
+        if ($today < $request->to) {
+            return back()->with('error', 'Certificate 1 month complete hone ke baad hi download ho sakta hai.');
+        }
+
+        $request->validate([
         'from' => 'required|date',
         'to' => 'required|date|after_or_equal:from',
     ]);
@@ -125,9 +147,25 @@ public function showUserProfile($id)
 
 }
 // Inbox Profile
-public function inboxProfile(){
-    $user = Auth::user(); 
-        return view('inboxProfile', compact('user'));
-    }
-     
+
+public function inboxProfile($id)
+{
+    // $friend = JoinWeb::where('id', $id)->firstOrFail();
+
+    $friend = JoinWeb::findOrFail($id);
+    $user = Auth::user();
+    // return redirect()->route('inboxProfile', ['id' => $friend->id]);
+    return view('inboxProfile', compact('friend','user'));
+}
+
+// public function inboxProfile(){
+//     $user = Auth::user(); 
+//         return view('inboxProfile', compact('user'));
+//     }
+// friends list icon
+// public function navbar()
+// {
+//     $friends = auth()->user()->friends; // assuming friends() relation exists
+//     return view('your_layout', compact('friends'));
+// }
 }

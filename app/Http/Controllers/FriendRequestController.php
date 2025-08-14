@@ -74,7 +74,16 @@ public function sendRequest($receiver_id)
         if ($action == 'accept') {
             $friendRequest->status = 'accepted';
             $friendRequest->save();
+            // Create friendship both ways
+        \App\Models\Friend::create([
+            'user_id' => $friendRequest->sender_id,
+            'friend_id' => $friendRequest->receiver_id
+        ]);
 
+        \App\Models\Friend::create([
+            'user_id' => $friendRequest->receiver_id,
+            'friend_id' => $friendRequest->sender_id
+        ]);
             $friendRequest->sender->notify(new FriendRequestNotification("Your request has been accepted.", 'accepted', $friendRequest->receiver_id));
         } elseif ($action == 'reject') {
             $friendRequest->status = 'declined';

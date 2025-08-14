@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
@@ -61,7 +61,39 @@
                     </a>
                     <a><i class="fa-solid fa-user" style="color: #1f3d85;" onclick="window.location.href='profile';"></i></a>
                     <a><i class="fa-solid fa-phone-volume" style="color: #1f3d85;" onclick="window.location.href='contact';"></i></a>
-                @if(Auth::check())
+                    {{-- <a><i class="fa-solid fa-user-group" style="color: #1f3d85;" onclick="window.location.href='#';"></i></a> --}}
+                    
+                    <!-- Friends Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a href="#" id="friendsDropdown" role="button">
+                                <i class="fa-solid fa-user-group" style="color: #1f3d85;"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="friendsDropdown" id="friendsMenu">
+                                @if(Auth::check() && Auth::user()->friends && Auth::user()->friends->count() > 0)
+                                    @foreach(Auth::user()->friends as $friend)
+                                    @php
+                                    $joinWebId = $friend->id;
+                                        // $joinWebId = \App\Models\JoinWeb::where('id', $friend->id)->value('id');
+                                    @endphp
+                                        @if($joinWebId)
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('inboxProfile',  $joinWebId) }}">
+                                                <i class="fa-solid fa-user"></i> {{ $friend->fname ?? $friend->name }}
+                                            </a>
+                                        </li>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <li><span class="dropdown-item text-muted">No friends found</span></li>
+                                @endif
+                            </ul>
+                        </li>
+
+
+                    
+                     {{-- Notification icon --}}
+                    @if(Auth::check())
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link position-relative" href="#" id="notificationDropdown" data-bs-toggle="dropdown">
@@ -96,6 +128,42 @@
 </main>
 
 <script>
+    // search button 
+    $(document).ready(function(){
+        $("#searchBtn").click(function(){
+            $("#searchDropdown").toggle();
+        });
+        // Prevent closing when clicking inside the dropdown
+        $("#searchDropdown").click(function(event){
+        event.stopPropagation();
+    });
+        // Close when clicking outside
+        $(document).click(function(event) { 
+            if(!$(event.target).closest('#searchBtn').length) {
+                $("#searchDropdown").hide();
+            }        
+        });
+    });
+    
+    // friends
+    document.getElementById('friendsDropdown').addEventListener('click', function (e) {
+        e.preventDefault();
+        let menu = document.getElementById('friendsMenu');
+        menu.classList.toggle('show');
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener('click', function (e) {
+        let menu = document.getElementById('friendsMenu');
+        let btn = document.getElementById('friendsDropdown');
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.remove('show');
+        }
+    });
+
+
+
+    // Notifications
     function markNotificationRead(id) {
         fetch(`/notifications/${id}/read`, {
             method: 'POST',

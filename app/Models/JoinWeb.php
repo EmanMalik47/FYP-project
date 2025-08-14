@@ -19,4 +19,10 @@ class JoinWeb extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    // friend list relation
+    public function friends()
+{
+    return $this->belongsToMany(JoinWeb::class, 'friends', 'user_id', 'friend_id');
+}
 }
