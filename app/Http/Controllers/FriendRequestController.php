@@ -63,21 +63,20 @@ public function sendRequest($receiver_id)
 }
 
 
-    public function respondRequest($request_id, $action)
-    {
-        $friendRequest = FriendRequest::findOrFail($request_id);
+   public function respondRequest($request_id, $action)
+{
+    $friendRequest = FriendRequest::findOrFail($request_id);
 
-        if ($friendRequest->status !== 'pending') {
-            return response()->json(['message' => 'Request already handled.'], 400);
-        }
+    if ($friendRequest->status !== 'pending') {
+        return response()->json(['message' => 'Request already handled.'], 400);
+    }
 
-if ($action == 'accept') {
-    $friendRequest->status = 'accepted';
-    $friendRequest->save();
     if ($action == 'accept') {
-            $friendRequest->status = 'accepted';
-            $friendRequest->save();
-            // Create friendship both ways
+        // Update request
+        $friendRequest->status = 'accepted';
+        $friendRequest->save();
+
+        // Create friendship both ways
         \App\Models\Friend::create([
             'user_id' => $friendRequest->sender_id,
             'friend_id' => $friendRequest->receiver_id
@@ -88,45 +87,39 @@ if ($action == 'accept') {
             'friend_id' => $friendRequest->sender_id
         ]);
 
-    $receiverName = Auth::user()->name; // jisne accept kiya
-    $friendRequest->sender->notify(
-        new FriendRequestNotification(
-            "Your request has been accepted by {$receiverName}.",
-            'accepted',
-            $friendRequest->receiver_id
-        )
-    );
+        // Notify sender (the one who originally sent request)
+        $receiverName = Auth::user()->name; // jisne accept kiya
+        $friendRequest->sender->notify(
+            new FriendRequestNotification(
+                "Your request has been accepted by {$receiverName}.",
+                'accepted',
+                $friendRequest->receiver_id
+            )
+        );
 
-} elseif ($action == 'reject') {
-    $friendRequest->status = 'declined';
-    $friendRequest->save();
-if ($action == 'accept') {
-            $friendRequest->status = 'accepted';
-            $friendRequest->save();
-            // Create friendship both ways
-        \App\Models\Friend::create([
-            'user_id' => $friendRequest->sender_id,
-            'friend_id' => $friendRequest->receiver_id
+        // ✅ Return JSON for popup + redirect
+        return response()->json([
+            'status'       => 'success',
+            'message'      => "Congratulations! You and {$friendRequest->sender->name} are now friends.",
+            'friend_id'    => $friendRequest->sender_id,
+            'friend_name'  => $friendRequest->sender->name,
+            'redirect_url' => route('user.profile', $friendRequest->sender_id)
         ]);
 
-        \App\Models\Friend::create([
-            'user_id' => $friendRequest->receiver_id,
-            'friend_id' => $friendRequest->sender_id
-        ]);
-    $receiverName = Auth::user()->name; // jisne reject kiya
-    $friendRequest->sender->notify(
-        new FriendRequestNotification(
-            "Your request has been rejected by {$receiverName}.",
-            'rejected',
-            $friendRequest->receiver_id
-        )
-    );
-}
+    } elseif ($action == 'reject') {
+        // Reject request
+        $friendRequest->status = 'declined';
+        $friendRequest->save();
 
-        return response()->json(['message' => "Request {$action}ed successfully."], 200);
+        return response()->json([
+            'status'  => 'rejected',
+            'message' => 'Request rejected successfully.'
+        ]);
     }
+
+    return response()->json(['message' => "Invalid action."], 400);
 }
-    }
+    
     public function adminReject($request_id)
     {
         $friendRequest = FriendRequest::findOrFail($request_id);
