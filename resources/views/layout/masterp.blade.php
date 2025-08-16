@@ -21,7 +21,7 @@
 @endphp
        <nav class="navbar navbar-expand-lg fixed-top shadow p-3 mb-5 bg-white rounded" id="Nav">
         <div class="container">
-            <a class="navbar-brand" href="welcome">
+            <a class="navbar-brand" href="{{ url('/welcome') }}">
                 <img src="../images/logo.png" class="img-fluid me-5 max-auto d-block" height="200" width="200">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,17 +30,17 @@
             <div class="collapse navbar-collapse ms-5 me-5 ps-2" id="navbarNav">
                    <ul class="navbar-nav ms-4 me-auto mb-2 mb-lg-0">
                     <li class="nav-item fs-6 ps-5 pe-2">
-                        <a class="nav-link rounded-pill" href="services">Services</a>
+                        <a class="nav-link rounded-pill" href="{{ url('/services') }}">Services</a>
                     </li>
                     <li class="nav-item  fs-6  ps-2 pe-2">
-                        <a class="nav-link rounded-pill" href="trainers">Trainers</a>
+                        <a class="nav-link rounded-pill" href="{{ url('/trainers') }}">Trainers</a>
                     </li>
                     
                     <li class="nav-item fs-6  ps-2 pe-2">
-                        <a class="nav-link rounded-pill" href="certificates">Certificates</a>
+                        <a class="nav-link rounded-pill" href="{{ url('/certificates') }}">Certificates</a>
                     </li>
                     <li class="nav-item fs-6  ps-2 pe-2">
-                        <a class="nav-link rounded-pill" href="users">Users</a>
+                        <a class="nav-link rounded-pill" href="{{ url('/users') }}">Users</a>
                     </li> 
                 </ul>
                 <div class="icons position-relative">
@@ -58,42 +58,36 @@
     </a>
 
     {{-- Profile --}}
-    <a onclick="window.location.href='profile';">
+    <a onclick="window.location.href='{{ url('/profile') }}';">
         <i class="fa-solid fa-user" style="color: #1f3d85;"></i>
     </a>
 
     {{-- Contact --}}
-    <a onclick="window.location.href='contact';">
+    <a onclick="window.location.href='{{ url('/contact') }}';">
         <i class="fa-solid fa-phone-volume" style="color: #1f3d85;"></i>
     </a>
 
     {{-- Friends Dropdown --}}
-    <div class="dropdown d-inline-block">
-        <a class="nav-link" href="#" id="friendsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-user-group" style="color: #1f3d85;"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="friendsDropdown" id="friendsMenu">
-            @if(Auth::check() && Auth::user()->friends && Auth::user()->friends->count() > 0)
-                @foreach(Auth::user()->friends as $friend)
-                    @php 
-                    $joinWebId = $friend->id;
-                    
-                    @endphp
-                    @if($joinWebId)
-                    
-                        <li>
-                            
-                            <a class="dropdown-item" href="{{ route('inboxProfile', ['id'=>$joinWebId]) }}">
-                                  <i class="fa-solid fa-user" style="color: #1f3d85;"></i> {{ $friend->fname ?? $friend->name }}
-                            </a>
-                        </li>
-                    @endif
-                @endforeach
-            @else
-                <li><span class="dropdown-item text-muted">No friends found</span></li>
-            @endif
-        </ul>
-    </div>
+<div class="dropdown d-inline-block">
+    <a class="nav-link" href="#" id="friendsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-user-group" style="color: #1f3d85;"></i>
+    </a>
+<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="friendsDropdown" id="friendsMenu">
+    @if(Auth::check() && Auth::user()->friends()->count() > 0)
+        @foreach(Auth::user()->friends() as $friend)
+            <li>
+              <a class="dropdown-item" href="{{ route('user.profile', ['id' => $friend->id]) }}">
+    <i class="fa-solid fa-user" style="color: #1f3d85;"></i>
+    {{ $friend->fname ?? $friend->name }}
+</a>
+                          </li>
+        @endforeach
+    @else
+        <li><span class="dropdown-item text-muted">No friends found</span></li>
+    @endif
+</ul>
+</div>
+
 
     {{-- Notifications --}}
     @if(Auth::check())
@@ -115,6 +109,7 @@
                     </a>
                 </li>
             @endforeach
+            
         </ul>
     </div>
     @endif

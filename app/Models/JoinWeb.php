@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 
 class JoinWeb extends Authenticatable
 {
-    use Notifiable; // 👈 This fixes the notify() error
+    use Notifiable;
 
     protected $table = 'join_webs';
 
@@ -20,9 +20,36 @@ class JoinWeb extends Authenticatable
         'remember_token',
     ];
 
-    // friend list relation
-    public function friends()
+    /**
+     * Friends jahan current user ne request bheji aur accept ho gayi
+     */
+    public function friendsOfMine()
+    {
+        return $this->belongsToMany(
+            JoinWeb::class,
+            'friend_requests',
+            'sender_id',
+            'receiver_id'
+        )->wherePivot('status', 'accepted');
+    }
+
+    /**
+     * Friends jahan current user ne request receive ki aur accept kar li
+     */
+    public function friendOf()
+    {
+        return $this->belongsToMany(
+            JoinWeb::class,
+            'friend_requests',
+            'receiver_id',
+            'sender_id'
+        )->wherePivot('status', 'accepted');
+    }
+
+  
+  public function friends()
 {
-    return $this->belongsToMany(JoinWeb::class, 'friends', 'user_id', 'friend_id');
+    return $this->friendsOfMine()->get()->merge($this->friendOf()->get());
 }
+
 }

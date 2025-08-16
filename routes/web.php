@@ -142,7 +142,10 @@ Route::get('/user-profile/{id}', [pgController::class, 'showUserProfile'])->name
 Route::get('/pdf-view/{filename}', [UserController::class, 'showPdf']);
 
 // Inbox Profile
-Route::get('/inboxProfile',[pgController::class,'inboxProfile'])->name('inboxProfile')->middleware('auth');
+Route::get('/user/{id}', [pgController::class, 'show'])->name('user.profile');
+
+
+Route::get('/chat/{id}', [pgController::class, 'inboxProfile'])->name('chat.inbox');
 // chat
 Route::middleware(['auth'])->group(function () {
     Route::get('/chat/{id}', [ChatController::class, 'index'])->name('chat');

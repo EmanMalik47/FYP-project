@@ -140,24 +140,16 @@ public function showAllUsers() {
 
     return view('profile', compact('user')); 
 }
-public function showUserProfile($id)
+public function show($id)
 {
     $user = \App\Models\JoinWeb::findOrFail($id);
-    return view('profile', compact('user'));
-
+    return view('ibPROFILE', compact('user'));
 }
+
 // Inbox Profile
 
-public function inboxProfile($id)
-{
-    // $friend = JoinWeb::where('id', $id)->firstOrFail();
-
-    $friend = JoinWeb::findOrFail($id);
-    $user = Auth::user();
-    // return redirect()->route('inboxProfile', ['id' => $friend->id]);
-    return view('inboxProfile', compact('friend','user'));
-}
-
+// Inbox Profile
+// 
 // public function inboxProfile(){
 //     $user = Auth::user(); 
 //         return view('inboxProfile', compact('user'));
@@ -168,4 +160,12 @@ public function inboxProfile($id)
 //     $friends = auth()->user()->friends; // assuming friends() relation exists
 //     return view('your_layout', compact('friends'));
 // }
+public function inboxProfile($id)
+{
+    $friend = \App\Models\JoinWeb::findOrFail($id);
+    $user = Auth::user();
+
+    return view('ibPROFILE', compact('friend', 'user'));
+}
+
 }
