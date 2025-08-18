@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="contect">
-         <button class="contact_us  px-5 py-2 rounded-pill" type="button" onclick="window.location.href='contact';">Contact Us</button> 
+         <button class="contact_us px-3 py-2 rounded-pill" type="button" onclick="window.location.href='contact';">Contact Us</button> 
         </div>
         </div>
 </section>

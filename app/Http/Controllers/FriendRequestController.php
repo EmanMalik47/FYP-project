@@ -54,7 +54,7 @@ public function sendRequest($receiver_id)
     $admin = Admin::first();
     if ($admin && $sender && $receiver) {
         $admin->notify(new AdminNotification(
-            "User {$sender->id} ({$sender->fname}) sent a friend request to User {$receiver->id} ({$receiver->fname})",
+            "User {$sender->id} sent a friend request to User {$receiver->id}",
             $friendRequest->id
         ));
     }
@@ -141,7 +141,7 @@ public function viewRequest()
 {
     Auth::user()->unreadNotifications->markAsRead();
 
-    $receiver_id = auth()->id();
+    $receiver_id = Auth::id();
     $friendRequests = FriendRequest::where('receiver_id', $receiver_id)
         ->where('status', 'pending')
         ->with('sender')
