@@ -32,7 +32,7 @@ GetCertificate
            
             
             <div class="form-items d-flex">
-                <label for="lastname" class="form-label"><strong>S/O,D/O:</strong>{{ isset($data['lastname']) ? $data['lastname'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <label for="lastname" class="form-label"><strong>Last Name:</strong>{{ isset($data['lastname']) ? $data['lastname'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 <input type="hidden" name="lastname" value="{{ $data['lastname'] ?? '' }}">
                 </div>
             <div class="form-items d-flex">

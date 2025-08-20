@@ -63,6 +63,9 @@ Route::prefix('admin')->group(function () {
 
 Route::post('/admin/query/dismiss/{id}', [adminController::class, 'dismiss'])->name('admin.query.dismiss');
 
+//download cerificate pdf
+Route::post('/download-certificate', [pgController::class, 'generate'])->name('certificate.download');
+
 
 //user panel
 Route::get('/welcome',[pgController::class,'showwelcome'])->name('welcome');
@@ -71,7 +74,7 @@ Route::get('/trainers',[pgController::class,'showtrainers'])->name('trainers');
 Route::get('/certificates',[pgController::class,'showcertificates'])->name('certificates')->name('certificates')->middleware('auth');
 Route::get('/getCertificate/{skill}',[pgController::class,'getCertificate'])->name('getCertificate')->middleware('auth');
 
-Route::post('/generate-certificate', [pgController::class, 'generate'])->name('certificate.generate');
+Route::post('/certificate/generate', [pgController::class, 'generate'])->name('certificate.generate');
 Route::get('/joinUs',[pgController::class,'showjoinUs'])->name('joinUs');
 Route::get('/users', [pgController::class, 'showAllUsers'])->name('users.list');
 

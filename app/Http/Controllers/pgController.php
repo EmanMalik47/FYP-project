@@ -84,27 +84,31 @@ class pgController extends Controller
     }
     
 
-    public function generate(Request $request)
-    {
-        $today = now()->toDateString();
+public function generate(Request $request)
+{
+    $today = now()->toDateString();
 
-        if ($today < $request->to) {
-            return back()->with('error', 'Certificate 1 month complete hone ke baad hi download ho sakta hai.');
-        }
-
-        $request->validate([
-        'from' => 'required|date',
-        'to' => 'required|date|after_or_equal:from',
-    ]);
-        $data = $request->only(['name', 'date', 'lastname', 'skill', 'from', 'to']);
-
-        $pdf = Pdf::loadView('certificate_pdf', ['data' => $data]);
-       
-        return $pdf->download('certificate.pdf');
+    
+    if ($today < Auth::user()->to) {
+        return back()->with('error', 'Certificate will be given after completing 1 month.');
     }
-     public function showjoinUs(){
-        return view('joinUs');
-    }
+
+    $user = Auth::user();
+
+    $data = [
+        'name'     => $user->name,
+        'lastname' => $user->lastname,
+        'skill'    => $user->skill,   
+        'from'     => $user->from,
+        'to'       => $user->to,
+        'date'     => now()->format('d-m-Y'),
+    ];
+
+    $pdf = Pdf::loadView('certificate_pdf', ['data' => $data]);
+    return $pdf->download('certificate.pdf');
+}
+
+
  public function showProfile()
 {
     $user = Auth::user();
@@ -171,5 +175,6 @@ public function inboxProfile($id)
 
     return view('ibPROFILE', compact('friend', 'user'));
 }
+
 
 }
