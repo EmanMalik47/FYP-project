@@ -43,10 +43,11 @@
 
         <!-- Chat Input -->
         <div class="chat-input">
-            <form id="chatForm" class="d-flex w-100 align-items-center" enctype="multipart/form-data">
+            <form id="chatForm" class="d-flex w-100 align-items-center" method="POST" action="{{ route('send.message') }}" enctype="multipart/form-data">
                 @csrf
-                <input type="text" id="message" class="form-control me-2" placeholder="Type a message..." autocomplete="off">
-
+                <input type="hidden" name="receiver_id" value="{{ $receiver->id }}">
+                {{-- <input type="text" id="message" class="form-control me-2" placeholder="Type a message..." autocomplete="off"> --}}
+                <input type="text" name="message" id="message" class="form-control me-2" placeholder="Type a message..." autocomplete="off" required>
                 <!-- Hidden File Input -->
                 <input type="file" name="image" id="fileInput" accept="image/*">
 
@@ -74,11 +75,40 @@
         document.getElementById('modalImage').src = src;
     }
 
-    window.Laravel = {
-        userId: {{ auth()->id() }},
-        receiverId: {{ $receiver->id }},
-        sendMessageUrl: "{{ route('send.message') }}"
-    };
+    // CSRF token
+axios.defaults.headers.common['X-CSRF-TOKEN'] = '{{ csrf_token() }}';
+
+// AJAX submit
+document.getElementById('chatForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const message = document.getElementById('message').value;
+    const receiverId = {{ $receiver->id }};
+
+    axios.post("{{ route('send.message') }}", {
+        message: message,
+        receiver_id: receiverId
+    }).then(res => {
+        document.getElementById('message').value = '';
+    }).catch(err => console.error(err));
+});
+
+// Real-time listening
+window.Echo.private(`chat.${{{ $receiver->id }}}`)
+    .listen('MessageSent', (e) => {
+        const messagesBox = document.getElementById('messages');
+        const div = document.createElement('div');
+        div.className = e.sender_id === {{ auth()->id() }} ? 'message me' : 'message them';
+        div.innerHTML = `<strong>${e.sender_name}:</strong> ${e.message} <small>${new Date(e.created_at).toLocaleTimeString()}</small>`;
+        messagesBox.appendChild(div);
+        messagesBox.scrollTop = messagesBox.scrollHeight;
+    });
+
+
+    // window.Laravel = {
+    //     userId: {{ auth()->id() }},
+    //     receiverId: {{ $receiver->id }},
+    //     sendMessageUrl: "{{ route('send.message') }}"
+    // };
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

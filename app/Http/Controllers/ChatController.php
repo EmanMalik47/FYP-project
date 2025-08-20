@@ -13,7 +13,7 @@ class ChatController extends Controller
 {
       public function index($id) // $id = other user id (receiver)
     {
-        $authId = auth()->id();
+        $authId = Auth::id();
         
         // ensure receiver exists
          $receiver = JoinWeb::find($id);
@@ -34,12 +34,13 @@ class ChatController extends Controller
 
     public function sendMessage(Request $request)
     {
+        //    dd($request->all());
         $request->validate([
             'message' => 'required|string',
             'receiver_id' => 'required|integer|exists:join_webs,id',
         ]);
 
-        $senderId = auth()->id();
+        $senderId = Auth::id();
         $receiverId = $request->receiver_id;
 
         // create and save message
