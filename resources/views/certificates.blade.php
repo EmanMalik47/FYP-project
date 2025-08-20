@@ -10,6 +10,9 @@ certificates
 @php
     $skills = is_array($userSkills) ? $userSkills : [];
 @endphp
+{{-- @php
+    $skills = is_array($userSkills) ? $userSkills : [];
+@endphp --}}
 <div class=" header-section pt-4">
 		<div class="overlay"></div>
 		<div class="description text-center text-white pt-4">
@@ -212,7 +215,7 @@ certificates
                     <div class="card-body">
                         <h5 class="card-title pt-2"><strong>LANGUAGES</strong></h5>
                         <p class="card-text">Completed a course of hands-on cooking training, mastering essential techniques, recipes, and kitchen skills.</p>
-                        @if(in_array('Prgramming Languages', $skills))
+                        @if(in_array('Programming Languages', $skills))
                             <button class="view-cer px-4 py-2 rounded-pill"
                                 style="background-color: #1f3d85; color: aliceblue;"
                                 onclick="window.location.href='{{ route('getCertificate', ['skill' => 'Programming Languages']) }}';">

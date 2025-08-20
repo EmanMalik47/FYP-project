@@ -34,12 +34,16 @@ class pgController extends Controller
     }
 
     // Fetch user's learned skills from join_webs table
-    $userSkills = JoinWeb::where('email', $user->email)->pluck('sellist2')->toArray();
+    $joinWeb = JoinWeb::where('email', $user->email)->first();
+    $userSkills = [];
+    if ($joinWeb && $joinWeb->sellist2) {
+        
+        $userSkills = array_map('trim', explode(',', $joinWeb->sellist2));
+    }
+    // $userSkills = JoinWeb::where('email', $user->email)->pluck('sellist2')->toArray();
 
     return view('certificates', compact('user', 'userSkills'));
 
-
-        // return view('certificates');
     }
      public function getCertificate($skill){
        
