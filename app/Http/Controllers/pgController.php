@@ -7,6 +7,7 @@ use App\Models\JoinWeb;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Notifications\FriendRequestNotification;
 use App\Notifications\AdminNotification;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -51,57 +52,44 @@ class pgController extends Controller
         if (!$user) {
         return redirect()->route('login')->with('error', 'Please login first.');
     }
-        // $friebdship fetch date from friend_request
-     $friendship = FriendRequest::where(function($q) use ($user) {
-        $q->where('sender_id', $user->id)
-          ->orWhere('receiver_id', $user->id);
-    })->where('status', 'accepted')->first();
+        // $friebdship fetch date from friends
+        $friendship = DB::table('friends')
+        ->where('user_id', $user->id)
+        ->orWhere('friend_id', $user->id)
+        ->orderBy('created_at', 'asc') 
+        ->first();
 
     if (!$friendship) {
         return redirect()->back()->with('error', 'Friendship record not found.');
     }
-    $from = Carbon::parse($friendship->updated_at)->toDateString();
-    $to   = Carbon::parse($from)->addMonth()->toDateString();
+
+    $from = Carbon::parse($friendship->created_at)->format('Y-m-d');
+    $to   = Carbon::parse($from)->addMonth()->format('Y-m-d');
 
     $data = [
-        'name' => $user->name,
+        'name'     => $user->name,
         'lastname' => $user->lastname,
-        
-        'date' => now()->format('Y-m-d'),
-        'skill' => $skill,
-        'from' => $from,
-        'to' => $to,
-        'bg_image' => public_path('images/paper.png') 
+        'date'     => now()->format('Y-m-d'),
+        'skill'    => $skill,
+        'from'     => $from,
+        'to'       => $to,
+        'bg_image' => public_path('images/paper.png')
     ];
 
-
     return view('getCertificate', compact('data'));
-    //  $sender = JoinWeb::find($sender_id);
-    //     $admin = Admin::first();
-    //     if ($admin) {
-    //         $admin->notify(new AdminNotification("User {$sender->id} request for a Certificate "));
-    //     }
+    
     }
     
 
 public function generate(Request $request)
 {
-    $today = now()->toDateString();
-
-    
-    if ($today < Auth::user()->to) {
-        return back()->with('error', 'Certificate will be given after completing 1 month.');
-    }
-
-    $user = Auth::user();
-
     $data = [
-        'name'     => $user->name,
-        'lastname' => $user->lastname,
-        'skill'    => $user->skill,   
-        'from'     => $user->from,
-        'to'       => $user->to,
-        'date'     => now()->format('d-m-Y'),
+        'name'     => $request->name,
+        'lastname' => $request->lastname,
+        'skill'    => $request->skill,   
+        'from'     => $request->from,
+        'to'       => $request->to,
+        'date'     => $request->date,
     ];
 
     $pdf = Pdf::loadView('certificate_pdf', ['data' => $data]);
@@ -125,7 +113,7 @@ public function showAllUsers() {
 //     if (!auth()->check()) {
 //     return redirect()->route('login')->with('error', 'Please log in first.');
 // }
-    $users = JoinWeb::where('id', '!=', auth()->id())->get();
+    $users = JoinWeb::where('id', '!=', Auth::id())->get();
     return view('users', compact('users'));
 }
 
@@ -156,18 +144,6 @@ public function show($id)
 
 // Inbox Profile
 
-// Inbox Profile
-// 
-// public function inboxProfile(){
-//     $user = Auth::user(); 
-//         return view('inboxProfile', compact('user'));
-//     }
-// friends list icon
-// public function navbar()
-// {
-//     $friends = auth()->user()->friends; // assuming friends() relation exists
-//     return view('your_layout', compact('friends'));
-// }
 public function inboxProfile($id)
 {
     $friend = \App\Models\JoinWeb::findOrFail($id);

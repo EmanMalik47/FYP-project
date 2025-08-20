@@ -45,9 +45,9 @@ GetCertificate
               
                 <div class="d-flex">
                 <label for="date" class="form-label"><strong>From:</strong>{{ isset($data['from']) ? $data['from'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="hidden" class="form-control" id="from" name="from" required>
+                <input type="hidden" class="form-control" id="from" name="from" value="{{ $data['from'] ?? '' }}">
                 <label for="date" class="form-label">&nbsp;&nbsp;&nbsp;<strong>to:</strong>{{ isset($data['to']) ? $data['to'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="hidden" class="form-control" id="to" name="to" required>
+                <input type="hidden" class="form-control" id="to" name="to" value="{{ $data['to'] ?? '' }}">
                 </div>
             </div>
             <!-- <button type="button" class="btn btn-primary" onclick="generateCertificate()">Generate Certificate</button> -->
