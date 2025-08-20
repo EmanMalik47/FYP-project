@@ -97,20 +97,168 @@ trainers
 <div class="container-fluid testimonial-section">
     <!-- Title -->
     <div class="container mt-5 p-4">
-    <h2 class="testimonial-title">Our trainers talk about us</h2>
+    <h2 class="testimonial-title">Meet Our Trainers</h2>
     </div>
 
     <!-- Bootstrap Carousel -->
-    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-        
-        <!-- Carousel Indicators -->
+    <div class="container py-5 position-relative">
+  {{-- <h2 class="text-center mb-4">Meet Our Trainers</h2> --}}
+
+  <div id="trainerCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      <!-- First Slide -->
+      <div class="carousel-item active">
+        <div class="row g-4">
+          <!-- Trainer 1 -->
+          <div class="col-md-3">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h5>Mahrukh</h5>
+                  <p>Backend Languages Instructor</p>
+                </div>
+                <div class="flip-card-back">
+                  <h5>Skills & Fun Fact</h5>
+                  <p> PHP laravel<br> 2+ Years Exp<br> Debugging feels like solving mysteries for her</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Trainer 2 -->
+          <div class="col-md-3">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h5>Tahreem Azeem</h5>
+                  <p>Graphics Designer</p>
+                </div>
+                <div class="flip-card-back">
+                  <h5>Skills & Fun Fact</h5>
+                  <p> Photoshop Pro<br> 3+ Years Exp<br> Loves Digital Art</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Trainer 3 -->
+          <div class="col-md-3">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h5>Fizza Lukhvera</h5>
+                  <p>Video Editor</p>
+                </div>
+                <div class="flip-card-back">
+                  <h5>Skills & Fun Fact</h5>
+                  <p> Premiere Pro<br> 3+ Years Exp<br> Lo-Fi Lover</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Trainer 4 -->
+          <div class="col-md-3">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h5>Amna Aslam</h5>
+                  <p>Cook</p>
+                </div>
+                <div class="flip-card-back">
+                  <h5>Skills & Fun Fact</h5>
+                  <p> Traditional Cuisine<br> 5+ Years Exp<br> Famous for Biryani</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Slide -->
+      <div class="carousel-item">
+        <div class="row g-4">
+          <!-- Trainer 5 -->
+          <div class="col-md-3">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h5>Warda Khan</h5>
+                  <p>Mehndi Artist</p>
+                </div>
+                <div class="flip-card-back">
+                  <h5>Skills & Fun Fact</h5>
+                  <p> Arabic & Indian Mehdni<br> 6+ Years Exp<br> Available at every Eid</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Trainer 6 -->
+          <div class="col-md-3">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h5>Farzana Sohail</h5>
+                  <p>Hair Stylist</p>
+                </div>
+                <div class="flip-card-back">
+                  <h5>Skills & Fun Fact</h5>
+                  <p> Hair Coloring, Styling, Bridal Makeovers<br> 4+ Years Exp<br> Can create 5 hairstyles in under 30 minutes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Trainer 7 -->
+          <div class="col-md-3">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h5>Shoaib Anwar</h5>
+                  <p>Musical Instruments Trainer</p>
+                </div>
+                <div class="flip-card-back">
+                  <h5>Skills & Fun Fact</h5>
+                  <p> Guitar & Violin<br> 5+ Years Exp<br> Can play blindfolded</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Trainer 8 -->
+          <div class="col-md-3">
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h5>Ayesha Akhter</h5>
+                  <p>Front-end Languages Instructor</p>
+                </div>
+                <div class="flip-card-back">
+                  <h5>Skills & Fun Fact</h5>
+                  <p> HTML, CSS, JavaScript<br> 3+ Years Exp<br> Writes code faster than she types messages</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Custom Controls -->
+    {{-- <button class="carousel-control-prev" type="button" data-bs-target="#trainerCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#trainerCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button> --}}
+  </div>
+</div>
+
+
       <!--   <div class="carousel-indicators">
             <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active"></button>
             <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1"></button>
         </div> -->
 
         <!-- Carousel Inner -->
-        <div class="carousel-inner pb-4">
+        {{-- <div class="carousel-inner pb-4">
             <!-- First Slide (Shows 3-4 Testimonials at a time) -->
             <div class="carousel-item active">
                 <div class="row gx-4">
@@ -143,10 +291,10 @@ trainers
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Second Slide (More Testimonials) -->
-               <div class="carousel-item active">
+               {{-- <div class="carousel-item active">
                 <div class="row gx-4">
                     <div class="col-md-6 col-lg-3">
                         <div class="testimonial-card">
@@ -178,10 +326,10 @@ trainers
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Carousel Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev" style="top: 24px; left: -100px;">
+        {{-- <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev" style="top: 24px; left: -100px;">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
@@ -190,6 +338,6 @@ trainers
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-</div>
+</div> --}}
     
 @endsection
