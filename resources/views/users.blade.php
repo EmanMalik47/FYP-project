@@ -23,7 +23,6 @@
                          width="80" height="80">
                 </div>
 
-             
                 <div class="flex-grow-1">
                     <h5 style="color:#1f3d85; font-weight:bold;">
                         {{ $user->name }} {{ $user->lastname }}
