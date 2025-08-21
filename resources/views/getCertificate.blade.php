@@ -1,99 +1,132 @@
 @extends('layout.masterp')
 @section('title')
 GetCertificate
-    
 @endsection
+
 @section('styles')
     <link rel="stylesheet" href="{{asset('css/getCertificate.css')}}">
+    <style>
+        .alert-top {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1050;
+            width: 60%;
+        }
+        button[disabled] {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+    </style>
 @endsection
+
 @section('content')
 <br><br><br><br><br>
 
-    <div class="certificate mt-5 p-4 border border-secondary m-auto shadow">
- 	<div class="overlay"></div>
- 	<div class="cer-body">
- 		<form class="form" id="certificateForm" method="POST" action="{{ route('certificate.generate') }}">
+@if(session('error'))
+    <div class="alert alert-danger text-center alert-top">
+        {{ session('error') }}
+    </div>
+@endif
+
+@if(session('success'))
+    <div class="alert alert-success text-center alert-top">
+        {{ session('success') }}
+    </div>
+@endif
+
+<div class="certificate mt-5 p-4 border border-secondary m-auto shadow">
+    <div class="overlay"></div>
+    <div class="cer-body">
+        <form class="form" id="certificateForm" method="POST" action="{{ route('certificate.generate') }}">
             @csrf
-           
+
             <div class="form-items d-flex">
-                <label for="date" class="form-label"><strong>Date:</strong>{{ isset($data['date']) ? $data['date'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="hidden" class="form-control" id="date" name="date" required  value="{{ $data['date'] ?? '' }}">
+                <label for="date" class="form-label">
+                    <strong>Date:</strong> {{ $data['date'] ?? '' }}
+                </label>
+                <input type="hidden" id="date" name="date" value="{{ $data['date'] ?? '' }}">
             </div>
-          
-            
+
             <div class="form-items ">
-            	<h5 style="font-size: 25px;">This is certified that</h5>
-            	
-            	<div class="d-flex">
-	            <label for="name" class="form-label"><strong>Name:</strong>{{ isset($data['name']) ? $data['name'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-	            <input type="hidden" class="form-control" id="name" name="name" required value="{{ $data['name'] ?? '' }}">
-	            </div>
-            </div>
-           
-            
-            <div class="form-items d-flex">
-                <label for="lastname" class="form-label"><strong>Last Name:</strong>{{ isset($data['lastname']) ? $data['lastname'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="hidden" name="lastname" value="{{ $data['lastname'] ?? '' }}">
-                </div>
-            <div class="form-items d-flex">
-                <label for="sel1" class="form-label" >Attained proficiency in the <strong>{{ isset($data['skill']) ? $data['skill'] : '' }}</strong> course held <br>in Barter Brains.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-				 <input type="hidden" name="skill" value="{{ $data['skill'] ?? '' }}">    
-               
-            </div>
-            <div class="form-items ">
-                {{-- <h5 style="font-size: 25px;">Attained proficiency in the mentioned course held in Barter Brains</h5> --}}
-              
+                <h5 style="font-size: 25px;">This is certified that</h5>
                 <div class="d-flex">
-                <label for="date" class="form-label"><strong>From:</strong>{{ isset($data['from']) ? $data['from'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="hidden" class="form-control" id="from" name="from" value="{{ $data['from'] ?? '' }}">
-                <label for="date" class="form-label">&nbsp;&nbsp;&nbsp;<strong>to:</strong>{{ isset($data['to']) ? $data['to'] : '' }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="hidden" class="form-control" id="to" name="to" value="{{ $data['to'] ?? '' }}">
+                    <label for="name" class="form-label">
+                        <strong>Name:</strong> {{ $data['name'] ?? '' }}
+                    </label>
+                    <input type="hidden" id="name" name="name" value="{{ $data['name'] ?? '' }}">
                 </div>
             </div>
-            <!-- <button type="button" class="btn btn-primary" onclick="generateCertificate()">Generate Certificate</button> -->
- 		
- 	</div>
- </div>
- <br><br>
- </form>
-        <div class="custom" style="margin-top: 20px;">
-    <button onclick="submitCertificateForm()" type="button" class="custom-btn px-5 py-2 rounded-pill">Download Certificate</button>
+
+            <div class="form-items d-flex">
+                <label for="lastname" class="form-label">
+                    <strong>Last Name:</strong> {{ $data['lastname'] ?? '' }}
+                </label>
+                <input type="hidden" name="lastname" value="{{ $data['lastname'] ?? '' }}">
+            </div>
+
+            <div class="form-items d-flex">
+                <label class="form-label">
+                    Attained proficiency in the 
+                    <strong>{{ $data['skill'] ?? '' }}</strong> 
+                    course held in Barter Brains.
+                </label>
+                <input type="hidden" name="skill" value="{{ $data['skill'] ?? '' }}">    
+            </div>
+
+            <div class="form-items ">
+                <div class="d-flex">
+                    <label class="form-label"><strong>From:</strong> {{ $data['from'] ?? '' }}</label>
+                    <input type="hidden" id="from" name="from" value="{{ $data['from'] ?? '' }}">
+                    <label class="form-label">&nbsp;&nbsp;<strong>to:</strong> {{ $data['to'] ?? '' }}</label>
+                    <input type="hidden" id="to" name="to" value="{{ $data['to'] ?? '' }}">
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
- <br><br><br>
- @if(session('certificate_downloaded'))
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<br><br>
+
+<div class="custom" style="margin-top: 20px;">
+   
+    @if(isset($certificate) && $certificate->download_count >= 3)
+        <button type="button" class="custom-btn px-5 py-2 rounded-pill" disabled>
+            Download Limit Exceeded
+        </button>
+    @else
+        <button onclick="submitCertificateForm()" type="button" class="custom-btn px-5 py-2 rounded-pill">
+            Download Certificate
+        </button>
+    @endif
+</div>
+<br><br><br>
+
+
+<div class="modal fade" id="congratsModal" tabindex="-1" aria-labelledby="congratsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4 text-center">
+      <h4 class="text-success"> Congratulations! </h4>
+      <p>Your certificate has been successfully generated and downloaded.</p>
+      <button type="button" class="btn" style="background-color: #0f2862; color: white;" data-bs-dismiss="modal">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
-Swal.fire({
-    icon: 'success',
-    title: 'Congratulations 🎉',
-    text: 'Congratulations on your achievement!',
-});
+function submitCertificateForm() {
+    document.getElementById('certificateForm').submit();
+}
+</script>
+
+@if(session('success'))
+<script>
+    var myModal = new bootstrap.Modal(document.getElementById('congratsModal'));
+    myModal.show();
 </script>
 @endif
 
-
- <!-- javascript -->
-
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
- <script>
-        function generateCertificate() {
-            // document.getElementById("certDate").textContent = document.getElementById("date").value;
-            // document.getElementById("certName").textContent = document.getElementById("name").value;
-            // document.getElementById("certSo").textContent = document.getElementById("so").value;
-            // document.getElementById("certSkill").textContent = document.getElementById("skill").value;
-            document.getElementById("certDate").textContent = document.getElementById("from").value;
-            document.getElementById("certDate").textContent = document.getElementById("to").value;
-            
-        }
-        
-    function submitCertificateForm() {
-        document.getElementById('certificateForm').submit();
-    }
-
-    </script>
 @endsection

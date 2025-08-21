@@ -17,6 +17,7 @@ return new class extends Migration
     $table->string('skill');
     $table->timestamp('downloaded_at')->nullable();
     $table->timestamps();
+      $table->unsignedInteger('download_count')->default(0);
 
     $table->foreign('user_id')->references('id')->on('join_webs')->onDelete('cascade');
 });

@@ -56,7 +56,7 @@
                 success: function (res) {
                     if (res.status === "success") {
                         Swal.fire({
-                            title: '🎉 Congratulations!',
+                            title: ' Congratulations!',
                             text: "You and " + res.friend_name + " are friends now!",
                             icon: 'success',
                             confirmButtonText: 'Go to Profile',

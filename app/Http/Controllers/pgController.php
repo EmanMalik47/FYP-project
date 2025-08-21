@@ -82,36 +82,35 @@ class pgController extends Controller
     }
     
 
-
-
 public function generate(Request $request)
 {
     $user = Auth::user();
-    if (!$user) {
-        return redirect()->route('login')->with('error', 'Please login first.');
+    $skill = $request->skill;
+
+    $certificate = Certificate::where('user_id', $user->id)
+                              ->where('skill', $skill)
+                              ->first();
+
+    if ($certificate) {
+        if ($certificate->download_count >= 1) {
+            return back()->with('error', 'Your limit to download this certificate has been exceeded.');
+        }
+        $certificate->increment('download_count');
+    } else {
+        $certificate = Certificate::create([
+            'user_id'   => $user->id,
+            'user_name' => $user->name,
+            'skill'     => $skill,
+            'downloaded_at' => now(),
+            'download_count' => 1,
+        ]);
     }
 
- Certificate::create([
-    'user_id' => $user->id,
-    'user_name'    => $user->name,
-    'skill'   => $request->skill,
-    'downloaded_at' => now(),
-]);
+    $pdf = Pdf::loadView('certificates_pdf', compact('user', 'skill'));
 
-
-
-    $data = [
-        'name'     => $request->name,
-        'lastname' => $request->lastname,
-        'skill'    => $request->skill,   
-        'from'     => $request->from,
-        'to'       => $request->to,
-        'date'     => $request->date,
-    ];
-
-    $pdf = Pdf::loadView('certificate_pdf', ['data' => $data]);
-    return $pdf->download('certificate.pdf');
+    return $pdf->download("{$skill}_certificate_pdf");
 }
+
 
 
  public function showProfile()
