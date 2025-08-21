@@ -16,8 +16,6 @@
     @foreach ($users as $user)
         <div class="card shadow-sm p-3 mb-3">
             <div class="d-flex align-items-center">
-                
-               
                 <div class="me-3">
                     <img src="{{ asset('uploads/' . $user->profile) }}" 
                          alt="Profile Image" 
@@ -44,35 +42,44 @@
 
                 {{-- Friend Request Button --}}
                 <div>
-                    @php
-                        $requested = App\Models\FriendRequest::where('sender_id', auth()->id())
-                                      ->where('receiver_id', $user->id)
-                                      ->where('status', 'pending')
-                                      ->exists();
+                    @auth
+                        @php
+                            $requested = App\Models\FriendRequest::where('sender_id', auth()->id())
+                                          ->where('receiver_id', $user->id)
+                                          ->where('status', 'pending')
+                                          ->exists();
 
-                        $friends = App\Models\Friend::where('user_id', auth()->id())
-                                      ->where('friend_id', $user->id)
-                                      ->exists();
-                    @endphp
+                            $friends = App\Models\Friend::where('user_id', auth()->id())
+                                          ->where('friend_id', $user->id)
+                                          ->exists();
+                        @endphp
 
-                    @if ($friends)
-                        <button class="btn btn-secondary" disabled>Friends now!</button>
-                    @elseif ($requested)
-                        <button class="btn btn-primary" disabled>Request Sent</button>
-                    @else
-                        <button class="btn send-request-btn" style="background-color: #0f2862; color: white;"
-                                data-user-id="{{ $user->id }}">
+                        @if ($friends)
+                            <button class="btn btn-secondary" disabled>Friends now!</button>
+                        @elseif ($requested)
+                            <button class="btn btn-primary" disabled>Request Sent</button>
+                        @else
+                            <button class="btn send-request-btn" style="background-color: #0f2862; color: white;"
+                                    data-user-id="{{ $user->id }}">
+                                Send Request
+                            </button>
+                        @endif
+                    @endauth
+
+                    @guest
+                        
+                        <a href="{{ route('login') }}" class="btn btn-secondary">
                             Send Request
-                        </button>
-                    @endif
+                        </a>
+                    @endguest
                 </div>
             </div>
         </div>
     @endforeach
 </div>
 
-
 {{-- JS for requests --}}
+@auth
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const sendButtons = document.querySelectorAll('.send-request-btn');
@@ -106,5 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+@endauth
 
 @endsection
