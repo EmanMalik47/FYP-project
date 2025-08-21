@@ -148,11 +148,9 @@
             
             <!-- Social Media Links -->
             <div class="col-md-4 text-md-start">
-                <h6 style="margin-left: 10px;">Follow Us</h6>
+                <h5 style="margin-left: 10px;"><strong>Learn. Teach. Grow.</strong></h5>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <p>&nbsp;&nbsp;Here, every learner becomes a teacher and every &nbsp;&nbsp;teacher a learner. Trade your skills, earn knowledge, and &nbsp;&nbsp;discover how sharing can shape futures.</p>
                 </div>
             </div>
         </div>
