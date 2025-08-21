@@ -161,7 +161,7 @@
         
         <div class="row">
             <div class="col-md-6">
-                <a href="#">Data Privacy</a> | <a href="#">Terms and Conditions</a>
+                <a href="{{ url('/privacy') }}">Data Privacy</a> | <a href="{{ url('/terms') }}">Terms and Conditions</a>
             </div>
             <div class="col-md-6 text-md-end">
                 <p>©2025 Barter Brains. All rights reserved</p>
@@ -198,9 +198,7 @@
 
     // login-popup
    
-    document.addEventListener("DOMContentLoaded", function () {
-        //    var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-        //     loginModal.show();            
+    document.addEventListener("DOMContentLoaded", function () {         
         });
         
     // onclick form

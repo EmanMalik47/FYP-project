@@ -28,13 +28,15 @@ Route::get('/join-us', [AuthController::class, 'showJoinForm'])->name('joinUs');
 Route::post('/register-user', [AuthController::class, 'registerUser'])->name('register.user');
 Route::get('/profile-page/{id}', [AuthController::class, 'showProfile'])->name('profile');
 
+//footer
+Route::get('/terms', function () {
+    $lastUpdated = now()->format('F d, Y');
+    return view('terms', compact('lastUpdated'));
+});
+Route::get('/privacy', function () {
+    return view('privacy');
+})->name('privacy');
 
-
-
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/', function () {
     return view('welcome');
 });

@@ -86,6 +86,7 @@
             border: 2px solid #d4af37;
             border-radius: 50%;
             padding: 20px;
+            font-style: italic;
             font-weight: bold;
         }
     </style>
