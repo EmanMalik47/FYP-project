@@ -60,6 +60,17 @@ GetCertificate
     <button onclick="submitCertificateForm()" type="button" class="custom-btn px-5 py-2 rounded-pill">Download Certificate</button>
 </div>
  <br><br><br>
+ @if(session('certificate_downloaded'))
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Congratulations 🎉',
+    text: 'Congratulations on your achievement!',
+});
+</script>
+@endif
+
 
  <!-- javascript -->
 

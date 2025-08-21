@@ -8,6 +8,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Certificate;
 use App\Notifications\FriendRequestNotification;
 use App\Notifications\AdminNotification;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -81,8 +82,24 @@ class pgController extends Controller
     }
     
 
+
+
 public function generate(Request $request)
 {
+    $user = Auth::user();
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'Please login first.');
+    }
+
+ Certificate::create([
+    'user_id' => $user->id,
+    'user_name'    => $user->name,
+    'skill'   => $request->skill,
+    'downloaded_at' => now(),
+]);
+
+
+
     $data = [
         'name'     => $request->name,
         'lastname' => $request->lastname,

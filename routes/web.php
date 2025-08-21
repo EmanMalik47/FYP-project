@@ -198,6 +198,7 @@ Route::middleware(['auth'])->group(function () {
 Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])
     ->name('notifications.markAsRead');
 
+Route::get('/admin/certificates', [adminController::class, 'showCertificates'])->name('admin.certificates');
 
 
  

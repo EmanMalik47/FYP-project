@@ -5,6 +5,7 @@ use App\Models\JoinWeb;
 use App\Models\ContactUs;
 use Illuminate\Support\Facades\Session;
 use App\Models\FriendRequest;
+use App\Models\Certificate;
 use App\Models\ExchangeRequest;
 use Illuminate\Http\Request;
 use App\Notifications\FriendRequestNotification;    
@@ -41,12 +42,11 @@ class adminController extends Controller
     return view('admin.dashboard.exchangeRequest', compact('requests'));
 }
 
-     public function showcertificates(){
-         $requests = FriendRequest::with(['sender', 'receiver'])->get();
-    return view('admin.dashboard.certificates', compact('requests'));
-        
-
-    }
+   public function showCertificates()
+{
+    $certificates = Certificate::with('user')->get();
+    return view('admin.dashboard.adminCertificates', compact('certificates'));
+}
      public function showquery(){
         $queries = ContactUs::latest()->get();
         return view('admin.dashboard.query',compact('queries'));
