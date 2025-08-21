@@ -5,18 +5,26 @@ use App\Models\JoinWeb;
 use App\Models\ContactUs;
 use Illuminate\Support\Facades\Session;
 use App\Models\FriendRequest;
+use App\Models\ExchangeRequest;
 use Illuminate\Http\Request;
 use App\Notifications\FriendRequestNotification;    
 use Illuminate\Support\Facades\Auth;
 
 class adminController extends Controller
 {
-    public function showdashboard(){
+     public function showdashboard(){
         $totalUsers = JoinWeb::count();
         $totalQueries = ContactUs::count();
-      return view('admin.dashboard.adminDashboard', compact('totalUsers', 'totalQueries'));
+      $activeExchanges   = ExchangeRequest::where('status', 'accepted')->count();
+    $rejectedExchanges = ExchangeRequest::where('status', 'rejected')->count();
 
-    }
+    return view('admin.dashboard.adminDashboard', compact(
+        'totalUsers',
+        'totalQueries',
+        'activeExchanges',
+        'rejectedExchanges'
+    ));}
+
     public function showmanage_user(){
         $users = JoinWeb::latest()->get();
         return view('admin.dashboard.manageuser',compact('users'));

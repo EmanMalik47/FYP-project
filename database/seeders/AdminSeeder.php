@@ -13,7 +13,8 @@ class AdminSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-     {
+   
+      {
         
           Admin::create([
             'email' => 'adminET@gmail.com',

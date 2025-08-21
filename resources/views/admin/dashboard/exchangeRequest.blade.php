@@ -40,7 +40,9 @@
 
                 <form method="POST" action="{{ route('admin.friend.respond', [$request->id, 'rejected']) }}" style="display:inline;">
                     @csrf
-                    <button class="btn btn-danger btn-sm">Reject</button>
+                    <span class="text-muted italic">
+                        Not Responded
+                    </span>
                 </form>
             @else
                 <span class="text-muted">Handled</span>

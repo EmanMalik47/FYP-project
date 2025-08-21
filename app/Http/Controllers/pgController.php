@@ -34,7 +34,7 @@ class pgController extends Controller
         return redirect()->route('login')->with('error', 'Please login first.');
     }
 
-    // Fetch user's learned skills from join_webs table
+    
     $joinWeb = JoinWeb::where('email', $user->email)->first();
     $userSkills = [];
     if ($joinWeb && $joinWeb->sellist2) {
@@ -152,5 +152,9 @@ public function inboxProfile($id)
     return view('ibPROFILE', compact('friend', 'user'));
 }
 
+ public function showjoinUs()
+    {
+        return view('joinUs'); 
+    }
 
 }

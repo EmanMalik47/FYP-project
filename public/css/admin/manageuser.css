@@ -29,7 +29,11 @@ h2 {
   text-align: center;
   vertical-align: middle;
 }
-
+.msg{
+  white-space: wrap;
+  overflow: hidden;
+  /* text-overflow: ellipsis; */
+}
 .btn {
   margin: 2px;
   
@@ -45,12 +49,12 @@ h2 {
  
   border-radius: 8px;
   padding: 30px;
-  /* background-color: #212529; */
+ 
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.05);
 }
 .main-content {
   margin-top: 3px;
-  margin-left: 300px; /* Sidebar width */
+  margin-left: 300px; 
   padding: 2rem;
   flex-grow: 1;
   background-color: #ffffff;
@@ -60,7 +64,7 @@ h2 {
 /* Mobile View */
 @media (max-width: 767.98px) {
   .main-content {
-    margin-left: 0; /* Full width when sidebar hidden */
+    margin-left: 0; 
   }
 }
 

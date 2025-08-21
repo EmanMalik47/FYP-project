@@ -14,10 +14,15 @@
                 <span class="stat-label fw-bold d-block">Total Users:</span>
                 <span class="stat-value">{{ $totalUsers }}</span>
             </section>
-            <section class="stat-item mb-3 p-3 text-center shadow-sm rounded bg-light">
-                <span class="stat-label fw-bold d-block">Active Exchanges:</span>
-                <span class="stat-value">12</span>
-            </section>
+           <section class="stat-item mb-3 p-3 text-center shadow-sm rounded bg-light">
+    <span class="stat-label fw-bold d-block">Active Exchanges:</span>
+    <span class="stat-value">{{ $activeExchanges }}</span>
+</section>
+<section class="stat-item mb-3 p-3 text-center shadow-sm rounded bg-light">
+    <span class="stat-label fw-bold d-block">Rejected Exchanges:</span>
+    <span class="stat-value">{{ $rejectedExchanges }}</span>
+</section>
+
             <section class="stat-item mb-3 p-3 text-center shadow-sm rounded bg-light">
                 <span class="stat-label fw-bold d-block">Feedback:</span>
                 <span class="stat-value">{{ $totalQueries }}</span>

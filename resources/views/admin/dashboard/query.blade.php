@@ -30,7 +30,7 @@
           <td>{{ $query->firstname }}</td>
           <td>{{ $query->lastname }}</td>
            <td>{{ $query->email }}</td>
-          <td>{{ $query->message }}</td>
+          <td class="msg">{{ $query->message }}</td>
          
           <td>Pending</td>
           <td>
