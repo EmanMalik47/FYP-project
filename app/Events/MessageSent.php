@@ -11,6 +11,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Message;
 
+
 class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
@@ -38,4 +39,9 @@ class MessageSent implements ShouldBroadcast
             'created_at' => $this->message->created_at->toDateTimeString(),
         ];
     }
+    public function broadcastAs()
+    {
+        return 'MessageSent';
+    }
+
 }

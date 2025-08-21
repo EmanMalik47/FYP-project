@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class JoinWeb extends Authenticatable
 {
     use Notifiable;
@@ -50,6 +51,7 @@ class JoinWeb extends Authenticatable
   public function friends()
 {
     return $this->friendsOfMine()->get()->merge($this->friendOf()->get());
+    
 }
 
 }
