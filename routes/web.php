@@ -73,7 +73,7 @@ Route::post('/download-certificate', [pgController::class, 'generate'])->name('c
 Route::get('/welcome',[pgController::class,'showwelcome'])->name('welcome');
 Route::get('/services',[pgController::class,'showservices'])->name('services');
 Route::get('/trainers',[pgController::class,'showtrainers'])->name('trainers');
-Route::get('/certificates',[pgController::class,'showcertificates'])->name('certificates')->name('certificates')->middleware('auth');
+Route::get('/certificates',[pgController::class,'showcertificates'])->name('certificates')->middleware('auth');
 Route::get('/getCertificate/{skill}',[pgController::class,'getCertificate'])->name('getCertificate')->middleware('auth');
 
 Route::post('/certificate/generate', [pgController::class, 'generate'])->name('certificate.generate');

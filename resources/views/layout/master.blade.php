@@ -139,10 +139,10 @@
             <!-- Navigation Links -->
             <div class="col-md-4 text-md-center">
                 <ul class="list-unstyled">
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Trainers</a></li>
-                    <li><a href="#">Certificates</a></li>
-                    <li><a href="#">Join us</a></li>
+                    <li><a href="{{ route('services') }}">Services</a></li>
+                    <li><a href="{{ route('trainers') }}">Trainers</a></li>
+                    <li><a href="{{ route('certificates') }}">Certificates</a></li>
+                    <li><a href="{{ route('joinUs') }}">Join us</a></li>
                 </ul>
             </div>
             
