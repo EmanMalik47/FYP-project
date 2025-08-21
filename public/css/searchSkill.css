@@ -1,17 +1,126 @@
-*{
-	font-family: sans-serif;
+
+ 
+.user-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
-.card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
 
-  .card:hover {
+/* Main user card styling */
+.user-vertical-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    transition: background-color 0.4s ease;
+    flex-wrap: wrap;
+}
+
+.user-vertical-card:hover {
+    background-color: #f8f8f8;
     transform: translateY(-5px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-  }
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
 
-  .btn-custom {
-    background-color: #0f2862;
+.vertical-profile-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.user-info {
+    flex: 1;
+    min-width: 200px;
+}
+
+.user-name {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #1f3d85;
+    font-weight: 600;
+}
+
+.user-sub {
+    margin: 2px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Button group styles */
+.btn-group {
+    margin-top: 8px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.friend-confirm {
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: #1f3d85;
     color: white;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.friend-confirm:hover {
+    background-color: #163172;
+}
+
+.friend-view {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: transparent;
+    color: #1f3d85;
+    border: 1px solid #1f3d85;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.friend-view:hover {
+    background-color: #1f3d85;
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .user-vertical-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .vertical-profile-img {
+        margin: 0 auto 15px auto;
+    }
+
+    .friend-view {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .user-name {
+        font-size: 1rem;
+    }
+
+    .user-sub {
+        font-size: 0.9rem;
+    }
+
+    .friend-confirm,
+    .friend-view {
+        width: 100%;
+        text-align: center;
+    }
+}
