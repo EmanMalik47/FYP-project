@@ -25,26 +25,26 @@ trainers
         <div class="col-md-8-text-center col-lg-6">
             <div class="custom-box mt-4">
                 <h5 style="color: #517de4;" class="pt-5 ps-4">Your need, our priority</h5>
-                <h2 class="fw-bold px-4 pb-3 fs-1">Whether you are</h2>
-                <div class="row mt-4 ">
+                <h2 class=" px-4 pb-3 ">Whether you are</h2>
+                <div class="row mt-4 " >
                     <div class="heading col-6 mb-1 ps-4">
-                        <p class="p-4">Graphic designer</p>
+                        <p class="p-4" style="color: white">Graphic designer</p>
                     </div>
                     <div class=" heading  pe-4 col-6 mb-1">
-                        <p class="p-4">Developer</p>
+                        <p class="p-4" style="color: white">Developer</p>
                     </div>
                     <div class="col-6 heading mb-5 ps-4">
-                        <p class="p-4">Cook</p>
+                        <p class="p-4" style="color: white">Cook</p>
                     </div>
                     <div class="heading col-6 mb-5 pe-4">
-                        <p class="p-4">Beauty Artist</p>
+                        <p class="p-4" style="color: white">Beauty Artist</p>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Right section -->
         <div class="col-lg-6 col-md-8-text-center align-items-center pt-4 ps-4 mb-5">
-            <p style="font-size: 22px;">
+            <p>
                 We believe that exchanging skills is a powerful way to grow, which is why we promote a collaborative approach where individuals share their expertise and gain new abilities in return. Whether you’re offering technical knowledge, creative insights, or practical experience, skill exchange creates a dynamic learning environment that benefits everyone involved.
                 <br><br>
                 By embracing this mutual learning process, you not only expand your own skill set but also contribute to a network of continuous development. Our goal is to foster meaningful exchanges that enhance personal and professional growth for all participants.
@@ -97,7 +97,7 @@ trainers
 <div class="container-fluid testimonial-section">
     <!-- Title -->
     <div class="container mt-5 p-4">
-    <h2 class="testimonial-title">Meet Our Trainers</h2>
+    <h2 class="flipCard-title">Meet Our Trainers</h2>
     </div>
 
     <!-- Bootstrap Carousel -->
@@ -250,94 +250,5 @@ trainers
     </button> --}}
   </div>
 </div>
-
-
-      <!--   <div class="carousel-indicators">
-            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1"></button>
-        </div> -->
-
-        <!-- Carousel Inner -->
-        {{-- <div class="carousel-inner pb-4">
-            <!-- First Slide (Shows 3-4 Testimonials at a time) -->
-            <div class="carousel-item active">
-                <div class="row gx-4">
-                    <div class="col-md-6 col-lg-3">
-                        <div class="testimonial-card">
-                            <p class="testimonial-text">“Outsourcing our 3D rendering needs with Cadsourcia was a real turning point. We are focusing on our core business.”</p>
-                            <p class="testimonial-author">Sir Usman</p>
-                            <p class="testimonial-role">Networking Manager</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="testimonial-card">
-                            <p class="testimonial-text">“Working with Cadsourcia has been a real asset for our agency. Their team facilitated our transition to a more advanced digitalization process.”</p>
-                            <p class="testimonial-author">Tahreem Azeem</p>
-                            <p class="testimonial-role">Graphics Designer</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-none d-lg-block">
-                        <div class="testimonial-card">
-                            <p class="testimonial-text">“We have worked with Cadsourcia on several residential projects. Their team of BIM modelers has made a significant difference in our work.”</p>
-                            <p class="testimonial-author">Fizza Lukhvera</p>
-                            <p class="testimonial-role">Vedio Editor</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-none d-lg-block">
-                        <div class="testimonial-card">
-                            <p class="testimonial-text">“Thanks to the flexibility of Cadsourcia, our projects streamlined perfectly, improving collaboration between teams.”</p>
-                            <p class="testimonial-author">Amna Aslam</p>
-                            <p class="testimonial-role">Cook</p>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-
-            <!-- Second Slide (More Testimonials) -->
-               {{-- <div class="carousel-item active">
-                <div class="row gx-4">
-                    <div class="col-md-6 col-lg-3">
-                        <div class="testimonial-card">
-                            <p class="testimonial-text">“Outsourcing our 3D rendering needs with Cadsourcia was a real turning point. We are focusing on our core business.”</p>
-                            <p class="testimonial-author">Farzana Sohail</p>
-                            <p class="testimonial-role">Hair Stylist</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="testimonial-card">
-                            <p class="testimonial-text">“Working with Cadsourcia has been a real asset for our agency. Their team facilitated our transition to a more advanced digitalization process.”</p>
-                            <p class="testimonial-author">Shoaib Anwar</p>
-                            <p class="testimonial-role">Web Developer</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-none d-lg-block">
-                        <div class="testimonial-card">
-                            <p class="testimonial-text">“We have worked with Cadsourcia on several residential projects. Their team of BIM modelers has made a significant difference in our work.”</p>
-                            <p class="testimonial-author">Warda Khan</p>
-                            <p class="testimonial-role">Mehndi Artist</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 d-none d-lg-block">
-                        <div class="testimonial-card">
-                            <p class="testimonial-text">“Thanks to the flexibility of Cadsourcia, our projects streamlined perfectly, improving collaboration between teams.”</p>
-                            <p class="testimonial-author">Eman Malik</p>
-                            <p class="testimonial-role">DSA Coder</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
-        <!-- Carousel Controls -->
-        {{-- <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev" style="top: 24px; left: -100px;">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next" style="top: 24px; right: -100px;">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</div> --}}
     
 @endsection

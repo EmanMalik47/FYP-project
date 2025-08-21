@@ -38,6 +38,56 @@
     background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), 
         rgba(0, 0, 0, 0));
 }
+/* Custom Box Styling */
+.custom-box {
+    background-color: #f0f6ff; 
+    border-radius: 12px;
+    padding-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+/* Left side headings */
+.custom-box h5 {
+    font-weight: 350;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.custom-box h2 {
+    font-weight: 700;
+    font-size: 50px;
+    color: #000;
+}
+
+/* Skill buttons (heading class) */
+
+.heading p {
+    background-color: #0d3b82; /* dark blue */
+   
+    border-radius: 8px;
+    text-align: center;
+    margin: 0;
+    font-size: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.heading p:hover {
+    /* background-color: #517de4; */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Right section text */
+.col-lg-6 p {
+    font-size: 23px;
+    color: #333;
+    line-height: 1.6;
+    text-align: justify;
+}
+
         /* Process Section Styling */
        .process-section{
         margin-top: 100px;
@@ -200,69 +250,11 @@
             }
         }
         
-
-   /* Trainers-review Styling */
-
-
-        .testimonial-section{
-            margin-top: 100px;
-        }
-        .testimonial-title {
-            text-align: left;
-            font-size: 60px;
-            margin-bottom: 30px;
-        }
-
-        /* Testimonial Box Styling */
-        .testimonial-card {
-            background-color:#eaeffc; 
-            padding: 50px;
-            border-radius: 10px;
-            text-align: left;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .testimonial-text {
-            font-size: 20px;
-            margin-bottom: 50px;
-        }
-
-        .testimonial-author {
-            font-weight: bold;
-            margin-bottom: 2px;
-            color:  #1f3d85;
-        }
-
-        .testimonial-role {
-            font-size: 17px;
-            color: gray;
-        }
-
-        /* Carousel Styling */
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            background-color: #1f3d85; 
-            border-radius: 50%;
-        }
-
-        
-        /* Indicators Styling */
-        .carousel-indicators [data-bs-target] {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-
-        /* Responsive Spacing */
-        @media (max-width: 992px) {
-            .carousel-item .col-md-6 {
-                margin-bottom: 15px;
-            }
-        }
-
         /* flip cards */
+.flipCard-title{
+    font-size: 55px;
+    font-weight: 750;
+}
 .flip-card {
       background-color: transparent;
       width: 100%;

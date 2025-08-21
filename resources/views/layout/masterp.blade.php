@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     {{-- @vite(['resources/css/app.css','resources/js/app.js']) --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Barter Brains - @yield('title')</title>
 @yield('styles')
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
 
@@ -74,25 +76,65 @@
     <a class="nav-link" href="#" id="friendsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fa-solid fa-user-group" style="color: #1f3d85;"></i>
     </a>
-<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="friendsDropdown" id="friendsMenu">
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="friendsDropdown" id="friendsMenu">
     @if(Auth::check() && Auth::user()->friends()->count() > 0)
         @foreach(Auth::user()->friends() as $friend)
-            <li>
-              <a class="dropdown-item" href="{{ route('user.profile', ['id' => $friend->id]) }}">
-    <i class="fa-solid fa-user" style="color: #1f3d85;"></i>
-    {{ $friend->fname ?? $friend->name }}
-</a>
-                          </li>
+            <li class="d-flex justify-content-between align-items-center px-2">
+                {{-- Profile Link --}}
+                <a class="dropdown-item flex-grow-1" 
+                   href="{{ route('user.profile', ['id' => $friend->id]) }}">
+                    <i class="fa-solid fa-user" style="color: #1f3d85;"></i>
+                    {{ $friend->fname ?? $friend->name }}
+                </a>
+
+                {{-- Chat Icon --}}
+                <a href="{{ route('chat', ['id' => $friend->id]) }}" 
+                   class="ms-2 text-decoration-none">
+                    <i class="fa-brands fa-facebook-messenger" 
+                       style="color: #1f3d85; font-size: 16px;"></i>
+                </a>
+            </li>
         @endforeach
     @else
         <li><span class="dropdown-item text-muted">No friends found</span></li>
     @endif
 </ul>
+
 </div>
 
 
     {{-- Notifications --}}
-    @if(Auth::check())
+    {{-- Notifications --}}
+@if(Auth::check())
+<div class="dropdown d-inline-block me-2">
+    <a class="position-relative" href="#" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-bell" style="color: #1f3d85; font-size: 18px;"></i>
+        @if($count > 0)
+            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                {{ $count }}
+            </span>
+        @endif
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-end notifications-dropdown" aria-labelledby="notificationDropdown">
+        @forelse(auth()->user()->unreadNotifications as $notification)
+            <li class="notification-item">
+                <a href="{{ route('friend.requests') }}" 
+                   onclick="event.preventDefault(); markNotificationRead('{{ $notification->id }}', '{{ route('friend.requests') }}')">
+                    <i class="fa-solid fa-bell"></i>
+                    {{ $notification->data['message'] }}
+                </a>
+            </li>
+        @empty
+            <li class="notification-empty">
+                <span>No notifications yet</span>
+            </li>
+        @endforelse
+    </ul>
+</div>
+@endif
+
+    {{-- @if(Auth::check())
     <div class="dropdown d-inline-block me-2">
         <a class="position-relative" href="#" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-bell" style="color: #1f3d85;"></i>
@@ -102,93 +144,26 @@
                 </span>
             @endif
         </a>
+       
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
-            @foreach(auth()->user()->unreadNotifications as $notification)
+            @forelse(auth()->user()->unreadNotifications as $notification)
                 <li>
                     <a href="{{ route('friend.requests') }}" 
                        onclick="event.preventDefault(); markNotificationRead('{{ $notification->id }}', '{{ route('friend.requests') }}')">
                         {{ $notification->data['message'] }}
                     </a>
                 </li>
-            @endforeach
+                @empty
+        <li>
+            <span class="dropdown-item text-muted">No notification yet</span>
+        </li>
+            @endforelse
             
         </ul>
-    </div>
-    @endif
+    </div> --}}
+    {{-- @endif --}}
 </div>
 
-                 {{-- <div class="icons position-relative">
-                    <a id="searchBtn"> 
-                        <i class="fa-solid fa-magnifying-glass" style="color: #1f3d85;"></i>
-                        <form method="GET" action="{{ route('searchSkill') }}">
-                        <div id="searchDropdown" class="search-dropdown">
-                            <div class="input-group" id="input-main">
-                                <span class="input-group-text bg-white border-0"><i
-                                        class="fas fa-search"></i></span>
-                                <input type="text" name="skills" class="form-control border-0"
-                                    placeholder="Search " src="">
-                                    
-                            </div>
-                        </div>
-                        </form>
-                    </a>
-                    <a><i class="fa-solid fa-user" style="color: #1f3d85;" onclick="window.location.href='profile';"></i></a>
-                    <a><i class="fa-solid fa-phone-volume" style="color: #1f3d85;" onclick="window.location.href='contact';"></i></a> --}}
-<!-- Friends Dropdown -->
-                        {{-- <li class="nav-items dropdown">
-                            <a href="#" id="friendsDropdown" role="button">
-                                <i class="fa-solid fa-user-group" style="color: #1f3d85;"></i>
-                            </a>
-
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="friendsDropdown" id="friendsMenu">
-                                @if(Auth::check() && Auth::user()->friends && Auth::user()->friends->count() > 0)
-                                    @foreach(Auth::user()->friends as $friend)
-                                    @php
-                                    $joinWebId = $friend->id;
-                                      
-                                    @endphp
-                                        @if($joinWebId)
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('inboxProfile',  $joinWebId) }}">
-                                                <i class="fa-solid fa-user"></i> {{ $friend->fname ?? $friend->name }}
-                                            </a>
-                                        </li>
-                                        @endif
-                                    @endforeach
-                                @else
-                                    <li><span class="dropdown-item text-muted">No friends found</span></li>
-                                @endif
-                            </ul>
-                        </li> --}}
-
-                    {{-- notifications --}}
-                {{-- @if(Auth::check())
-                <ul class="navbar-nav">
-                    <li class="nav-items dropdown">
-                        <a class="nav-link position-relative" href="#" id="notificationDropdown" data-bs-toggle="dropdown">
-                            <i class="fa-solid fa-bell"  style="color: #1f3d85;"></i>
-                          @if($count > 0)
-            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
-                {{ $count }}
-            </span>
-        @endif</a>
-                        </a>
-                        <ul class="dropdown-menu">
-    @foreach(auth()->user()->unreadNotifications as $notification)
-        <li>
-           <a href="{{ route('friend.requests') }}" onclick="event.preventDefault(); markNotificationRead('{{ $notification->id }}', '{{ route('friend.requests') }}')">
-    {{ $notification->data['message'] }}
-                        </a>
-
-                                </li>
-                            @endforeach
-                        </ul>
-
-
-                    </li>
-                </ul>
-                @endif
-                 </div> --}}
             </div>
         </div>
     </nav>
@@ -219,20 +194,7 @@
             }        
         });
     });
-    // friends
-// document.getElementById('friendsDropdown').addEventListener('click', function (e) {
-//     e.preventDefault();
-//     let menu = document.getElementById('friendsMenu');
-//     menu.classList.toggle('show');
-// });
-
-// document.addEventListener('click', function (e) {
-//     let menu = document.getElementById('friendsMenu');
-//     let btn = document.getElementById('friendsDropdown');
-//     if (!btn.contains(e.target) && !menu.contains(e.target)) {
-//         menu.classList.remove('show');
-//     }
-// });
+    
 
 
 // Notifications
