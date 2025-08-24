@@ -35,8 +35,14 @@
           <td>Pending</td>
           <td>
             {{-- <button class="btn btn-sm " id="button">Review</button> --}}
+             <form action="{{ route('admin.query.dismiss', $query->id) }}" method="POST" onsubmit="return confirm('Query approved and user notified!');" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn btn-sm" id="button">Approvel</button>
+                
+            </form>
             <form action="{{ route('admin.query.dismiss', $query->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to dismiss this query?');" style="display:inline;">
                 @csrf
+                
                 <button type="submit" class="btn btn-sm" id="button">Dismiss</button>
             </form>
            

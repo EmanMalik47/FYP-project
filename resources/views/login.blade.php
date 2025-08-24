@@ -9,6 +9,8 @@
 
 @section('content')
 <div class="login-wrapper">
+    <a href="{{ route('welcome') }}" class="close-btn">&times;</a>
+
     <h3 class="form-heading">Login to Barter Brains</h3>
 
     <form action="{{ route('login') }}" method="POST" class="login-form">
@@ -25,7 +27,7 @@
 
     <p class="register-text">Don’t have an account?</p>
     <a href="{{ route('joinUs') }}">
-        <button type="button" class="new">Register Now</button>
+        <button type="button" class="new">Sign up</button>
     </a>
 
     <div class="login-footer">

@@ -1,4 +1,4 @@
-/* Background Gradient with logo */
+
 body {
     margin: 0;
     padding: 0;
@@ -9,7 +9,7 @@ body {
     background-size: contain;
     display: flex;
     justify-content: center;
-    align-items: center; /* ✅ Ab form bilkul center */
+    align-items: center; 
 }
 
 @media (max-width: 768px) {
@@ -20,9 +20,10 @@ body {
 }
 
 .login-wrapper {
-    margin-top: 0; /* ✅ Extra margin hata diya */
+    
+    margin-top: 0; 
     width: 430px; 
-    height: 500px; /* ✅ Height thori increase ki */
+    height: 500px; 
     padding: 50px 30px;
     border-radius: 25px;
     background: rgba(255, 255, 255, 0.15);
@@ -33,7 +34,7 @@ body {
     animation: slideUp 0.9s ease;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* ✅ Form + Button balance */
+    justify-content: space-between; 
 }
 
 @keyframes slideUp {
@@ -43,7 +44,7 @@ body {
 
 .form-heading {
     font-size: 30px;
-    margin-bottom: 25px; /* ✅ Heading ke niche space */
+    margin-bottom: 25px; 
     font-weight: bold;
     color: #1e3a8a;
     letter-spacing: 1px;
@@ -97,7 +98,7 @@ body {
 
 .register-text {
     font-size: 13px;
-    margin: 15px 0 10px; /* ✅ Balance kiya */
+    margin: 15px 0 10px; 
     color: #ddd;
 }
 
@@ -110,7 +111,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease;
-    margin-bottom: 25px; /* ✅ Heading ka jitna margin-top tha, utna bottom */
+    margin-bottom: 25px; 
 }
 .new:hover {
     background: linear-gradient(135deg, #2c51a7, #6dd5ed);
@@ -122,3 +123,34 @@ body {
     color: #ffbaba;
     margin-top: 10px;
 }
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px !important;     
+    font-weight: bold;
+    color: red;          
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    z-index: 1000;
+    transition: color 0.3s ease, transform 0.2s ease; 
+}
+
+.close-btn:hover,
+.close-btn:focus,
+.close-btn:active {
+    color: red !important;      
+    background: none !important; 
+    border: none !important;     
+    box-shadow: none !important; 
+    outline: none !important;    
+    transform: scale(1.4); 
+}
+
+

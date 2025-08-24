@@ -62,7 +62,7 @@ Route::prefix('admin')->group(function () {
 });
 
 
-
+Route::post('/admin/query/approve/{id}', [adminController::class, 'approve'])->name('admin.query.approve');
 Route::post('/admin/query/dismiss/{id}', [adminController::class, 'dismiss'])->name('admin.query.dismiss');
 
 //download cerificate pdf

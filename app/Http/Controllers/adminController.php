@@ -58,6 +58,20 @@ class adminController extends Controller
     $user->delete();
     return redirect()->back()->with('success', 'User deleted successfully');
     }
+    // query approve
+    public function approve($id)
+    {
+        $query = ContactUs::findOrFail($id);
+        $query->status = 'Approved';
+        $query->save();
+
+        
+    //    $user = $query->user; 
+    // $user->notify(new QueryApprovedNotification($query));
+
+
+        return redirect()->back()->with('success', 'Query approved and user notified!');
+    }
 
     //query dismiss in query page
     public function dismiss($id){
