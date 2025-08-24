@@ -14,15 +14,13 @@
   </div>
 
   <div class="chat-container">
-  <div class="chat-header d-flex justify-content-between align-items-center">
-    <span>Chat with {{ $receiver->name }}</span>
+    <div class="chat-header d-flex justify-content-between align-items-center">
+      <span>Chat with {{ $receiver->name }}</span>
+      <a href="{{ url('/profile') }}" class="close-btn">&times;</a>
+    </div>
 
-    
-    <a href="{{ url('/profile') }}" class="close-btn">&times;</a>
-</div>
-
-
-    <div class="messages-box" id="messages">
+    {{-- Messages box --}}
+    <div class="messages-box" id="messages" style="height:400px; overflow-y:auto;">
       @foreach($messages as $m)
         <div class="message {{ $m->sender_id === auth()->id() ? 'me' : 'them' }}">
           <strong>{{ $m->sender->name }}:</strong>
@@ -32,6 +30,7 @@
       @endforeach
     </div>
 
+    {{-- Input box --}}
     <div class="chat-input">
       <form id="chatForm" class="d-flex w-100 align-items-center" method="POST" action="{{ route('send.message') }}">
         @csrf
@@ -43,12 +42,38 @@
   </div>
 </div>
 
-{{-- Important: expose vars for app.js --}}
+{{-- Important: expose vars for JS --}}
 <script>
   window.Laravel = {
     userId: {{ auth()->id() }},
     receiverId: {{ $receiver->id }},
     sendMessageUrl: "{{ route('send.message') }}"
   };
+</script>
+
+{{-- Scroll handling --}}
+<script>
+function scrollToBottom() {
+    let chatBox = document.getElementById("messages");
+    if(chatBox){
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+}
+
+// Page load hone par scroll neeche
+document.addEventListener("DOMContentLoaded", scrollToBottom);
+
+// Real-time message receive hone par
+window.Echo.private(`chat.${window.Laravel.receiverId}`)
+    .listen('MessageSent', (e) => {
+        let chatBox = document.getElementById("messages");
+        chatBox.innerHTML += `
+            <div class="message ${e.message.sender_id === window.Laravel.userId ? 'me' : 'them'}">
+                <strong>${e.user.name}:</strong> ${e.message.message}
+                <small>${new Date(e.message.created_at).toLocaleTimeString()}</small>
+            </div>
+        `;
+        scrollToBottom();
+    });
 </script>
 @endsection
