@@ -1,4 +1,4 @@
-@extends('layout.masterp')
+@extends('layout.masterchat')
 
 @section('title','chat')
 <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
@@ -14,7 +14,13 @@
   </div>
 
   <div class="chat-container">
-    <div class="chat-header">Chat with {{ $receiver->name }}</div>
+  <div class="chat-header d-flex justify-content-between align-items-center">
+    <span>Chat with {{ $receiver->name }}</span>
+
+    
+    <a href="{{ url('/profile') }}" class="close-btn">&times;</a>
+</div>
+
 
     <div class="messages-box" id="messages">
       @foreach($messages as $m)

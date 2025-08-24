@@ -156,3 +156,16 @@
             border-radius: 8px;
             font-size: 22px;
         }
+        .close-btn {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 1;
+    transition: 0.2s;
+}
+
+.close-btn:hover {
+    color: #ffcccc;
+    transform: scale(1.2);
+}
