@@ -21,9 +21,7 @@ class JoinWeb extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * Friends jahan current user ne request bheji aur accept ho gayi
-     */
+   
     public function friendsOfMine()
     {
         return $this->belongsToMany(

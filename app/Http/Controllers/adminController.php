@@ -8,6 +8,7 @@ use App\Models\FriendRequest;
 use App\Models\Certificate;
 use App\Models\ExchangeRequest;
 use Illuminate\Http\Request;
+use App\Notifications\QueryApprovedNotification;
 use App\Notifications\FriendRequestNotification;    
 use Illuminate\Support\Facades\Auth;
 
@@ -63,30 +64,21 @@ class adminController extends Controller
 public function approveQuery($id)
 {
     $query = ContactUs::findOrFail($id);
+
     $query->status = 'Handled';
     $query->save();
 
-    return redirect()->back()->with('success', 'Query approved!');
+    $user = JoinWeb::where('email', $query->email)->first(); 
+    if ($user) {
+        $user->notify(new QueryApprovedNotification(
+            'Thanks for your response, your feedback is valuable for us.'
+        ));
+    }
+
+    return redirect()->back()->with('success', 'Query approved and user notified!');
 }
 
-// Dismiss Query
-// public function dismissQuery($id)
-// {
-//     $query = ContactUs::findOrFail($id);
-//     $query->status = 'Handled';
-//     $query->save();
-
-//     return redirect()->back()->with('success', 'Query dismissed!');
-// }
-
-
-
-    //query dismiss in query page
-    public function dismiss($id){
-        $query = ContactUs::findOrFail($id);
-        $query->delete();
-         return redirect()->back()->with('success', 'Query dismissed successfully.');
-    }
+  
 //skil dismiss in manage skill page
     public function dismissed($id){
         $query = JoinWeb::findOrFail($id);

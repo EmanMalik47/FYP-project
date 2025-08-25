@@ -104,8 +104,11 @@
 
 
     {{-- Notifications --}}
-    {{-- Notifications --}}
 @if(Auth::check())
+@php
+    $count = auth()->user()->unreadNotifications->count();
+@endphp
+
 <div class="dropdown d-inline-block me-2">
     <a class="position-relative" href="#" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fa-solid fa-bell" style="color: #1f3d85; font-size: 18px;"></i>
@@ -119,8 +122,9 @@
     <ul class="dropdown-menu dropdown-menu-end notifications-dropdown" aria-labelledby="notificationDropdown">
         @forelse(auth()->user()->unreadNotifications as $notification)
             <li class="notification-item">
-                <a href="{{ route('friend.requests') }}" 
-                   onclick="event.preventDefault(); markNotificationRead('{{ $notification->id }}', '{{ route('friend.requests') }}')">
+                <a href="#"
+                   onclick="event.preventDefault(); 
+                            markNotificationRead('{{ $notification->id }}', '{{ $notification->data['type'] ?? '' }}')">
                     <i class="fa-solid fa-bell"></i>
                     {{ $notification->data['message'] }}
                 </a>
@@ -132,36 +136,8 @@
         @endforelse
     </ul>
 </div>
-@endif
 
-    {{-- @if(Auth::check())
-    <div class="dropdown d-inline-block me-2">
-        <a class="position-relative" href="#" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-solid fa-bell" style="color: #1f3d85;"></i>
-            @if($count > 0)
-                <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
-                    {{ $count }}
-                </span>
-            @endif
-        </a>
-       
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
-            @forelse(auth()->user()->unreadNotifications as $notification)
-                <li>
-                    <a href="{{ route('friend.requests') }}" 
-                       onclick="event.preventDefault(); markNotificationRead('{{ $notification->id }}', '{{ route('friend.requests') }}')">
-                        {{ $notification->data['message'] }}
-                    </a>
-                </li>
-                @empty
-        <li>
-            <span class="dropdown-item text-muted">No notification yet</span>
-        </li>
-            @endforelse
-            
-        </ul>
-    </div> --}}
-    {{-- @endif --}}
+
 </div>
 
             </div>
@@ -208,6 +184,37 @@ function markNotificationRead(id, redirectUrl) {
         window.location.href = redirectUrl;
     });
 }
+document.querySelectorAll('.notification-link').forEach(link => {
+    link.addEventListener('click', function(e){
+        e.preventDefault();
+
+        const notificationId = this.dataset.id;
+        const message = this.dataset.message;
+
+        // SweetAlert popup
+        Swal.fire({
+            icon: 'success',
+            title: 'Notification',
+            text: message,
+            showConfirmButton: true
+        });
+
+        // AJAX request to mark as read
+        fetch('/notifications/mark-read/' + notificationId, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if(response.ok){
+                // Optionally reload to update badge count
+                location.reload();
+            }
+        });
+    });
+});
+
 
 </script>
 

@@ -8,6 +8,10 @@ use App\Notifications\AdminNotification;
 
 class ContactController extends Controller
 {
+      public function index()
+    {
+        return view('contact'); 
+    }
     public function contact(Request $request)
 {
       $request->validate([

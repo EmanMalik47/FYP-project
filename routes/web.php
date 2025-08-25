@@ -69,6 +69,7 @@ Route::post('/admin/query/dismiss/{id}', [adminController::class, 'dismissQuery'
 Route::post('/download-certificate', [pgController::class, 'generate'])->name('certificate.download');
 
 
+
 //user panel
 Route::get('/welcome',[pgController::class,'showwelcome'])->name('welcome');
 Route::get('/services',[pgController::class,'showservices'])->name('services');
@@ -82,7 +83,14 @@ Route::get('/users', [pgController::class, 'showAllUsers'])->name('users.list');
 
 
 
-Route::get('/contact',[pgController::class,'showcontact'])->name('contact');
+Route::get('/contact', [ContactController::class, 'index'])
+    ->middleware('auth')   
+    ->name('contact.index');
+
+Route::post('/contact', [ContactController::class, 'store'])
+    ->middleware('auth')   // sirf login users hi submit kar saken
+    ->name('contact.store');
+
 Route::get('/eman',[pgController::class,'showeman'])->name('eman');
 Route::get('/open',[pgController::class,'showopen'])->name('open');
 

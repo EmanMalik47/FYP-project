@@ -42,8 +42,7 @@ class pgController extends Controller
         
         $userSkills = array_map('trim', explode(',', $joinWeb->sellist2));
     }
-    // $userSkills = JoinWeb::where('email', $user->email)->pluck('sellist2')->toArray();
-
+  
     return view('certificates', compact('user', 'userSkills'));
 
     }
@@ -126,9 +125,7 @@ public function generate(Request $request)
 
 public function showAllUsers() {
 
-//     if (!auth()->check()) {
-//     return redirect()->route('login')->with('error', 'Please log in first.');
-// }
+
     $users = JoinWeb::where('id', '!=', Auth::id())->get();
     return view('users', compact('users'));
 }
@@ -136,9 +133,7 @@ public function showAllUsers() {
     public function showcontact(){
         return view('contact');
     }
-    public function showeman(){
-        return view('eman');
-    }
+   
      public function showopen(){
         return view('open');
     }

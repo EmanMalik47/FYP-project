@@ -18,5 +18,11 @@ $data->password =bcrypt($request->input('password'));
 $data->save();
 
     }
-// 
+    protected function authenticated(Request $request, $user)
+{
+
+    return redirect()->route('contact.index');
+}
+
+
 }
