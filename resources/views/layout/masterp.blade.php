@@ -70,36 +70,12 @@
     <a onclick="window.location.href='{{ url('/contact') }}';">
         <i class="fa-solid fa-phone-volume" style="color: #1f3d85;"></i>
     </a>
-
+<!-- Friends List Dropdown -->
    @php
     $totalUnread = \App\Models\Message::where('receiver_id', Auth::id())
         ->where('is_read', false)
         ->count();
-@endphp
-<!-- Friends List Dropdown -->
-{{-- <div class="dropdown-menu p-2" style="min-width: 200px;">
-    @foreach($friends as $friend)
-        <div class="d-flex align-items-center justify-content-between mb-2">
-            
-            <a href="{{ route('user.profile', $friend->id) }}" class="d-flex align-items-center text-dark text-decoration-none">
-                <i class="fa fa-user text-primary me-2"></i> 
-                {{ $friend->name }}
-            </a>
-
-            <div class="d-flex align-items-center">
-               
-                @if($friend->unread_count > 0)
-                    <span class="badge bg-danger me-1">{{ $friend->unread_count }}</span>
-                @endif
-
-                
-                <a href="{{ route('chat', $friend->id) }}" class="text-decoration-none">
-                    <i class="fa fa-facebook-messenger text-primary"></i>
-                </a>
-            </div>
-        </div>
-    @endforeach
-</div> --}}
+    @endphp
 
 
 <div class="dropdown d-inline-block">
@@ -125,13 +101,15 @@
                 <a class="dropdown-item flex-grow-1 d-flex align-items-center" href="{{ route('user.profile', ['id' => $friend->id]) }}">
                     <i class="fa-solid fa-user me-1" style="color: #1f3d85;"></i>
                     {{ $friend->fname ?? $friend->name }}
-                    @if($unread > 0)
-                        <span class="badge bg-danger ms-2" id="friend-unread-{{ $friend->id }}">{{ $unread }}</span>
-                    @endif
+                   
                 </a>
 
                 <a href="{{ route('chat', ['id' => $friend->id]) }}" class="ms-2 text-decoration-none">
                     <i class="fa-brands fa-facebook-messenger" style="color: #1f3d85; font-size: 16px;"></i>
+                    @if($unread > 0)
+                     <span class="position-absolute top:14px; right:18px; translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+                       
+                    @endif
                 </a>
             </li>
         @endforeach
@@ -196,11 +174,11 @@
         $("#searchBtn").click(function(){
             $("#searchDropdown").toggle();
         });
-        // Prevent closing when clicking inside the dropdown
+        
         $("#searchDropdown").click(function(event){
         event.stopPropagation();
     });
-        // Close when clicking outside
+        
         $(document).click(function(event) { 
             if(!$(event.target).closest('#searchBtn').length) {
                 $("#searchDropdown").hide();

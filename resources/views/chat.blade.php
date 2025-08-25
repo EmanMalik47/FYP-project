@@ -42,7 +42,7 @@
   </div>
 </div>
 
-{{-- Important: expose vars for JS --}}
+
 <script>
   window.Laravel = {
     userId: {{ auth()->id() }},
@@ -60,16 +60,17 @@ function scrollToBottom() {
     }
 }
 
-// Page load hone par scroll neeche
+
 document.addEventListener("DOMContentLoaded", scrollToBottom);
 
 window.Echo.private(`chat.${window.Laravel.userId}`)
-    .listen('MessageSent', (e) => {
+    .listen('.MessageSent', (e) => {
         let chatBox = document.getElementById("messages");
 
-        // If the message is for me
+       
         if (e.message.receiver_id === window.Laravel.userId) {
-            // If it's current chat open
+
+            
             if (e.message.sender_id === window.Laravel.receiverId) {
                 chatBox.innerHTML += `
                     <div class="message them">
@@ -79,7 +80,7 @@ window.Echo.private(`chat.${window.Laravel.userId}`)
                 scrollToBottom();
             }
 
-            // Update friend list unread counter
+            // Friends list unread badge update
             let badge = document.getElementById(`friend-unread-${e.message.sender_id}`);
             if (badge) {
                 badge.innerText = parseInt(badge.innerText) + 1;
@@ -90,7 +91,7 @@ window.Echo.private(`chat.${window.Laravel.userId}`)
                 }
             }
 
-            // Update total unread
+            // Top icon total unread badge update
             let totalBadge = document.querySelector('#friendsDropdown .badge');
             if (totalBadge) {
                 totalBadge.innerText = parseInt(totalBadge.innerText) + 1;
@@ -101,7 +102,7 @@ window.Echo.private(`chat.${window.Laravel.userId}`)
         }
     });
 
-// Real-time message receive hone par
+
 // window.Echo.private(`chat.${window.Laravel.receiverId}`)
 //     .listen('MessageSent', (e) => {
 //         let chatBox = document.getElementById("messages");

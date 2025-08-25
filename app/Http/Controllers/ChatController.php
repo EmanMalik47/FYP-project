@@ -18,7 +18,6 @@ class ChatController extends Controller
         // ensure receiver exists
         $receiver = JoinWeb::find($id);
         $authUser = JoinWeb::find($authId);
-        // $friends = $authUser->friends();
         $friends = $authUser ? $authUser->friends() : collect();
         // mark all messages from this friend as read
         Message::where('sender_id', $id)
@@ -59,13 +58,6 @@ class ChatController extends Controller
         'message' => $request->message,
         'is_read' => false
     ]);
-    // $message = new Message();
-    // $message->sender_id = $senderId;
-    // $message->receiver_id = $receiverId;
-    // $message->message = $request->message;
-
-    // $message->save();
-
     
     $message->load('sender');
     event(new MessageSent($message));
