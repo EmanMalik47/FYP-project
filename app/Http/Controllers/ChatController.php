@@ -18,9 +18,14 @@ class ChatController extends Controller
         // ensure receiver exists
         $receiver = JoinWeb::find($id);
         $authUser = JoinWeb::find($authId);
-
+        // $friends = $authUser->friends();
         $friends = $authUser ? $authUser->friends() : collect();
-        //  $friends = JoinWeb::where('id', '!=', $authId)->get();
+        // mark all messages from this friend as read
+        Message::where('sender_id', $id)
+        ->where('receiver_id', $authId)
+        ->where('is_read', false)
+        ->update(['is_read' => true]);
+
         
         // load conversation between auth user and receiver
         $messages = Message::where(function($q) use ($authId, $id) {
@@ -42,28 +47,24 @@ class ChatController extends Controller
         $request->validate([
         'receiver_id' => 'required|integer|exists:join_webs,id',
         'message' => 'nullable|string',
-        // 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        
     ]);
 
     $senderId = Auth::id();
     $receiverId = $request->receiver_id;
 
-   
-    $message = new Message();
-    $message->sender_id = $senderId;
-    $message->receiver_id = $receiverId;
-    $message->message = $request->message;
+    $message = Message::create([
+        'sender_id' => $senderId,
+        'receiver_id' => $receiverId,
+        'message' => $request->message,
+        'is_read' => false
+    ]);
+    // $message = new Message();
+    // $message->sender_id = $senderId;
+    // $message->receiver_id = $receiverId;
+    // $message->message = $request->message;
 
-    // if ($request->hasFile('image')) {
-    //     $image = $request->file('image');
-    //     $imageName = time() . '_' . $image->getClientOriginalName();
-
-    //     $image->move(public_path('images/chat_images'), $imageName);
-
-    //     $message->image = 'images/chat_images/' . $imageName;
-    // }
-
-    $message->save();
+    // $message->save();
 
     
     $message->load('sender');

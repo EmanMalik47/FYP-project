@@ -2,7 +2,7 @@
 
 @section('title','chat')
 <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
-
+ 
 @section('content')
 <br><br><br>
 <div class="chat-wrapper">
@@ -63,17 +63,55 @@ function scrollToBottom() {
 // Page load hone par scroll neeche
 document.addEventListener("DOMContentLoaded", scrollToBottom);
 
-// Real-time message receive hone par
-window.Echo.private(`chat.${window.Laravel.receiverId}`)
+window.Echo.private(`chat.${window.Laravel.userId}`)
     .listen('MessageSent', (e) => {
         let chatBox = document.getElementById("messages");
-        chatBox.innerHTML += `
-            <div class="message ${e.message.sender_id === window.Laravel.userId ? 'me' : 'them'}">
-                <strong>${e.user.name}:</strong> ${e.message.message}
-                <small>${new Date(e.message.created_at).toLocaleTimeString()}</small>
-            </div>
-        `;
-        scrollToBottom();
+
+        // If the message is for me
+        if (e.message.receiver_id === window.Laravel.userId) {
+            // If it's current chat open
+            if (e.message.sender_id === window.Laravel.receiverId) {
+                chatBox.innerHTML += `
+                    <div class="message them">
+                        <strong>${e.message.sender.name}:</strong> ${e.message.message}
+                        <small>${new Date(e.message.created_at).toLocaleTimeString()}</small>
+                    </div>`;
+                scrollToBottom();
+            }
+
+            // Update friend list unread counter
+            let badge = document.getElementById(`friend-unread-${e.message.sender_id}`);
+            if (badge) {
+                badge.innerText = parseInt(badge.innerText) + 1;
+            } else {
+                let friendItem = document.querySelector(`#friendsMenu a[href*="chat/${e.message.sender_id}"]`);
+                if (friendItem) {
+                    friendItem.innerHTML += `<span class="badge bg-danger ms-2" id="friend-unread-${e.message.sender_id}">1</span>`;
+                }
+            }
+
+            // Update total unread
+            let totalBadge = document.querySelector('#friendsDropdown .badge');
+            if (totalBadge) {
+                totalBadge.innerText = parseInt(totalBadge.innerText) + 1;
+            } else {
+                document.querySelector('#friendsDropdown').innerHTML += `
+                    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">1</span>`;
+            }
+        }
     });
+
+// Real-time message receive hone par
+// window.Echo.private(`chat.${window.Laravel.receiverId}`)
+//     .listen('MessageSent', (e) => {
+//         let chatBox = document.getElementById("messages");
+//         chatBox.innerHTML += `
+//             <div class="message ${e.message.sender_id === window.Laravel.userId ? 'me' : 'them'}">
+//                 <strong>${e.user.name}:</strong> ${e.message.message}
+//                 <small>${new Date(e.message.created_at).toLocaleTimeString()}</small>
+//             </div>
+//         `;
+//         scrollToBottom();
+//     });
 </script>
 @endsection

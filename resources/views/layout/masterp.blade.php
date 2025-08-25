@@ -71,36 +71,73 @@
         <i class="fa-solid fa-phone-volume" style="color: #1f3d85;"></i>
     </a>
 
-    {{-- Friends Dropdown --}}
+   @php
+    $totalUnread = \App\Models\Message::where('receiver_id', Auth::id())
+        ->where('is_read', false)
+        ->count();
+@endphp
+<!-- Friends List Dropdown -->
+{{-- <div class="dropdown-menu p-2" style="min-width: 200px;">
+    @foreach($friends as $friend)
+        <div class="d-flex align-items-center justify-content-between mb-2">
+            
+            <a href="{{ route('user.profile', $friend->id) }}" class="d-flex align-items-center text-dark text-decoration-none">
+                <i class="fa fa-user text-primary me-2"></i> 
+                {{ $friend->name }}
+            </a>
+
+            <div class="d-flex align-items-center">
+               
+                @if($friend->unread_count > 0)
+                    <span class="badge bg-danger me-1">{{ $friend->unread_count }}</span>
+                @endif
+
+                
+                <a href="{{ route('chat', $friend->id) }}" class="text-decoration-none">
+                    <i class="fa fa-facebook-messenger text-primary"></i>
+                </a>
+            </div>
+        </div>
+    @endforeach
+</div> --}}
+
+
 <div class="dropdown d-inline-block">
-    <a class="nav-link" href="#" id="friendsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link position-relative" href="#" id="friendsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fa-solid fa-user-group" style="color: #1f3d85;"></i>
+        @if($totalUnread > 0)
+            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                {{ $totalUnread }}
+            </span>
+        @endif
     </a>
+
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="friendsDropdown" id="friendsMenu">
-    @if(Auth::check() && Auth::user()->friends()->count() > 0)
         @foreach(Auth::user()->friends() as $friend)
+            @php
+                $unread = \App\Models\Message::where('sender_id', $friend->id)
+                    ->where('receiver_id', Auth::id())
+                    ->where('is_read', false)
+                    ->count();
+            @endphp
+
             <li class="d-flex justify-content-between align-items-center px-2">
-                {{-- Profile Link --}}
-                <a class="dropdown-item flex-grow-1" 
-                   href="{{ route('user.profile', ['id' => $friend->id]) }}">
-                    <i class="fa-solid fa-user" style="color: #1f3d85;"></i>
+                <a class="dropdown-item flex-grow-1 d-flex align-items-center" href="{{ route('user.profile', ['id' => $friend->id]) }}">
+                    <i class="fa-solid fa-user me-1" style="color: #1f3d85;"></i>
                     {{ $friend->fname ?? $friend->name }}
+                    @if($unread > 0)
+                        <span class="badge bg-danger ms-2" id="friend-unread-{{ $friend->id }}">{{ $unread }}</span>
+                    @endif
                 </a>
 
-                {{-- Chat Icon --}}
-                <a href="{{ route('chat', ['id' => $friend->id]) }}" 
-                   class="ms-2 text-decoration-none">
-                    <i class="fa-brands fa-facebook-messenger" 
-                       style="color: #1f3d85; font-size: 16px;"></i>
+                <a href="{{ route('chat', ['id' => $friend->id]) }}" class="ms-2 text-decoration-none">
+                    <i class="fa-brands fa-facebook-messenger" style="color: #1f3d85; font-size: 16px;"></i>
                 </a>
             </li>
         @endforeach
-    @else
-        <li><span class="dropdown-item text-muted">No friends found</span></li>
-    @endif
-</ul>
-
+    </ul>
 </div>
+
 
 
     {{-- Notifications --}}
