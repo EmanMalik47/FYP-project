@@ -58,20 +58,28 @@ class adminController extends Controller
     $user->delete();
     return redirect()->back()->with('success', 'User deleted successfully');
     }
-    // query approve
-    public function approve($id)
-    {
-        $query = ContactUs::findOrFail($id);
-        $query->status = 'Approved';
-        $query->save();
+   
+// Approve Query
+public function approveQuery($id)
+{
+    $query = ContactUs::findOrFail($id);
+    $query->status = 'Handled';
+    $query->save();
 
-        
-    //    $user = $query->user; 
-    // $user->notify(new QueryApprovedNotification($query));
+    return redirect()->back()->with('success', 'Query approved!');
+}
+
+// Dismiss Query
+// public function dismissQuery($id)
+// {
+//     $query = ContactUs::findOrFail($id);
+//     $query->status = 'Handled';
+//     $query->save();
+
+//     return redirect()->back()->with('success', 'Query dismissed!');
+// }
 
 
-        return redirect()->back()->with('success', 'Query approved and user notified!');
-    }
 
     //query dismiss in query page
     public function dismiss($id){
@@ -99,45 +107,10 @@ public function respondFriendRequest($id, $action)
     $request->status = $action;
     $request->save();
 
-    // Optionally, you could notify the user here (via session, notification, etc.)
 
     Session::flash('notification_' . $request->sender_id, "Your friend request to {$request->receiver->name} was {$action}.");
 
     return redirect()->back()->with('success', "Friend request has been {$action}.");
-}
-
-
-
-// Admin reject request function
-public function rejectByAdmin($id)
-{
-    $friendRequest = FriendRequest::with(['sender', 'receiver'])->findOrFail($id);
-
-    // Request status update
-    $friendRequest->status = 'declined';
-    $friendRequest->save();
-
-    $adminName = Auth::guard('admin')->user()->name ?? 'Admin';
-
-    // Sender ko notification
-    $friendRequest->sender->notify(
-        new FriendRequestNotification(
-            "Your request sent to {$friendRequest->receiver->name} has been rejected by {$adminName}.",
-            'rejected',
-            $friendRequest->receiver_id
-        )
-    );
-
-    // Receiver ko notification
-    $friendRequest->receiver->notify(
-        new FriendRequestNotification(
-            "The request you received from {$friendRequest->sender->name} has been rejected by {$adminName}.",
-            'rejected',
-            $friendRequest->sender_id
-        )
-    );
-
-    return redirect()->back()->with('success', 'Friend request rejected and notifications sent.');
 }
 
 

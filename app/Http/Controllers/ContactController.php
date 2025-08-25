@@ -10,12 +10,21 @@ class ContactController extends Controller
 {
     public function contact(Request $request)
 {
-    ContactUs::create([
-        'firstname' => $request->firstname,
-        'lastname' => $request->lastname,
-        'email' => $request->email,
-        'message' => $request->message
-    ]);
+      $request->validate([
+            'firstname' => 'required|string|max:255',
+            'lastname'  => 'required|string|max:255',
+            'email'     => 'required|email',
+            'message'   => 'required|string',
+        ]);
+
+        // save query
+        $query = new ContactUs();
+        $query->firstname = $request->firstname;
+        $query->lastname  = $request->lastname;
+        $query->email     = $request->email;
+        $query->message   = $request->message;
+        $query->status    = 'Pending'; 
+        $query->save();
 
     // Send notification to admin
         $admin = Admin::first();

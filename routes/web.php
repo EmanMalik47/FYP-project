@@ -61,9 +61,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/manageskills', [adminController::class, 'showmanage_skills'])->name('admin.dashboard.manageSkills');
 });
 
-
-Route::post('/admin/query/approve/{id}', [adminController::class, 'approve'])->name('admin.query.approve');
-Route::post('/admin/query/dismiss/{id}', [adminController::class, 'dismiss'])->name('admin.query.dismiss');
+//admin respond to qurries
+Route::post('/admin/query/approve/{id}', [adminController::class, 'approveQuery'])->name('admin.query.approve');
+Route::post('/admin/query/dismiss/{id}', [adminController::class, 'dismissQuery'])->name('admin.query.dismiss');
 
 //download cerificate pdf
 Route::post('/download-certificate', [pgController::class, 'generate'])->name('certificate.download');
