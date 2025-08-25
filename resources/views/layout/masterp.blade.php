@@ -184,36 +184,36 @@ function markNotificationRead(id, redirectUrl) {
         window.location.href = redirectUrl;
     });
 }
-document.querySelectorAll('.notification-link').forEach(link => {
-    link.addEventListener('click', function(e){
-        e.preventDefault();
+// document.querySelectorAll('.notification-link').forEach(link => {
+//     link.addEventListener('click', function(e){
+//         e.preventDefault();
 
-        const notificationId = this.dataset.id;
-        const message = this.dataset.message;
+//         const notificationId = this.dataset.id;
+//         const message = this.dataset.message;
 
-        // SweetAlert popup
-        Swal.fire({
-            icon: 'success',
-            title: 'Notification',
-            text: message,
-            showConfirmButton: true
-        });
+//         // SweetAlert popup
+//         Swal.fire({
+//             icon: 'success',
+//             title: 'Notification',
+//             text: message,
+//             showConfirmButton: true
+//         });
 
-        // AJAX request to mark as read
-        fetch('/notifications/mark-read/' + notificationId, {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Accept': 'application/json'
-            }
-        }).then(response => {
-            if(response.ok){
-                // Optionally reload to update badge count
-                location.reload();
-            }
-        });
-    });
-});
+//         // AJAX request to mark as read
+//         fetch('/notifications/mark-read/' + notificationId, {
+//             method: 'POST',
+//             headers: {
+//                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
+//                 'Accept': 'application/json'
+//             }
+//         }).then(response => {
+//             if(response.ok){
+//                 // Optionally reload to update badge count
+//                 location.reload();
+//             }
+//         });
+//     });
+// });
 
 
 </script>
