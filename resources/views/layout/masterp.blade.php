@@ -136,7 +136,7 @@
         @endforelse
     </ul>
 </div>
-
+@endif
 
 </div>
 
