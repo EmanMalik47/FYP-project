@@ -9,7 +9,9 @@
     </h3>
 
     @forelse ($friendRequests as $friendRequest)
-        <div class="card p-3 mb-3">
+        <div class="card p-3 mb-3" style=" border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);">
             <h3>
                 {{ $friendRequest->sender->fname ?? $friendRequest->sender->name ?? 'User' }} 
                 wants to connect with you
