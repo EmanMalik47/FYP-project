@@ -16,11 +16,7 @@
             before using the website.
         </p>
 
-        <h4>2. Eligibility</h4>
-        <p>
-            You must be at least 16 years old to use this platform. By registering, you confirm that 
-            the information you provide is accurate and up to date.
-        </p>
+      
 
         <h4>3. Nature of Service</h4>
         <p>
@@ -36,37 +32,28 @@
             <li>Do not misuse the platform for illegal, harmful, or commercial activities.</li>
         </ul>
 
-        <h4>5. Limitations of Liability</h4>
-        <p>
-            Barter Brains is only a connecting platform. We are not responsible for the quality, 
-            safety, or outcome of any skill exchange between users.
-        </p>
-
-        <h4>6. Certificates</h4>
+      
+        <h4>5. Certificates</h4>
         <p>
             Certificates issued by Barter Brains are for recognition purposes only. They do not 
             represent professional accreditation or official training licenses.
         </p>
 
-        <h4>7. Privacy</h4>
+        <h4>6. Privacy</h4>
         <p>
             Your data is protected under our Privacy Policy. By using Barter Brains, you agree 
             that we may use your information to operate the platform and improve our services.
         </p>
 
-        <h4>8. Termination</h4>
+        <h4>7. Termination</h4>
         <p>
             We reserve the right to suspend or terminate any account that violates these Terms, 
             without prior notice.
         </p>
 
-        <h4>9. Modifications</h4>
-        <p>
-            We may update these Terms & Conditions at any time. Continued use of the platform 
-            after changes means you accept the new Terms.
-        </p>
+       
 
-        <h4>10. Contact Us</h4>
+        <h4>8. Contact Us</h4>
         <p>
             If you have any questions, please contact us at 
             <a href="{{ url('contact') }}">support@barterbrains.com</a>.
