@@ -4,11 +4,7 @@
     welcome
 @endsection
 @section('content')
-{{-- @if(isset($searchPerformed) && $searchPerformed && isset($users) && count($users) > 0)
-  <button type="button" id="openModalBtn" class="d-none" data-bs-toggle="modal" data-bs-target="#resultModal">
-    Open Modal
-  </button>
-@endif --}}
+
 <section class="about-section mt-5">
     <div class="container mt-5">
         <div class="row ">

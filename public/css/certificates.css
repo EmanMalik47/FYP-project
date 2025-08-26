@@ -122,14 +122,6 @@
                 margin-bottom: 20px;
             }
         }
- /*.offer-box h4{
-  font-size: 30px;
-  text-align: left;
-}
-.offer-box p{
-  font-size: 20px;
-  text-align: left;
-}*/
 
 
 
@@ -163,9 +155,9 @@ input.form-control {
     padding: 5px; 
 }
 input.form-control:focus {
-    background-color: transparent !important; /* Keep transparent when selected */
-    border: none; /* Ensure no extra borders */
-    border-bottom: 1px solid black; /* Keep bottom border visible */
-    outline: none; /* Remove blue outline */
-    box-shadow: none; /* Remove default Bootstrap focus effects */
+    background-color: transparent !important; 
+    border: none; 
+    border-bottom: 1px solid black; 
+    outline: none; 
+    box-shadow: none; 
 }

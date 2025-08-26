@@ -105,9 +105,7 @@ Join us to enhance your skills and contribute to groundbreaking projects in arch
                                    @error('password')
                             <p class="invalid-feedback"> {{ $message}}</p>    
                             @enderror
-                                {{-- <span class="input-group-text">
-                                    <i class="fas fa-eye" id="togglePassword" style="cursor: pointer;"></i>
-                                </span> --}}
+                               
                                 <div id="passwordError" class="error-message"></div>
                             </div>
                         </div>
@@ -115,9 +113,7 @@ Join us to enhance your skills and contribute to groundbreaking projects in arch
                             <label class="form-label">Confirm Password</label>
                             <div class="input-group">
                                 <input type="password" class="form-control shadow-none" name="confirmPassword" placeholder="Confirm password" required>
-                                {{-- <span class="input-group-text">
-                                    <i class="fas fa-eye" id="toggleConfirmPassword" style="cursor: pointer;"></i>
-                                </span> --}}
+                               
                                 <div id="confirmPasswordError" class="error-message"></div>
                             </div>
                         </div>
@@ -216,7 +212,7 @@ document.getElementById('toggleConfirmPassword').addEventListener('click', funct
 const form = document.getElementById('signupForm');
 
     form.addEventListener('submit', function(event) {
-      event.preventDefault(); // Stop the form from submitting
+      event.preventDefault(); 
 
       // Clear all previous errors
       document.getElementById('nameError').innerText = '';
@@ -237,7 +233,7 @@ const form = document.getElementById('signupForm');
       let isValid = true;
 
       // Name validation
-      const namePattern = /^[A-Za-z]+$/; // Only letters, no spaces, no numbers
+      const namePattern = /^[A-Za-z]+$/; 
   if (!namePattern.test(name)) {
     document.getElementById('nameError').innerText = 'Name must contain only letters without spaces or numbers.';
     isValid = false;
@@ -247,7 +243,7 @@ const form = document.getElementById('signupForm');
   }
 
   // lastName validation
-  const lastnamePattern = /^[A-Za-z]+$/; // Only letters, no spaces, no numbers
+  const lastnamePattern = /^[A-Za-z]+$/; 
   if (!lastnamePattern.test(name)) {
     document.getElementById('lastnameError').innerText = 'Name must contain only letters without spaces or numbers.';
     isValid = false;
@@ -284,7 +280,7 @@ const form = document.getElementById('signupForm');
         isValid = false;
       }
 
-      // If valid, you can proceed (show success message, redirect, etc.)
+      
       if (isValid) {
         alert('Sign up successful!');
       }

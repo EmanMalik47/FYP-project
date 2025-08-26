@@ -8,7 +8,7 @@ body {
     border-right: 1px solid #ddd;
 }
 
-/* Adjust for full height sidebar */
+
 @media (max-width: 767px) {
     .sidebar-fixed {
         min-height: auto;

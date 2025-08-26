@@ -33,10 +33,7 @@
         <td>{{ ucfirst($request->status) }}</td>
         <td>
             @if ($request->status === 'pending')
-                {{-- <form method="POST" action="{{ route('admin.friend.respond', [$request->id, 'accepted']) }}" style="display:inline;">
-                    @csrf
-                    <button class="btn btn-success btn-sm">Approve</button>
-                </form> --}}
+                
 
                 <form method="POST" action="{{ route('admin.friend.respond', [$request->id, 'rejected']) }}" style="display:inline;">
                     @csrf

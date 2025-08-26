@@ -10,9 +10,7 @@ certificates
 @php
     $skills = is_array($userSkills) ? $userSkills : [];
 @endphp
-{{-- @php
-    $skills = is_array($userSkills) ? $userSkills : [];
-@endphp --}}
+
 <div class=" header-section pt-4">
 		<div class="overlay"></div>
 		<div class="description text-center text-white pt-4">
@@ -148,7 +146,7 @@ certificates
                         @endif
                         
                         
-                        {{-- <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button> --}}
+                        
                     </div>
                 </div>
             </div>
@@ -174,7 +172,7 @@ certificates
                         @endif
                         
                         
-                        {{-- <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button> --}}
+                        
                     </div>
                 </div>
             </div>
@@ -200,8 +198,7 @@ certificates
                         
                         
                         
-                        {{-- <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button> --}}
-                    </div>
+                        </div>
             </div>
         </div>
         <div class="row  d-flex justify-content-center align-items-center min-vh-80">
@@ -228,8 +225,7 @@ certificates
                         @endif
                         
                         
-                        {{-- <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button> --}}
-                    </div>
+                        </div>
                 </div>
             </div>
             <div class="col-md-4">
@@ -254,8 +250,7 @@ certificates
                         @endif
                         
                         
-                        {{-- <button class="view-cer  px-4 py-2 rounded-pill" type="button" style="background-color: #1f3d85; color: aliceblue;" onclick="window.location.href='getCertificate';">Get Certificate</button> --}}
-                    </div>
+                        </div>
                 </div>
             </div>
          </div>

@@ -21,7 +21,7 @@
     font-weight: bold;
 }
 
-/* Responsive Tweaks */
+
 @media (max-width: 768px) {
     .stat-item {
         font-size: 0.9rem;

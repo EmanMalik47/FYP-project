@@ -19,10 +19,7 @@
 <body>
 
 <header>
-    {{-- @php
-    $count = Auth::check() ? auth()->user()->unreadNotifications()->count() : 0;
-@endphp --}}
-       {{-- <nav class="navbar navbar-expand-lg fixed-top shadow p-3 mb-5 bg-white rounded" id="Nav"> --}}
+    
       <div class="navbar-expand fixed-top shadow p-3 mb-5 bg-white rounded" id="Nav">
     <a class="navbar-brand d-block text-center" href="{{ url('/welcome') }}">
         <img src="../images/logo.png" class="img-fluid mx-auto d-block" height="200" width="200">
@@ -44,7 +41,7 @@
         $("#searchBtn").click(function(){
             $("#searchDropdown").toggle();
         });
-        // Prevent closing when clicking inside the dropdown
+      
         $("#searchDropdown").click(function(event){
         event.stopPropagation();
     });

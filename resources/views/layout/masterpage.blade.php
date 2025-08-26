@@ -42,20 +42,7 @@
             }        
         });
     });
-    // friends
-// document.getElementById('friendsDropdown').addEventListener('click', function (e) {
-//     e.preventDefault();
-//     let menu = document.getElementById('friendsMenu');
-//     menu.classList.toggle('show');
-// });
-
-// document.addEventListener('click', function (e) {
-//     let menu = document.getElementById('friendsMenu');
-//     let btn = document.getElementById('friendsDropdown');
-//     if (!btn.contains(e.target) && !menu.contains(e.target)) {
-//         menu.classList.remove('show');
-//     }
-// });
+    
 
 
 // Notifications

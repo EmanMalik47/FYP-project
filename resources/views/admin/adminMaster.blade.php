@@ -31,7 +31,7 @@
       </a>
     </li>
    <li class="nav-item">
-    {{-- <a class="nav-link" href="{{ route('admin.notifications.index') }}"> --}}
+    
    <a class="nav-link {{ request()->routeIs('admin.notifications.*') ? 'active' : '' }}" href="{{ route('admin.notifications.index') }}">
     <i class="fa fa-bell"></i> Notifications
     @if(isset($unreadCount) && $unreadCount > 0)
@@ -46,12 +46,7 @@
         Manage Users
       </a>
     </li>
-            {{-- <li class="nav-item">
-      <a href="{{ route('admin.dashboard.manageSkills') }}"
-         class="nav-link {{ request()->routeIs('admin.dashboard.manageSkills') ? 'active' : '' }}">
-        Manage Skills
-      </a>
-    </li> --}}
+           
 
     <li class="nav-item">
       <a href="{{ route('admin.dashboard.exchangeRequest') }}"

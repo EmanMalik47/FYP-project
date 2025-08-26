@@ -102,17 +102,5 @@ window.Echo.private(`chat.${window.Laravel.userId}`)
         }
     });
 
-
-// window.Echo.private(`chat.${window.Laravel.receiverId}`)
-//     .listen('MessageSent', (e) => {
-//         let chatBox = document.getElementById("messages");
-//         chatBox.innerHTML += `
-//             <div class="message ${e.message.sender_id === window.Laravel.userId ? 'me' : 'them'}">
-//                 <strong>${e.user.name}:</strong> ${e.message.message}
-//                 <small>${new Date(e.message.created_at).toLocaleTimeString()}</small>
-//             </div>
-//         `;
-//         scrollToBottom();
-//     });
 </script>
 @endsection

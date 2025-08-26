@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pgController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\JoinController;
-use App\Http\Controllers\profile_controller;
-use App\Http\Controllers\QueryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
@@ -49,7 +47,6 @@ Route::prefix('admin')->group(function () {
 });
 Route::delete('/admin/users/delete/{id}', [adminController::class, 'destroy'])->name('admin.deleteUser');
 
-// Route::get('/manageuser',[adminController::class,'showmanage_user'])->name('manageuser');
 Route::get('/manageSkills',[adminController::class,'showmanage_skills'])->name('admin.dashboard.manageSkills');
 Route::get('/admin/exchangeRequest',[adminController::class,'showExchangeRequests'])->name('admin.dashboard.exchangeRequest');
 Route::get('/adminCertificates',[adminController::class,'showCertificates'])->name('admin.dashboard.adminCertificates');
@@ -88,7 +85,7 @@ Route::get('/contact', [ContactController::class, 'index'])
     ->name('contact.index');
 
 Route::post('/contact', [ContactController::class, 'store'])
-    ->middleware('auth')   // sirf login users hi submit kar saken
+    ->middleware('auth')   
     ->name('contact.store');
 
 Route::get('/eman',[pgController::class,'showeman'])->name('eman');
@@ -109,10 +106,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/admin/dashboard', [adminController::class,'showdashboard'])->name('admin.dashboard');
 
-// Route::get('/adminDashboard',[adminController::class,'showdashboard'])->name('admin.dashboard.adminDashboard');
-
-
- Route::get('/profile-page/{id}', [AuthController::class, 'showProfile'])->name('profile.detail'); 
+Route::get('/profile-page/{id}', [AuthController::class, 'showProfile'])->name('profile.detail'); 
 //admin login form
 
 
@@ -138,19 +132,13 @@ Route::get('/profile', [pgController::class, 'showProfile'])->name('profile.view
 //sending frien request:-
 Route::middleware('auth')->group(function () {
     Route::post('/send-request/{receiver_id}', [FriendRequestController::class, 'sendRequest'])->name('friend.send');
-    // Route::get('/friend-requests', [FriendRequestController::class, 'viewRequests'])->name('friend.requests');
+    
     Route::post('/respond-request/{id}/{action}', [FriendRequestController::class, 'respondRequest'])->name('friend.respond');
 });
 
 
 Route::get('/user-profile/{id}', [pgController::class, 'showUserProfile'])->name('user.profile.view');
 
-
-// Route::get('/friend-request/{id}', [FriendRequestController::class, 'viewRequest'])
-//      ->name('friend.requests.show');
-
-
-// Route::get('/notifications/{id}/read', [NotificationController::class, 'read'])->name('notifications.read');
 
 Route::get('/pdf-view/{filename}', [UserController::class, 'showPdf']);
 

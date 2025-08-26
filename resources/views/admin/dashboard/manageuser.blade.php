@@ -55,7 +55,7 @@
     @endif
 </td>
           <td>
-            {{-- <button class="btn btn-sm" id="button">Edit</button> --}}
+          
             <form action="{{ route('admin.deleteUser', $user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
             @csrf
             @method('DELETE')

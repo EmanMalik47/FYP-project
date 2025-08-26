@@ -2,13 +2,10 @@
     font-family: sans-serif;
 }
 
-
-
-/* bg- image section */
     .hero-section {
             position: relative;
             width: 100%;
-            height: 100vh; /* Full screen height */
+            height: 100vh; 
             background: url('../images/s7.jpeg') no-repeat center center/cover;
             display: flex;
             align-items: center;

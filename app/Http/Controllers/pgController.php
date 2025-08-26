@@ -27,7 +27,7 @@ class pgController extends Controller
         return view('services');
     }
     public function showtrainers(){
-        $feedbacks = ContactUs::orderBy('created_at', 'desc')->take(8)->get();
+        $feedbacks = ContactUs::orderBy('created_at', 'desc')->take(4)->get();
 
         return view('trainers', compact('feedbacks'));
         // return view('trainers');
@@ -56,7 +56,7 @@ class pgController extends Controller
         if (!$user) {
         return redirect()->route('login')->with('error', 'Please login first.');
     }
-        // $friebdship fetch date from friends
+        
         $friendship = DB::table('friends')
         ->where('user_id', $user->id)
         ->orWhere('friend_id', $user->id)
@@ -90,9 +90,7 @@ public function generate(Request $request)
     $user = Auth::user();
     $skill = $request->skill;
 
-    $certificate = Certificate::where('user_id', $user->id)
-                              ->where('skill', $skill)
-                              ->first();
+    $certificate = Certificate::where('user_id', $user->id)->where('skill', $skill)->first();
 
     if ($certificate) {
         if ($certificate->download_count >= 1) {
@@ -108,10 +106,18 @@ public function generate(Request $request)
             'download_count' => 1,
         ]);
     }
+    $data = [
+        'name'     => $user->name,
+        'lastname' => $user->lastname,
+        'skill'    => $skill,
+        'date'     => now()->format('Y-m-d'),
+        'from'     => now()->subMonth()->format('Y-m-d'),
+        'to'       => now()->format('Y-m-d'),
+    ];
 
-    $pdf = Pdf::loadView('certificates_pdf', compact('user', 'skill'));
+    $pdf = Pdf::loadView('certificate_pdf', compact('data'));
 
-    return $pdf->download("{$skill}_certificate_pdf");
+    return $pdf->download("{$skill}_certificate.pdf");
 }
 
 

@@ -98,9 +98,9 @@
 const form = document.getElementById('contact');
 
     form.addEventListener('submit', function(event) )
-      event.preventDefault(); // Stop the form from submitting
+      event.preventDefault(); 
 
-      // Clear all previous errors
+      
       document.getElementById('firstnameError').innerText = '';
       document.getElementById('lastnameError').innerText = '';
       document.getElementById('emailError').innerText = '';
@@ -116,7 +116,7 @@ const form = document.getElementById('contact');
       let isValid = true;
 
       // Name validation
-      const namePattern = /^[A-Za-z]+$/; // Only letters, no spaces, no numbers
+      const namePattern = /^[A-Za-z]+$/; 
   if (!namePattern.test(firstname)) {
     document.getElementById('firstnameError').innerText = 'Name must contain only letters without spaces or numbers.';
     isValid = false;
@@ -126,7 +126,7 @@ const form = document.getElementById('contact');
   }
 
   // lastName validation
-  const lastnamePattern = /^[A-Za-z]+$/; // Only letters, no spaces, no numbers
+  const lastnamePattern = /^[A-Za-z]+$/; 
   if (!lastnamePattern.test(lastname)) {
     document.getElementById('lastnameError').innerText = 'Name must contain only letters without spaces or numbers.';
     isValid = false;
@@ -144,11 +144,6 @@ const form = document.getElementById('contact');
   if (isValid) {
         form.submit();
     }
-//  if (isValid) {
-//         alert('message sent sucessfully!');
-//       }
-
-//     });
 
     </script>
 @endsection

@@ -93,7 +93,7 @@
     color: white;
 }
 
-/* Responsive design */
+
 @media (max-width: 768px) {
     .user-vertical-card {
         flex-direction: column;

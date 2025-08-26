@@ -24,49 +24,7 @@
 
 </head>
 <body >
-<!-- login-popup -->
-<div class="modal fade " id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true" >
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-body p-0">
-                <div class="login-box">
-                    <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close">&times;</button>
-                    <div class="left-panel d-flex flex-column justify-content-center">
-                        <h2>Unlock New Skills</h2>
-                        <p> Login to start learning and sharing today!</p>
-                    </div>
-                    <div class="right-panel">
-                        <h3>Hello, Again</h3>
-                        <p>We are happy to have you back.</p>
-                        <form>
-                            <div class="mb-3">
-                                <input type="email" class="form-control shadow-none border-dark"  placeholder="Enter email">
-                            </div>
-                            <div class="mb-3">
-                                <input type="password" class="form-control shadow-none border-dark" placeholder="Enter password">
-                            </div>
-                            <div class="d-flex justify-content-between mb-3">
-                                <div>
-                                    <input class="form-check-input shadow-none" type="checkbox" style="background-color: #1f3d85 ;border-color: #1f3d85;" id="rememberMe">
-                                    <label for="rememberMe">Remember Me</label>
-                                </div>
-                                <a href="#" style="color: #1f3d85;">Forgot Password?</a>
-                            </div>
-                            <div class="login">
-                                <button class="login-btn  rounded-pill" type="button" >Login</button> 
-                            </div>
-                            <div class="google">
-                                <button class="google-btn  px-5 py-2 rounded-pill" type="button" >Sign in with Google</button> 
-                            </div>
-                            <p class="mt-3 text-center">Don't have an account?  <a href="#join_us.html" style="color: #1f3d85;">Sign Up</a></p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    <!-- header -->
+    
     <header>
     <nav class="navbar navbar-expand-lg fixed-top shadow p-3 mb-5 bg-white rounded" id="Nav">
         <div class="container">
@@ -182,7 +140,7 @@
         $("#searchBtn").click(function(){
             $("#searchDropdown").toggle();
         });
-        // Prevent closing when clicking inside the dropdown
+        
         $("#searchDropdown").click(function(event){
         event.stopPropagation();
     });

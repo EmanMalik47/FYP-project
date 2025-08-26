@@ -137,9 +137,9 @@
     <ul class="dropdown-menu dropdown-menu-end notifications-dropdown" aria-labelledby="notificationDropdown">
         @forelse(auth()->user()->unreadNotifications as $notification)
             <li class="notification-item">
-               <a href="{{ $notification->data['url'] }}">
+               <a href="{{ $notification->data['url'] ?? '#' }}">
     <i class="fa-solid fa-bell"></i>
-    {{ $notification->data['message'] }}
+    {{ $notification->data['message'] ?? 'No message'}}
 </a>
 
             </li>
