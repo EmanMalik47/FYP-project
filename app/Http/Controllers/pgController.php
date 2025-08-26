@@ -12,6 +12,7 @@ use App\Models\Certificate;
 use App\Notifications\FriendRequestNotification;
 use App\Notifications\AdminNotification;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\ContactUs;
 use Carbon\Carbon;
 
 class pgController extends Controller
@@ -26,7 +27,10 @@ class pgController extends Controller
         return view('services');
     }
     public function showtrainers(){
-        return view('trainers');
+        $feedbacks = ContactUs::orderBy('created_at', 'desc')->take(8)->get();
+
+        return view('trainers', compact('feedbacks'));
+        // return view('trainers');
     }
     public function showcertificates(){
         $user = Auth::user();

@@ -5,7 +5,7 @@ use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Notifications\AdminNotification;
-
+  
 class ContactController extends Controller
 {
       public function index()

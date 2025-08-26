@@ -110,132 +110,26 @@ trainers
       <!-- First Slide -->
       <div class="carousel-item active">
         <div class="row g-4">
-          <!-- Trainer 1 -->
-          <div class="col-md-3">
+    @foreach($feedbacks as $feedback)
+        <div class="col-md-3">
             <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h5>Mahrukh</h5>
-                  <p>Backend Languages Instructor</p>
+                <div class="flip-card-inner">
+                    <!-- Front Side -->
+                    <div class="flip-card-front">
+                        <h5>{{ $feedback->firstname }} {{ $feedback->lastname }}</h5>
+                        <p>User Feedback</p>
+                    </div>
+                    <!-- Back Side -->
+                    <div class="flip-card-back">
+                        <h5>Feedback</h5>
+                        <p>{{ $feedback->message }}</p>
+                    </div>
                 </div>
-                <div class="flip-card-back">
-                  <h5>Skills & Fun Fact</h5>
-                  <p> PHP laravel<br> 2+ Years Exp<br> Debugging feels like solving mysteries for her</p>
-                </div>
-              </div>
             </div>
-          </div>
-          <!-- Trainer 2 -->
-          <div class="col-md-3">
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h5>Tahreem Azeem</h5>
-                  <p>Graphics Designer</p>
-                </div>
-                <div class="flip-card-back">
-                  <h5>Skills & Fun Fact</h5>
-                  <p> Photoshop Pro<br> 3+ Years Exp<br> Loves Digital Art</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Trainer 3 -->
-          <div class="col-md-3">
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h5>Fizza Lukhvera</h5>
-                  <p>Video Editor</p>
-                </div>
-                <div class="flip-card-back">
-                  <h5>Skills & Fun Fact</h5>
-                  <p> Premiere Pro<br> 3+ Years Exp<br> Lo-Fi Lover</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Trainer 4 -->
-          <div class="col-md-3">
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h5>Amna Aslam</h5>
-                  <p>Cook</p>
-                </div>
-                <div class="flip-card-back">
-                  <h5>Skills & Fun Fact</h5>
-                  <p> Traditional Cuisine<br> 5+ Years Exp<br> Famous for Biryani</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+    @endforeach
+</div>
 
-      <!-- Second Slide -->
-      <div class="carousel-item">
-        <div class="row g-4">
-          <!-- Trainer 5 -->
-          <div class="col-md-3">
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h5>Warda Khan</h5>
-                  <p>Mehndi Artist</p>
-                </div>
-                <div class="flip-card-back">
-                  <h5>Skills & Fun Fact</h5>
-                  <p> Arabic & Indian Mehdni<br> 6+ Years Exp<br> Available at every Eid</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Trainer 6 -->
-          <div class="col-md-3">
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h5>Farzana Sohail</h5>
-                  <p>Hair Stylist</p>
-                </div>
-                <div class="flip-card-back">
-                  <h5>Skills & Fun Fact</h5>
-                  <p> Hair Coloring, Styling, Bridal Makeovers<br> 4+ Years Exp<br> Can create 5 hairstyles in under 30 minutes</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Trainer 7 -->
-          <div class="col-md-3">
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h5>Shoaib Anwar</h5>
-                  <p>Musical Instruments Trainer</p>
-                </div>
-                <div class="flip-card-back">
-                  <h5>Skills & Fun Fact</h5>
-                  <p> Guitar & Violin<br> 5+ Years Exp<br> Can play blindfolded</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Trainer 8 -->
-          <div class="col-md-3">
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h5>Ayesha Akhter</h5>
-                  <p>Front-end Languages Instructor</p>
-                </div>
-                <div class="flip-card-back">
-                  <h5>Skills & Fun Fact</h5>
-                  <p> HTML, CSS, JavaScript<br> 3+ Years Exp<br> Writes code faster than she types messages</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
