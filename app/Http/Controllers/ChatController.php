@@ -11,11 +11,11 @@ use App\Models\JoinWeb;
 use App\Models\Friend;
 class ChatController extends Controller
 {
-      public function index($id) // $id = other user id (receiver)
+      public function index($id) 
     {
         $authId = Auth::id();
         
-        // ensure receiver exists
+        
         $receiver = JoinWeb::find($id);
         $authUser = JoinWeb::find($authId);
         $friends = $authUser ? $authUser->friends() : collect();
@@ -26,7 +26,7 @@ class ChatController extends Controller
         ->update(['is_read' => true]);
 
         
-        // load conversation between auth user and receiver
+        
         $messages = Message::where(function($q) use ($authId, $id) {
                 $q->where('sender_id', $authId)->where('receiver_id', $id);
             })->orWhere(function($q) use ($authId, $id) {
@@ -69,10 +69,31 @@ class ChatController extends Controller
             'sender_id' => $message->sender_id,
             'sender_name' => $message->sender->name ?? 'You',
             'message' => $message->message,
-            // 'image' => $message->image ? asset($message->image) : null,
             'created_at' => $message->created_at->toDateTimeString(),
         ]
     ], 200);
     
     }
+
+    public function markCompleted(Request $request, $id)
+{
+    $user = Auth::user(); // current user
+    $friend = JoinWeb::findOrFail($id); // other user
+
+
+    $join = JoinWeb::where('id', $user->id)->first();
+
+    if ($user->id < $friend->id) {
+        
+        $join->learner_completed = true;
+    } else {
+        
+        $join->teacher_completed = true;
+    }
+
+    $join->save();
+
+    return back()->with('success', 'You marked this skill as completed.');
+}
+
 }

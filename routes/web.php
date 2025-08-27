@@ -151,6 +151,8 @@ Route::get('/chat/{id}', [pgController::class, 'inboxProfile'])->name('chat.inbo
 Route::middleware(['auth'])->group(function () {
     Route::get('/chat/{id}', [ChatController::class, 'index'])->name('chat');
     Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send.message');
+    Route::post('/chat/{id}/complete', [ChatController::class, 'markCompleted'])->name('chat.complete');
+
 });
 
 // Admin login routes

@@ -5,6 +5,18 @@
  
 @section('content')
 <br><br><br>
+@if(session('success'))
+  <div class="alert alert-success text-center">
+    {{ session('success') }}
+  </div>
+@endif
+
+@if(session('error'))
+  <div class="alert alert-danger text-center">
+    {{ session('error') }}
+  </div>
+@endif
+
 <div class="chat-wrapper">
   <div class="friends-list">
     <h5 class="mb-3">Friends</h5>
@@ -17,6 +29,15 @@
     <div class="chat-header d-flex justify-content-between align-items-center">
       <span>Chat with {{ $receiver->name }}</span>
       <a href="{{ url('/profile') }}" class="close-btn">&times;</a>
+      <div class="mt-2">
+  <form action="{{ route('chat.complete', $receiver->id) }}" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-success btn-sm">
+      Mark as Completed
+    </button>
+  </form>
+</div>
+
     </div>
 
     {{-- Messages box --}}

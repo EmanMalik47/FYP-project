@@ -56,7 +56,15 @@ class pgController extends Controller
         if (!$user) {
         return redirect()->route('login')->with('error', 'Please login first.');
     }
-        
+        $join = JoinWeb::where('email', $user->email)->first();
+        if (!$join) {
+            return back()->with('error', 'No skill record found.');
+        }
+        if (!$join->learner_completed && !$join->teacher_completed) {
+            return back()->with('error', 'Certificate is locked until both users mark the skill as completed.');
+        }
+    
+
         $friendship = DB::table('friends')
         ->where('user_id', $user->id)
         ->orWhere('friend_id', $user->id)
@@ -66,7 +74,7 @@ class pgController extends Controller
     if (!$friendship) {
         return redirect()->back()->with('error', 'Friendship record not found.');
     }
-
+    $certificate = Certificate::where('user_id', $user->id)->where('skill', $skill)->first();
     $from = Carbon::parse($friendship->created_at)->format('Y-m-d');
     $to   = Carbon::parse($from)->addMonth()->format('Y-m-d');
 
@@ -80,7 +88,7 @@ class pgController extends Controller
         'bg_image' => public_path('images/paper.png')
     ];
 
-    return view('getCertificate', compact('data'));
+    return view('getCertificate', compact('data','certificate'));
     
     }
     
@@ -89,6 +97,10 @@ public function generate(Request $request)
 {
     $user = Auth::user();
     $skill = $request->skill;
+     $join = JoinWeb::where('email', $user->email)->first();
+        if (!$join || !$join->learner_completed || !$join->teacher_completed) {
+            return back()->with('error', 'Certificate is locked until both users mark the skill as completed.');
+        }
 
     $certificate = Certificate::where('user_id', $user->id)->where('skill', $skill)->first();
 
