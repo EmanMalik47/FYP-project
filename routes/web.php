@@ -78,6 +78,10 @@ Route::post('/certificate/generate', [pgController::class, 'generate'])->name('c
 Route::get('/joinUs',[pgController::class,'showjoinUs'])->name('joinUs');
 Route::get('/users', [pgController::class, 'showAllUsers'])->name('users.list');
 
+Route::middleware('auth')->group(function() {
+    Route::get('/users', [pgController::class, 'showAllUsers'])->name('users.list');
+    Route::get('/searchSkill', [SkillController::class, 'search'])->name('searchSkill');
+});
 
 
 Route::get('/contact', [ContactController::class, 'index'])

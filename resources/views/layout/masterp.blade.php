@@ -88,8 +88,9 @@
         @endif
     </a>
 
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="friendsDropdown" id="friendsMenu">
-     @if(Auth::check() && Auth::user()->friends()->where('id', $user->id)->exists())
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="friendsDropdown" id="friendsMenu">
+    @if(Auth::check())
+        @forelse($friends as $friend)
             @php
                 $unread = \App\Models\Message::where('sender_id', $friend->id)
                     ->where('receiver_id', Auth::id())
@@ -98,22 +99,27 @@
             @endphp
 
             <li class="d-flex justify-content-between align-items-center px-2">
-                <a class="dropdown-item flex-grow-1 d-flex align-items-center" href="{{ route('user.profile', ['id' => $friend->id]) }}">
+                <a class="dropdown-item flex-grow-1 d-flex align-items-center" 
+                   href="{{ route('user.profile', ['id' => $friend->id]) }}">
                     <i class="fa-solid fa-user me-1" style="color: #1f3d85;"></i>
                     {{ $friend->fname ?? $friend->name }}
-                   
                 </a>
 
                 <a href="{{ route('chat', ['id' => $friend->id]) }}" class="ms-2 text-decoration-none">
                     <i class="fa-brands fa-facebook-messenger" style="color: #1f3d85; font-size: 16px;"></i>
                     @if($unread > 0)
-                     <span class="position-absolute top:14px; right:18px; translate-middle p-1 bg-danger border border-light rounded-circle"></span>
-                       
+                        <span class="position-absolute top:14px; right:18px; translate-middle p-1 bg-danger border border-light rounded-circle"></span>
                     @endif
                 </a>
             </li>
-        @endif
-    </ul>
+        @empty
+            <li class="px-2">No friends yet</li>
+        @endforelse
+    @else
+        <li class="px-2">Please login to see friends</li>
+    @endif
+</ul>
+
 </div>
 
 

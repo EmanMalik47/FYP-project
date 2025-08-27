@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
+use Illuminate\Support\Facades\View;
 use App\Notifications\AdminNotification;
 
 // use Illuminate\Support\Facades\Validator;
@@ -77,4 +78,16 @@ class JoinController extends Controller
     return redirect()->route('profile.view');
 
 }
+
+
+public function boot()
+{
+    View::composer('*', function ($view) {
+        if (Auth::check()) {
+            $friends = Auth::user()->friends; 
+            $view->with('friends', $friends);
+        }
+    });
+}
+
 }
