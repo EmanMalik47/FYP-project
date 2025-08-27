@@ -31,11 +31,9 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse ms-5 me-5 ps-2" id="navbarNav">
+            <div class="collapse navbar-collapse  ps-2" id="navbarNav" style="margin-left: 190px">
                    <ul class="navbar-nav ms-4 me-auto mb-2 mb-lg-0">
-                    <li class="nav-item fs-6 ps-5 pe-2">
-                        <a class="nav-link rounded-pill" href="{{ url('/services') }}">Services</a>
-                    </li>
+                   
                     <li class="nav-item  fs-6  ps-2 pe-2">
                         <a class="nav-link rounded-pill" href="{{ url('/trainers') }}">Trainers</a>
                     </li>
@@ -126,9 +124,8 @@
             </div>
             
             <!-- Navigation Links -->
-            <div class="col-md-4 text-md-center">
+            <div class="col-md-4 text-md-right">
                 <ul class="list-unstyled">
-                    <li><a href="{{ route('services') }}">Services</a></li>
                     <li><a href="{{ route('trainers') }}">Trainers</a></li>
                     <li><a href="{{ route('certificates') }}">Certificates</a></li>
                     <li><a href="{{ route('joinUs') }}">Join us</a></li>

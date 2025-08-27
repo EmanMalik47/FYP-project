@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <div class="mt-5">.</div>
+    
 <!-- join-us section -->
 
    <div class="hero">

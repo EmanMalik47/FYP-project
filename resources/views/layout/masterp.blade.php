@@ -31,11 +31,9 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse ms-5 me-5 ps-2" id="navbarNav">
+            <div class="collapse navbar-collapse me-5 ps-2" id="navbarNav" style="margin-left: 190px">
                    <ul class="navbar-nav ms-4 me-auto mb-2 mb-lg-0">
-                    <li class="nav-item fs-6 ps-5 pe-2">
-                        <a class="nav-link rounded-pill" href="{{ url('/services') }}">Services</a>
-                    </li>
+                   
                     <li class="nav-item  fs-6  ps-2 pe-2">
                         <a class="nav-link rounded-pill" href="{{ url('/trainers') }}">Trainers</a>
                     </li>

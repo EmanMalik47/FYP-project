@@ -74,17 +74,19 @@ trainers
                 <p>Detailed profiling to highlight offered or sought-after skills, ensuring clarity in expertise and opportunities.</p>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="process-box">
-                <h5><strong>Targeted Networking</strong></h5>
-                <p>Strategic engagement with like-minded individuals for structured skill exchange and mutual evaluation.</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="process-box">
-                <h5><strong>Collaboration Formalization</strong></h5>
-                <p>Formalization of collaborations through agreements while upholding confidentiality and ethical standards.</p>
-            </div>
+      <div class="col-md-4">
+    <div class="process-box">
+        <h5><strong>Targeted Networking</strong></h5>
+        <p>Connect with people who share similar interests and exchange skills in a simple and meaningful way.</p>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="process-box">
+        <h5><strong>Collaboration Formalization</strong></h5>
+        <p>Work together while maintaining trust, respect, and fairness.</p>
+    </div>
+</div>
+
         </div>
     </div>
 </div>

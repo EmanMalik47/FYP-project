@@ -146,7 +146,7 @@
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    animation: fadeInUp 3s ease-in-out infinite; /* Loop the animation */
+    
 }
 
 .process-box h5 {
