@@ -97,7 +97,7 @@ trainers
 <div class="container-fluid testimonial-section">
     <!-- Title -->
     <div class="container mt-5 p-4">
-    <h2 class="flipCard-title">Meet Our Trainers</h2>
+    <h2 class="flipCard-title">Our Trainers Talk About Us</h2>
     </div>
 
     <!-- Bootstrap Carousel -->
@@ -117,12 +117,12 @@ trainers
                     <!-- Front Side -->
                     <div class="flip-card-front">
                         <h5>{{ $feedback->firstname }} {{ $feedback->lastname }}</h5>
-                        <p>User Feedback</p>
+                        <p style="font-size: 20px"><strong>Email:</strong>{{$feedback->email}}</p>
                     </div>
                     <!-- Back Side -->
                     <div class="flip-card-back">
                         <h5>Feedback</h5>
-                        <p>{{ $feedback->message }}</p>
+                        <p style="font-size: 20px">{{ $feedback->message }}</p>
                     </div>
                 </div>
             </div>
@@ -135,13 +135,7 @@ trainers
 
     </div>
 
-    <!-- Custom Controls -->
-    {{-- <button class="carousel-control-prev" type="button" data-bs-target="#trainerCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#trainerCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button> --}}
+    
   </div>
 </div>
     

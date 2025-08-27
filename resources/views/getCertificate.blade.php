@@ -5,7 +5,7 @@ GetCertificate
 
 @section('styles')
     <link rel="stylesheet" href="{{asset('css/getCertificate.css')}}">
-    <style>
+    {{-- <style>
         .alert-top {
             position: fixed;
             left: 50%;
@@ -17,7 +17,7 @@ GetCertificate
             cursor: not-allowed;
             opacity: 0.6;
         }
-    </style>
+    </style> --}}
 @endsection
 
 @section('content')
@@ -81,6 +81,9 @@ GetCertificate
                     <label class="form-label">&nbsp;&nbsp;<strong>to:</strong> {{ $data['to'] ?? '' }}</label>
                     <input type="hidden" id="to" name="to" value="{{ $data['to'] ?? '' }}">
                 </div>
+                <div class="stamp-container">
+        <img src="{{ asset('images/stemp.png') }}" alt="Stamp" class="stamp-img">
+    </div>
             </div>
         </form>
     </div>
@@ -89,16 +92,10 @@ GetCertificate
 <br><br>
 
 <div class="custom" style="margin-top: 20px;">
-   
-    @if(isset($certificate) && $certificate->download_count >= 3)
-        <button type="button" class="custom-btn px-5 py-2 rounded-pill" disabled>
-            Download Limit Exceeded
-        </button>
-    @else
         <button onclick="submitCertificateForm()" type="button" class="custom-btn px-5 py-2 rounded-pill">
             Download Certificate
         </button>
-    @endif
+    
 </div>
 <br><br><br>
 

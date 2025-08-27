@@ -32,7 +32,7 @@
       <div class="mt-2">
   <form action="{{ route('chat.complete', $receiver->id) }}" method="POST">
     @csrf
-    <button type="submit" class="btn btn-success btn-sm">
+    <button type="submit" class="btn btn-sm">
       Mark as Completed
     </button>
   </form>

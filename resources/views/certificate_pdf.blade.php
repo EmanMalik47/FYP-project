@@ -89,6 +89,18 @@
             font-style: italic;
             font-weight: bold;
         }
+        .stamp-img {
+    width: 120px;   
+    height: auto;
+    margin-bottom: 10px; 
+    opacity: 0.95;  
+}
+.signature {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    margin-top: -5px;
+    color: #333;
+}
     </style>
 </head>
 <body>
@@ -108,10 +120,11 @@
 
         <div class="footer">
             <div>
-                <p class="signature">Authorized Signature</p>
+                <img src="{{ asset('images/stamp.png') }}" alt="Stamp" class="stamp-img">
+                <p class="signature">Stamp</p>
             </div>
             <div>
-                <p class="seal">Barter Brains</p>
+                <p class="seal"><i>Barter Brains</i></p>
             </div>
         </div>
     </div>

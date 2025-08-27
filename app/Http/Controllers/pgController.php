@@ -76,7 +76,7 @@ class pgController extends Controller
     }
     $certificate = Certificate::where('user_id', $user->id)->where('skill', $skill)->first();
     $from = Carbon::parse($friendship->created_at)->format('Y-m-d');
-    $to   = Carbon::parse($from)->addMonth()->format('Y-m-d');
+   
 
     $data = [
         'name'     => $user->name,
@@ -84,7 +84,7 @@ class pgController extends Controller
         'date'     => now()->format('Y-m-d'),
         'skill'    => $skill,
         'from'     => $from,
-        'to'       => $to,
+        'to'       => now()->format('Y-m-d'),
         'bg_image' => public_path('images/paper.png')
     ];
 

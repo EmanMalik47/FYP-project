@@ -89,7 +89,7 @@
     </a>
 
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="friendsDropdown" id="friendsMenu">
-        @foreach(Auth::user()->friends() as $friend)
+     @if(Auth::check() && Auth::user()->friends()->where('id', $user->id)->exists())
             @php
                 $unread = \App\Models\Message::where('sender_id', $friend->id)
                     ->where('receiver_id', Auth::id())
@@ -112,7 +112,7 @@
                     @endif
                 </a>
             </li>
-        @endforeach
+        @endif
     </ul>
 </div>
 
