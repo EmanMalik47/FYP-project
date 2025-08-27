@@ -80,18 +80,15 @@ class ChatController extends Controller
     $user = Auth::user(); // current user
     $friend = JoinWeb::findOrFail($id); // other user
 
+$join = JoinWeb::where('email', $user->email)->first();
 
-    $join = JoinWeb::where('id', $user->id)->first();
+if ($user->id < $friend->id) {
+    $join->learner_completed = true;
+} else {
+    $join->teacher_completed = true;
+}
+$join->save();
 
-    if ($user->id < $friend->id) {
-        
-        $join->learner_completed = true;
-    } else {
-        
-        $join->teacher_completed = true;
-    }
-
-    $join->save();
 
     return back()->with('success', 'You marked this skill as completed.');
 }

@@ -89,11 +89,11 @@
             font-style: italic;
             font-weight: bold;
         }
-        .stamp-img {
+    
+.stamp-img {
     width: 120px;   
     height: auto;
-    margin-bottom: 10px; 
-    opacity: 0.95;  
+    opacity: 0.9;  
 }
 .signature {
     font-family: 'Playfair Display', serif;
@@ -118,11 +118,11 @@
             <p><b>Date Issued:</b> {{ $data['date'] }}</p>
         </div>
 
-        <div class="footer">
-            <div>
-                <img src="{{ asset('images/stamp.png') }}" alt="Stamp" class="stamp-img">
-                <p class="signature">Stamp</p>
-            </div>
+       <div class="footer">
+          <div class="stamp-container"> 
+            <img src="{{ asset('images/stemp.png') }}" class="stamp-img">
+
+         </div>
             <div>
                 <p class="seal"><i>Barter Brains</i></p>
             </div>

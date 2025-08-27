@@ -16,178 +16,205 @@ use App\Models\ContactUs;
 use Carbon\Carbon;
 
 class pgController extends Controller
-
 {
     public function showwelcome(){
         return view('welcome');
-
     }
     
     public function showservices(){
         return view('services');
     }
+
     public function showtrainers(){
         $feedbacks = ContactUs::orderBy('created_at', 'desc')->take(4)->get();
-
         return view('trainers', compact('feedbacks'));
-        // return view('trainers');
     }
+
     public function showcertificates(){
         $user = Auth::user();
 
-    if (!$user) {
-        return redirect()->route('login')->with('error', 'Please login first.');
-    }
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please login first.');
+        }
 
+        $joinWeb = JoinWeb::where('email', $user->email)->first();
+        $userSkills = [];
+        if ($joinWeb && $joinWeb->sellist2) {
+            $userSkills = array_map('trim', explode(',', $joinWeb->sellist2));
+        }
     
-    $joinWeb = JoinWeb::where('email', $user->email)->first();
-    $userSkills = [];
-    if ($joinWeb && $joinWeb->sellist2) {
-        
-        $userSkills = array_map('trim', explode(',', $joinWeb->sellist2));
+        return view('certificates', compact('user', 'userSkills'));
     }
-  
-    return view('certificates', compact('user', 'userSkills'));
 
-    }
-     public function getCertificate($skill){
-       
+    public function getCertificate($skill){
         $user = Auth::user();
         if (!$user) {
-        return redirect()->route('login')->with('error', 'Please login first.');
-    }
-        $join = JoinWeb::where('email', $user->email)->first();
-        if (!$join) {
-            return back()->with('error', 'No skill record found.');
+            return redirect()->route('login')->with('error', 'Please login first.');
         }
-        if (!$join->learner_completed && !$join->teacher_completed) {
-            return back()->with('error', 'Certificate is locked until both users mark the skill as completed.');
-        }
-    
 
+        // current user ka record
+        $join1 = JoinWeb::where('id', $user->id)->first();
+
+        // friendship fetch
         $friendship = DB::table('friends')
-        ->where('user_id', $user->id)
-        ->orWhere('friend_id', $user->id)
-        ->orderBy('created_at', 'asc') 
-        ->first();
+            ->where('user_id', $user->id)
+            ->orWhere('friend_id', $user->id)
+            ->orderBy('created_at', 'asc')
+            ->first();
 
-    if (!$friendship) {
-        return redirect()->back()->with('error', 'Friendship record not found.');
-    }
-    $certificate = Certificate::where('user_id', $user->id)->where('skill', $skill)->first();
-    $from = Carbon::parse($friendship->created_at)->format('Y-m-d');
-   
+        if (!$friendship) {
+            return back()->with('error', 'Friendship not found.');
+        }
 
-    $data = [
-        'name'     => $user->name,
-        'lastname' => $user->lastname,
-        'date'     => now()->format('Y-m-d'),
-        'skill'    => $skill,
-        'from'     => $from,
-        'to'       => now()->format('Y-m-d'),
-        'bg_image' => public_path('images/paper.png')
-    ];
+        // friend ka record
+        $friendId = $friendship->user_id == $user->id ? $friendship->friend_id : $friendship->user_id;
+        $friendJoin = JoinWeb::where('id', $friendId)->first();
 
-    return view('getCertificate', compact('data','certificate'));
-    
-    }
-    
-
-public function generate(Request $request)
-{
-    $user = Auth::user();
-    $skill = $request->skill;
-     $join = JoinWeb::where('email', $user->email)->first();
-        if (!$join || !$join->learner_completed || !$join->teacher_completed) {
+        // check dono ke flags
+        if (!$join1->learner_completed || !$friendJoin->teacher_completed) {
             return back()->with('error', 'Certificate is locked until both users mark the skill as completed.');
         }
 
-    $certificate = Certificate::where('user_id', $user->id)->where('skill', $skill)->first();
+        $certificate = Certificate::where('user_id', $user->id)->where('skill', $skill)->first();
+        $from = Carbon::parse($friendship->created_at)->format('Y-m-d');
 
-    if ($certificate) {
-        if ($certificate->download_count >= 1) {
-            return back()->with('error', 'Your limit to download this certificate has been exceeded.');
+        $data = [
+            'name'     => $user->name,
+            'lastname' => $user->lastname,
+            'date'     => now()->format('Y-m-d'),
+            'skill'    => $skill,
+            'from'     => $from,
+            'to'       => now()->format('Y-m-d'),
+            'bg_image' => public_path('images/paper.png')
+        ];
+
+        return view('getCertificate', compact('data','certificate'));
+    }
+
+    public function generate(Request $request){
+        $user = Auth::user();
+        $skill = $request->skill;
+
+        // current user ka record
+        $join1 = JoinWeb::where('id', $user->id)->first();
+
+        // friendship fetch
+        $friendship = DB::table('friends')
+            ->where('user_id', $user->id)
+            ->orWhere('friend_id', $user->id)
+            ->first();
+
+        if (!$friendship) {
+            return back()->with('error', 'Friendship not found.');
         }
-        $certificate->increment('download_count');
-    } else {
-        $certificate = Certificate::create([
-            'user_id'   => $user->id,
-            'user_name' => $user->name,
-            'skill'     => $skill,
-            'downloaded_at' => now(),
-            'download_count' => 1,
-        ]);
+
+        // friend ka record
+        $friendId = $friendship->user_id == $user->id ? $friendship->friend_id : $friendship->user_id;
+        $friendJoin = JoinWeb::where('id', $friendId)->first();
+
+        // check dono ke flags
+        if (!$join1->learner_completed || !$friendJoin->teacher_completed) {
+            return back()->with('error', 'Certificate is locked until both users mark the skill as completed.');
+        }
+
+        // certificate creation / download
+        $certificate = Certificate::where('user_id', $user->id)->where('skill', $skill)->first();
+
+        if ($certificate) {
+            if ($certificate->download_count >= 1) {
+                return back()->with('error', 'Your limit to download this certificate has been exceeded.');
+            }
+            $certificate->increment('download_count');
+        } else {
+            $certificate = Certificate::create([
+                'user_id'   => $user->id,
+                'user_name' => $user->name,
+                'skill'     => $skill,
+                'downloaded_at' => now(),
+                'download_count' => 1,
+            ]);
+        }
+
+        $data = [
+            'name'     => $user->name,
+            'lastname' => $user->lastname,
+            'skill'    => $skill,
+            'date'     => now()->format('Y-m-d'),
+            'from'     => now()->subMonth()->format('Y-m-d'),
+            'to'       => now()->format('Y-m-d'),
+        ];
+
+        $pdf = Pdf::loadView('certificate_pdf', compact('data'));
+        return $pdf->download("{$skill}_certificate.pdf");
     }
-    $data = [
-        'name'     => $user->name,
-        'lastname' => $user->lastname,
-        'skill'    => $skill,
-        'date'     => now()->format('Y-m-d'),
-        'from'     => now()->subMonth()->format('Y-m-d'),
-        'to'       => now()->format('Y-m-d'),
-    ];
 
-    $pdf = Pdf::loadView('certificate_pdf', compact('data'));
+    public function markCompleted(Request $request, $id){
+        $user = Auth::user(); 
+        $friend = JoinWeb::findOrFail($id); 
 
-    return $pdf->download("{$skill}_certificate.pdf");
-}
+        $userJoin = JoinWeb::where('id', $user->id)->first();
+        $friendJoin = JoinWeb::where('id', $friend->id)->first();
 
+        if ($user->id < $friend->id) {
+            $userJoin->learner_completed = true;
+            $friendJoin->learner_completed = true; 
+        } else {
+            $userJoin->teacher_completed = true;
+            $friendJoin->teacher_completed = true; 
+        }
 
+        $userJoin->save();
+        $friendJoin->save();
 
- public function showProfile()
-{
-    $user = Auth::user();
-
-    if (!$user) {
-        return redirect()->route('login')->with('error', 'Please login first.');
+        return back()->with('success', 'You marked this skill as completed.');
     }
 
-    return view('profile', compact('user'));
-}
+    public function showProfile(){
+        $user = Auth::user();
 
-public function showAllUsers() {
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please login first.');
+        }
 
+        return view('profile', compact('user'));
+    }
 
-    $users = JoinWeb::where('id', '!=', Auth::id())->get();
-    return view('users', compact('users'));
-}
+    public function showAllUsers() {
+        $users = JoinWeb::where('id', '!=', Auth::id())->get();
+        return view('users', compact('users'));
+    }
 
     public function showcontact(){
         return view('contact');
     }
    
-     public function showopen(){
+    public function showopen(){
         return view('open');
     }
-    public function view()
-{
-  $user = session('user'); 
 
-    if (!$user) {
-        return redirect()->route('login')->with('error', 'Please login first.');
+    public function view(){
+        $user = session('user'); 
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please login first.');
+        }
+
+        return view('profile', compact('user')); 
     }
 
-    return view('profile', compact('user')); 
-}
-public function show($id)
-{
-    $user = \App\Models\JoinWeb::findOrFail($id);
-    return view('ibPROFILE', compact('user'));
-}
+    public function show($id){
+        $user = \App\Models\JoinWeb::findOrFail($id);
+        return view('ibPROFILE', compact('user'));
+    }
 
-// Inbox Profile
+    public function inboxProfile($id){
+        $friend = \App\Models\JoinWeb::findOrFail($id);
+        $user = Auth::user();
 
-public function inboxProfile($id)
-{
-    $friend = \App\Models\JoinWeb::findOrFail($id);
-    $user = Auth::user();
+        return view('ibPROFILE', compact('friend', 'user'));
+    }
 
-    return view('ibPROFILE', compact('friend', 'user'));
-}
-
- public function showjoinUs()
-    {
+    public function showjoinUs(){
         return view('joinUs'); 
     }
-
 }
