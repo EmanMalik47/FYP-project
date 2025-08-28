@@ -13,7 +13,7 @@ class JoinWeb extends Authenticatable
 
     protected $fillable = [
         'name', 'lastname', 'email', 'phone', 'password',
-        'sellist1', 'sellist2', 'facilities', 'about', 'profile', 'pdf','learner_completed', 'teacher_completed'
+        'sellist1', 'sellist2', 'facilities', 'about', 'profile', 'pdf','learner_completed', 'teacher_completed', 'is_blocked'
     ];
 
     protected $hidden = [

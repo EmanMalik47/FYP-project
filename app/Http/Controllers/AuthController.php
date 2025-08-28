@@ -41,6 +41,10 @@ class AuthController extends Controller
 
         // Then try to login as Normal User
         if (Auth::guard('web')->attempt($credentials)) {
+            if (Auth::user()->is_blocked) {
+            Auth::logout();
+            return redirect()->route('login')->withErrors(['Your account is blocked.']);
+        }
             return redirect()->route('profile.view');
         }
 
@@ -89,4 +93,5 @@ class AuthController extends Controller
 
         return redirect()->route('login');
     }
+
 }

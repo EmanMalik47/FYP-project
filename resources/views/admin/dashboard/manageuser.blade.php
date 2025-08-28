@@ -54,14 +54,23 @@
         No Image
     @endif
 </td>
-          <td>
+<td>
+    <form action="{{ route('admin.toggleBlock', $user->id) }}" method="POST" style="display:inline;">
+        @csrf
+        <button type="submit" class="btn btn-sm {{ $user->is_blocked ? 'btn-success' : 'btn-warning' }}">
+            {{ $user->is_blocked ? 'Unblock' : 'Block' }}
+        </button>
+    </form>
+</td>
+
+          {{-- <td>
           
             <form action="{{ route('admin.deleteUser', $user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-sm" id="button">Delete</button>
         </form>
-          </td>
+          </td> --}}
         </tr>
         @endforeach
       </tbody>

@@ -19,6 +19,15 @@ class ChatController extends Controller
         $receiver = JoinWeb::find($id);
         $authUser = JoinWeb::find($authId);
         $friends = $authUser ? $authUser->friends() : collect();
+
+        if ($receiver && $receiver->is_blocked) {
+        return view('chat', [
+            'receiver' => $receiver,
+            'friends' => $friends,
+            'messages' => collect(), // empty messages
+            'blocked' => true
+        ]);
+    }
         // mark all messages from this friend as read
         Message::where('sender_id', $id)
         ->where('receiver_id', $authId)

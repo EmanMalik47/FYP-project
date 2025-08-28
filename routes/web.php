@@ -45,7 +45,8 @@ Route::get('/adminDashboard',[adminController::class,'showdashboard'])->name('ad
 Route::prefix('admin')->group(function () {
     Route::get('/manageuser', [adminController::class, 'showmanage_user'])->name('admin.dashboard.manageuser');
 });
-Route::delete('/admin/users/delete/{id}', [adminController::class, 'destroy'])->name('admin.deleteUser');
+Route::post('/admin/users/toggle-block/{id}', [adminController::class, 'toggleBlock'])->name('admin.toggleBlock');
+// Route::delete('/admin/users/delete/{id}', [adminController::class, 'destroy'])->name('admin.deleteUser');
 
 Route::get('/manageSkills',[adminController::class,'showmanage_skills'])->name('admin.dashboard.manageSkills');
 Route::get('/admin/exchangeRequest',[adminController::class,'showExchangeRequests'])->name('admin.dashboard.exchangeRequest');

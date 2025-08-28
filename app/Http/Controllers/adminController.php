@@ -26,7 +26,7 @@ class adminController extends Controller
         'activeExchanges',
         'rejectedExchanges'
     ));}
-
+ 
     public function showmanage_user(){
         $users = JoinWeb::latest()->get();
         return view('admin.dashboard.manageuser',compact('users'));
@@ -54,12 +54,16 @@ class adminController extends Controller
 
     }
     // delete user in manageuser page
-    public function destroy($id) {
+    
+public function toggleBlock($id)
+{
     $user = JoinWeb::findOrFail($id);
-    $user->delete();
-    return redirect()->back()->with('success', 'User deleted successfully');
-    }
-   
+    $user->is_blocked = !$user->is_blocked; 
+    $user->save();
+
+    return redirect()->back()->with('success', $user->is_blocked ? 'User blocked successfully!' : 'User unblocked successfully!');
+}
+
 // Approve Query
 public function approveQuery($id)
 {
