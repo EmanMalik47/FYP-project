@@ -53,10 +53,8 @@ public function sendRequest($receiver_id)
     $sender = JoinWeb::find($sender_id);
     $admin = Admin::first();
     if ($admin && $sender && $receiver) {
-        $admin->notify(new AdminNotification(
-            "User {$sender->id} sent a friend request to User {$receiver->id}",
-            $friendRequest->id
-        ));
+$admin->notify(new AdminNotification("User {$sender->name} having id: {$sender->id} sent a friend request to User {$receiver->name} having id:{$receiver->id}", $friendRequest->id));
+
     }
 
     return response()->json(['message' => 'Friend request sent successfully!'], 200);

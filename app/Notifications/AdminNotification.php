@@ -38,4 +38,5 @@ class AdminNotification extends Notification
             'message' => $this->message
         ];
     }
+    
 }
